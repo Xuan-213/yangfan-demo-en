@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yang Fan · InternDetails</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+/* ===== YANG FAN V3 DESIGN SYSTEM ===== */
+:root {
+  --green-50:oklch(0.97 0.025 145);--green-100:oklch(0.94 0.05 145);--green-200:oklch(0.88 0.09 145);--green-300:oklch(0.78 0.13 145);
+  --green-400:oklch(0.68 0.16 145);--green-500:oklch(0.60 0.17 145);--green-600:oklch(0.52 0.15 145);--green-700:oklch(0.44 0.13 145);
+  --neutral-0:oklch(1 0 0);--neutral-50:oklch(0.985 0.004 96);--neutral-100:oklch(0.965 0.007 96);--neutral-200:oklch(0.92 0.010 96);
+  --neutral-300:oklch(0.86 0.012 96);--neutral-400:oklch(0.72 0.012 96);--neutral-500:oklch(0.58 0.012 96);
+  --neutral-600:oklch(0.46 0.010 96);--neutral-700:oklch(0.34 0.008 96);--neutral-800:oklch(0.22 0.006 96);--neutral-900:oklch(0.13 0.004 96);
+  --bg-app:oklch(0.978 0.006 145);--bg-card:var(--neutral-0);--bg-header:oklch(1 0 0 / 0.82);--bg-stat:var(--neutral-50);
+  --primary:var(--green-500);--primary-hover:var(--green-600);--primary-light:var(--green-50);--primary-text:oklch(0.44 0.13 145);
+  --text-primary:var(--neutral-900);--text-secondary:var(--neutral-600);--text-muted:var(--neutral-500);--text-nav:var(--neutral-600);
+  --border:oklch(0.91 0.008 145);--border-light:oklch(0.95 0.005 145);--border-header:oklch(0.95 0.005 145);
+  --shadow-xs:0 1px 2px oklch(0 0 0 / 0.03);--shadow-sm:0 2px 8px oklch(0 0 0 / 0.05);
+  --shadow-md:0 4px 20px oklch(0 0 0 / 0.07);--shadow-lg:0 8px 40px oklch(0 0 0 / 0.09);--shadow-xl:0 16px 60px oklch(0 0 0 / 0.12);
+  --danger:oklch(0.55 0.19 18);--danger-light:oklch(0.96 0.02 18);--warning:oklch(0.65 0.14 75);--warning-light:oklch(0.96 0.04 75);
+  --info:oklch(0.52 0.16 250);--info-light:oklch(0.95 0.03 250);--purple:oklch(0.48 0.16 280);--purple-light:oklch(0.94 0.03 280);
+  --font:'DM Sans',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;--font-heading:'DM Sans','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+  --text-xs:clamp(0.625rem,0.6rem + 0.1vw,0.75rem);--text-sm:clamp(0.75rem,0.72rem + 0.15vw,0.875rem);--text-base:clamp(0.875rem,0.85rem + 0.2vw,1rem);
+  --text-lg:clamp(1rem,0.95rem + 0.25vw,1.25rem);--text-xl:clamp(1.125rem,1.05rem + 0.4vw,1.5rem);--text-2xl:clamp(1.25rem,1.15rem + 0.5vw,1.75rem);--text-3xl:clamp(1.5rem,1.3rem + 0.8vw,2.25rem);
+  --leading-tight:1.2;--leading-normal:1.5;--leading-relaxed:1.7;
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:20px;--sp-6:24px;--sp-8:32px;--sp-10:40px;--sp-12:48px;--sp-16:64px;
+  --r-sm:6px;--r-md:10px;--r-lg:14px;--r-xl:18px;--r-2xl:24px;--r-full:9999px;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);--ease-std:cubic-bezier(0.4,0,0.2,1);--ease-in-out:cubic-bezier(0.65,0,0.35,1);
+  --dur-fast:120ms;--dur-normal:200ms;--dur-slow:350ms;--dur-page:400ms;
+  --sidebar-w:264px;--topbar-h:64px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:var(--font);background:var(--bg-app);color:var(--text-primary);min-height:100vh;line-height:var(--leading-normal)}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--neutral-300);border-radius:2px}
+::selection{background:var(--green-100);color:var(--green-800)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}}
+
+.topbar{background:var(--bg-header);backdrop-filter:blur(16px) saturate(180%);-webkit-backdrop-filter:blur(16px) saturate(180%);border-bottom:1px solid var(--border-light);height:64px;display:flex;align-items:center;gap:16px;padding:0 var(--sp-8);position:fixed;top:0;left:0;right:0;z-index:100}
+.topbar-left{display:flex;align-items:center;gap:var(--sp-4)}
+.btn-back{display:flex;align-items:center;gap:6px;padding:var(--sp-2) var(--sp-4);border-radius:var(--r-full);border:none;background:transparent;color:var(--text-nav);font-size:var(--text-sm);font-weight:600;cursor:pointer;font-family:var(--font);transition:all var(--dur-fast)}
+.btn-back:hover{background:var(--neutral-50);color:var(--text-primary)}
+.btn-back svg{width:18px;height:18px}
+.topbar-title{font-size:var(--text-base);font-weight:700;color:var(--text-primary);font-family:var(--font-heading)}
+.topbar-spacer{flex:1}
+.btn-green{padding:var(--sp-2) var(--sp-5);border-radius:var(--r-full);font-size:var(--text-sm);font-weight:600;cursor:pointer;font-family:var(--font);border:none;background:var(--primary);color:#fff;transition:all var(--dur-fast);display:inline-flex;align-items:center;justify-content:center}
+.btn-green:hover{background:var(--primary-hover);transform:translateY(-1px);box-shadow:0 4px 16px oklch(0.6 0.17 145 / 0.3)}
+.btn-green:active{transform:scale(0.97)}
+.btn-ghost-sm{padding:var(--sp-2) var(--sp-5);border-radius:var(--r-full);font-size:var(--text-sm);font-weight:500;cursor:pointer;font-family:var(--font);border:1px solid var(--border-light);background:var(--bg-card);color:var(--text-secondary);transition:all var(--dur-fast);display:inline-flex;align-items:center;justify-content:center}
+.btn-ghost-sm:hover{background:var(--neutral-50);color:var(--text-primary)}
+
+.main{padding-top:calc(var(--topbar-h) + var(--sp-8));padding-left:120px;padding-right:120px;padding-bottom:var(--sp-20);display:flex;flex-direction:column;gap:var(--sp-5)}
+
+.hero-card{background:linear-gradient(155deg,var(--neutral-800),var(--neutral-900));border-radius:var(--r-2xl);box-shadow:var(--shadow-lg);padding:var(--sp-8) var(--sp-10);margin-bottom:var(--sp-5);display:flex;justify-content:space-between;align-items:flex-start;gap:var(--sp-8);flex-wrap:wrap;position:relative;overflow:hidden}
+.hero-card::after{content:'';position:absolute;top:-120px;right:-80px;width:420px;height:420px;background:radial-gradient(circle,var(--green-500) 0%,transparent 70%);opacity:.05;border-radius:50%;pointer-events:none}
+.hero-card::before{content:'';position:absolute;bottom:-80px;left:15%;width:300px;height:300px;background:radial-gradient(circle,var(--purple) 0%,transparent 70%);opacity:.04;border-radius:50%;pointer-events:none}
+.hero-left{display:flex;align-items:center;gap:var(--sp-5);position:relative;z-index:1}
+.hero-av{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#fff;flex-shrink:0;border:2px solid oklch(1 0 0 / 0.2)}
+.hero-info{display:flex;flex-direction:column;gap:4px}
+.hero-tag{font-size:var(--text-xs);font-weight:700;color:var(--green-400);text-transform:uppercase;letter-spacing:.06em}
+.hero-name{font-size:var(--text-2xl);font-weight:800;color:#fff;font-family:var(--font-heading)}
+.hero-meta{font-size:var(--text-sm);color:oklch(1 0 0 / 0.55);line-height:1.5}
+.hero-tags{display:flex;gap:var(--sp-2);flex-wrap:wrap;padding-top:var(--sp-1)}
+.htag{padding:4px 12px;border-radius:var(--r-full);font-size:var(--text-xs);font-weight:600}
+.htag.purple{background:oklch(1 0 0 / 0.1);color:var(--purple)}
+.htag.gray{background:oklch(1 0 0 / 0.08);color:oklch(1 0 0 / 0.7)}
+.hero-stat-box{flex:0 0 110px;background:oklch(1 0 0 / 0.06);border:1px solid oklch(1 0 0 / 0.08);border-radius:var(--r-xl);padding:var(--sp-5);text-align:center;position:relative;z-index:1}
+.hero-stat-num{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--green-400);font-family:var(--font-heading);line-height:1.2}
+.hero-stat-label{font-size:var(--text-xs);font-weight:500;color:oklch(1 0 0 / 0.5);margin-top:var(--sp-1)}
+.hero-btns{display:flex;gap:var(--sp-2);flex-direction:column;flex-shrink:0;position:relative;z-index:1}
+.btn-white{padding:var(--sp-3) var(--sp-5);border-radius:var(--r-full);font-size:var(--text-sm);font-weight:600;cursor:pointer;font-family:var(--font);border:none;background:#fff;color:var(--text-primary);transition:all var(--dur-fast)}
+.btn-white:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.btn-outline-w{padding:var(--sp-3) var(--sp-5);border-radius:var(--r-full);font-size:var(--text-sm);font-weight:600;cursor:pointer;font-family:var(--font);border:1px solid oklch(1 0 0 / 0.2);background:transparent;color:#fff;transition:all var(--dur-fast)}
+.btn-outline-w:hover{background:oklch(1 0 0 / 0.1);border-color:oklch(1 0 0 / 0.3)}
+.emp{text-align:center;padding:var(--sp-12);font-size:var(--text-base);color:var(--text-muted)}
+
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-5)}
+.section-head h3{font-size:var(--text-lg);font-weight:700;color:var(--text-primary);font-family:var(--font-heading)}
+.badge-sm{background:var(--neutral-50);padding:3px 12px;border-radius:var(--r-full);font-size:var(--text-xs);color:var(--text-muted);font-weight:600}
+.badge-sm.purple{background:var(--purple-light);color:var(--purple)}
+
+.bh-section{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-2xl);box-shadow:var(--shadow-xs);padding:var(--sp-8);display:flex;flex-direction:column;margin-bottom:var(--sp-5);transition:all var(--dur-normal) var(--ease-std)}
+.bh-section:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--border)}
+.bh-section .section-head{margin-bottom:var(--sp-5)}
+
+.rpt-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-8);margin-bottom:var(--sp-5);transition:all var(--dur-normal) var(--ease-std)}
+.rpt-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--border)}
+.rpt-sec-body{font-size:var(--text-sm);color:var(--text-secondary);line-height:1.8;white-space:pre-wrap;padding:var(--sp-6);background:var(--neutral-50);border-radius:var(--r-md);margin-top:var(--sp-3)}
+.rpt-placeholder{font-size:var(--text-sm);color:var(--text-muted);padding:var(--sp-6);background:var(--neutral-50);border-radius:var(--r-md);text-align:center;margin-top:var(--sp-3)}
+
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--sp-5);margin-bottom:var(--sp-5)}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-4);margin-bottom:var(--sp-5)}
+.stat-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-6);text-align:center;transition:all var(--dur-normal) var(--ease-std)}
+.stat-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--border)}
+.metric{display:flex;align-items:center;gap:var(--sp-3)}
+.metric-bar{flex:1;height:8px;background:var(--neutral-100);border-radius:4px;overflow:hidden}
+.metric-fill{height:100%;border-radius:4px;transition:width 1s var(--ease-out)}
+
+.tl-grid{display:flex;flex-direction:column;gap:0}
+.tl-item{display:flex;gap:var(--sp-4);padding:var(--sp-4) 0;position:relative}
+.tl-content{flex:1;font-size:var(--text-sm);color:var(--text-secondary);line-height:1.6}
+.tl-expand{display:none;margin-top:var(--sp-3);padding:var(--sp-4) 0 var(--sp-4) 16px;border-top:1px solid var(--border-light);font-size:var(--text-xs);color:var(--text-secondary);line-height:1.8;animation:tlExpandIn .2s var(--ease-std)}
+.tl-expand.show{display:block}
+@keyframes tlExpandIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.tl-exp-lbl{font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:var(--sp-1)}
+.tl-exp-txt{font-size:var(--text-xs);color:var(--text-secondary);line-height:1.7;white-space:pre-wrap}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+
+.iv-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-2xl);box-shadow:var(--shadow-xs);padding:var(--sp-8);margin-bottom:var(--sp-5);transition:all var(--dur-normal) var(--ease-std)}
+.iv-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--border)}
+
+@keyframes a-fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.a-up{animation:a-fadeUp var(--dur-slow) var(--ease-std) both}
+.a-up.d1{animation-delay:.04s}.a-up.d2{animation-delay:.08s}.a-up.d3{animation-delay:.12s}
+
+@media(max-width:1024px){.main{padding-left:var(--sp-5);padding-right:var(--sp-5)}.card-grid,.stat-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.hero-card{flex-direction:column}.stat-grid{grid-template-columns:1fr 1fr}.main{padding-left:var(--sp-4);padding-right:var(--sp-4);gap:var(--sp-4)}}
+@media(hover:none) and (pointer:coarse){.stat-card:hover{transform:none;box-shadow:var(--shadow-xs)}}
+
+/* ===== TABS ===== */
+.tab-bar{display:flex;gap:4px;padding:0 0 var(--sp-4) 0;border-bottom:1px solid var(--border-light);margin-bottom:var(--sp-5)}
+.tab-btn{padding:var(--sp-2) var(--sp-5);border-radius:var(--r-full);border:none;background:transparent;color:var(--text-muted);font-size:var(--text-sm);font-weight:600;cursor:pointer;font-family:var(--font);transition:all var(--dur-fast)}
+.tab-btn:hover{background:var(--neutral-50);color:var(--text-primary)}
+.tab-btn.active{background:var(--primary);color:#fff}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* ===== LAYOUT GRIDS ===== */
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-4);margin-bottom:var(--sp-5)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5)}
+.card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-2xl);box-shadow:var(--shadow-xs);padding:var(--sp-8);transition:all var(--dur-normal) var(--ease-std)}
+.card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--border)}
+.grid-aside{display:flex;gap:var(--sp-5);margin-bottom:var(--sp-5);align-items:stretch}
+.main-col{flex:1;min-width:0;display:flex;flex-direction:column}
+.main-col>.card{flex:1}
+.side-col{flex:0 0 340px;display:flex;flex-direction:column}
+.side-col>.card{flex:1}
+
+/* ===== STATS ROW ===== */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-4);margin-bottom:var(--sp-5)}
+.stat-card .val{font-size:var(--text-2xl);font-weight:800;color:var(--text-primary);font-family:var(--font-heading);line-height:1.2}
+.stat-card .lbl{font-size:var(--text-xs);font-weight:500;color:var(--text-muted);margin-top:var(--sp-1)}
+
+/* ===== WEEK SELECTOR ===== */
+.wk-select{padding:6px 14px;border-radius:var(--r-full);border:1px solid var(--border-light);background:var(--bg-card);color:var(--text-primary);font-size:var(--text-xs);font-weight:600;cursor:pointer;font-family:var(--font)}
+.wk-select:focus{outline:2px solid var(--primary);outline-offset:2px}
+
+/* ===== CHART BOX ===== */
+.chart-box{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-5);transition:all var(--dur-normal) var(--ease-std);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:240px}
+.chart-box svg{display:block;margin:0 auto}
+.chart-box:hover{border-color:var(--border);box-shadow:var(--shadow-sm)}
+.chart-legend{display:flex;gap:var(--sp-4);margin-top:var(--sp-2);font-size:var(--text-xs);color:var(--text-muted)}
+.chart-legend span{display:flex;align-items:center;gap:6px}
+.ld{display:inline-block;width:10px;height:10px;border-radius:3px}
+
+/* ===== TIMELINE ===== */
+.tl-wk{margin-top:var(--sp-4)}
+.tl-wk-hd{display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-4);padding-bottom:var(--sp-3);border-bottom:1px solid var(--border-light)}
+.tl-wk-lbl{font-size:var(--text-sm);font-weight:700;color:var(--text-primary)}
+.tl-wk-dt{font-size:var(--text-xs);color:var(--text-muted);margin-left:auto}
+.tl-item{background:var(--neutral-50);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:var(--sp-4) var(--sp-5);margin-bottom:var(--sp-3);cursor:pointer;transition:all var(--dur-fast) var(--ease-std);user-select:none}
+.tl-item:hover{background:var(--green-50);border-color:var(--green-200);box-shadow:var(--shadow-sm);transform:translateX(2px)}
+.tl-item.open{background:var(--bg-card);border-color:var(--green-300);box-shadow:var(--shadow-sm)}
+.tl-item-hd{display:flex;flex-direction:column;gap:6px}
+.tl-item-top{display:flex;align-items:center;justify-content:space-between}
+.tl-item-name{font-size:var(--text-sm);font-weight:700;color:var(--text-primary);padding-left:16px;position:relative}
+.tl-item-name::before{content:'▶';font-size:8px;color:var(--text-muted);position:absolute;left:0;top:50%;transform:translateY(-50%);transition:transform var(--dur-fast) var(--ease-std)}
+.tl-item.open .tl-item-name::before{transform:translateY(-50%) rotate(90deg);color:var(--primary)}
+.tl-item-meta{font-size:var(--text-xs);font-weight:700;color:var(--primary);background:var(--green-50);padding:3px 10px;border-radius:var(--r-full)}
+.tl-item.open .tl-item-meta{background:var(--primary);color:#fff}
+.tl-item-hint{font-size:10px;color:var(--text-muted);font-weight:400}
+.tl-item.open .tl-item-hint{color:var(--primary)}
+
+/* ===== INTERVIEW CARD ===== */
+.iv-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-3)}
+.iv-type{font-size:var(--text-sm);font-weight:700;color:var(--text-primary)}
+.iv-date{font-size:var(--text-xs);color:var(--text-muted)}
+.iv-summary{font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;margin-bottom:var(--sp-4)}
+.iv-points{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-bottom:var(--sp-3)}
+.iv-point{background:var(--green-50);color:var(--primary-text);padding:3px 12px;border-radius:var(--r-full);font-size:var(--text-xs);font-weight:600}
+.iv-next{font-size:var(--text-xs);color:var(--text-muted);padding-top:var(--sp-2);border-top:1px solid var(--border-light)}
+
+/* ===== REPORT ===== */
+.rpt-item{margin-top:var(--sp-4)}
+.rpt-hd{display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-4)}
+.rpt-title{font-size:var(--text-sm);font-weight:600;color:var(--text-primary)}
+.rpt-score{font-size:var(--text-xs);font-weight:700;padding:2px 10px;border-radius:var(--r-full)}
+.rpt-score.high{background:var(--green-50);color:var(--primary-text)}
+.rpt-score.mid{background:var(--warning-light);color:#b45309}
+.rpt-score.low{background:var(--danger-light);color:var(--danger)}
+.rpt-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5)}
+.rpt-col{display:flex;flex-direction:column;gap:var(--sp-2)}
+.rpt-col-lbl{font-size:var(--text-xs);font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;display:flex;align-items:center;gap:6px}
+.rpt-col-txt{font-size:var(--text-sm);color:var(--text-secondary);line-height:1.8;white-space:pre-wrap;padding:var(--sp-5);background:var(--neutral-50);border-radius:var(--r-md)}
+.rpt-sec-title{font-size:var(--text-sm);font-weight:700;color:var(--text-primary);margin-bottom:var(--sp-2);display:flex;align-items:center;gap:var(--sp-2)}
+.rpt-sec-icon{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;font-size:12px}
+.rpt-sec-icon.work{background:#dbeafe;color:#2563eb}
+.rpt-sec-icon.growth{background:#d1fae5;color:#059669}
+.rpt-sec-icon.plan{background:#fef3c7;color:#d97706}
+.rpt-sec-icon.apply{background:#ede9fe;color:#7c3aed}
+.rpt-sec-icon.find{background:#fce7f3;color:#db2777}
+.rpt-sec-icon.issue{background:#fee2e2;color:#dc2626}
+.rpt-sec-icon.improve{background:#fff7ed;color:#ea580c}
+.rpt-sec-icon.reflect{background:#f3f4f6;color:#6b7280}
+.dot-g{display:inline-block;width:8px;height:8px;background:var(--primary);border-radius:50%}
+.dot-b{display:inline-block;width:8px;height:8px;background:var(--info);border-radius:50%}
+
+/* ===== MENTOR FEEDBACK ===== */
+.mf-dim{padding:var(--sp-4) 0;border-bottom:1px solid var(--border-light)}
+.mf-dim:last-child{border-bottom:none}
+.mf-dim-label{font-size:var(--text-sm);font-weight:700;color:var(--text-primary);margin-bottom:var(--sp-2);display:flex;align-items:center;gap:var(--sp-2)}
+.mf-dim-icon{font-size:14px}
+.mf-dim-text{font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;padding:var(--sp-4);background:var(--neutral-50);border-radius:var(--r-md)}
+
+/* ===== Q&A ===== */
+.qa-card{background:var(--neutral-50);border-radius:var(--r-md);padding:var(--sp-5);margin-bottom:var(--sp-3)}
+.qa-card:last-child{margin-bottom:0}
+.qa-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-3)}
+.qa-to{font-size:var(--text-xs);font-weight:700;color:var(--text-muted);display:flex;align-items:center;gap:4px}
+.qa-to-icon{font-size:14px}
+.qa-date{font-size:10px;color:var(--text-muted)}
+.qa-q{font-size:var(--text-sm);font-weight:600;color:var(--text-primary);margin-bottom:var(--sp-2)}
+.qa-a{font-size:var(--text-xs);color:var(--text-secondary);line-height:1.6;padding-left:var(--sp-4);border-left:3px solid var(--primary)}
+
+/* ===== LEARNING ===== */
+.lrn-card{display:flex;align-items:flex-start;gap:var(--sp-3);padding:var(--sp-4);background:var(--neutral-50);border-radius:var(--r-md);margin-bottom:var(--sp-2)}
+.lrn-card:last-child{margin-bottom:0}
+.lrn-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.lrn-body{flex:1;min-width:0}
+.lrn-name{font-size:var(--text-sm);font-weight:600;color:var(--text-primary)}
+.lrn-meta-row{display:flex;align-items:center;gap:var(--sp-3);margin-top:4px}
+.lrn-dur{font-size:var(--text-xs);color:var(--text-muted)}
+.lrn-progress{flex:1;height:4px;background:var(--neutral-200);border-radius:2px;overflow:hidden}
+.lrn-progress-bar{height:100%;border-radius:2px;transition:width 0.6s var(--ease-out)}
+.lrn-progress-bar.done{background:var(--primary);width:100%}
+.lrn-progress-bar.wait{background:var(--neutral-300);width:40%}
+.lrn-detail{font-size:var(--text-xs);color:var(--text-muted);margin-top:var(--sp-1);line-height:1.5}
+.lrn-st{font-size:10px;font-weight:700;padding:2px 8px;border-radius:var(--r-full);flex-shrink:0}
+.lrn-st.done{background:var(--green-50);color:var(--primary-text)}
+.lrn-st.wait{background:var(--neutral-100);color:var(--text-muted)}
+
+/* ===== COLLABORATION ===== */
+.clb-card{display:flex;align-items:flex-start;gap:var(--sp-4);padding:var(--sp-5);background:var(--neutral-50);border-radius:var(--r-md);margin-bottom:var(--sp-3)}
+.clb-card:last-child{margin-bottom:0}
+.clb-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;flex-shrink:0}
+.clb-info{flex:1;min-width:0}
+.clb-header{display:flex;align-items:center;gap:var(--sp-2);margin-bottom:4px}
+.clb-from{font-size:var(--text-sm);font-weight:600;color:var(--text-primary)}
+.clb-role{font-size:10px;color:var(--text-muted);background:var(--neutral-100);padding:1px 8px;border-radius:var(--r-full)}
+.clb-fb{font-size:var(--text-xs);color:var(--text-secondary);line-height:1.6}
+.clb-type{font-size:10px;font-weight:700;padding:2px 10px;border-radius:var(--r-full);flex-shrink:0}
+.clb-type.like{background:#fef3c7;color:#d97706}
+.clb-type.thanks{background:#dbeafe;color:#2563eb}
+
+/* ===== BEHAVIOR SUMMARY ===== */
+.bh-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-3);margin-bottom:var(--sp-5)}
+.bh-sum-stat{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:var(--sp-5);text-align:center;transition:all var(--dur-normal) var(--ease-std)}
+.bh-sum-stat:hover{box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+.bh-sum-val{font-size:var(--text-xl);font-weight:800;color:var(--text-primary);font-family:var(--font-heading)}
+.bh-sum-lbl{font-size:var(--text-xs);color:var(--text-muted);margin-top:4px}
+.bh-empty{text-align:center;padding:var(--sp-8);font-size:var(--text-sm);color:var(--text-muted)}
+.bh-empty-icon{font-size:32px;margin-bottom:var(--sp-3)}
+
+/* ===== KEY BEHAVIORS ===== */
+.bh-key-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--sp-4)}
+.bh-key-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-5);transition:all var(--dur-normal) var(--ease-std)}
+.bh-key-card:hover{box-shadow:var(--shadow-sm);transform:translateY(-1px);border-color:var(--border)}
+.bh-key-icon{width:36px;height:36px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:var(--sp-3)}
+.bh-key-icon.s1{background:#fef3c7;color:#d97706}
+.bh-key-icon.s2{background:#dbeafe;color:#2563eb}
+.bh-key-icon.s3{background:#fce7f3;color:#db2777}
+.bh-key-action{font-size:var(--text-sm);font-weight:700;color:var(--text-primary);margin-bottom:var(--sp-1)}
+.bh-key-date{font-size:10px;color:var(--text-muted);margin-bottom:var(--sp-2)}
+.bh-key-detail{font-size:var(--text-xs);color:var(--text-secondary);line-height:1.6}
+.bh-key-impact{font-size:10px;font-weight:700;color:var(--primary-text);display:inline-block;margin-top:var(--sp-2);padding:2px 8px;background:var(--green-50);border-radius:var(--r-full)}
+
+/* ===== BADGE VARIANTS ===== */
+.badge-sm.green{background:var(--green-50);color:var(--primary-text)}
+.badge-sm.blue{background:var(--info-light);color:var(--info)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){.grid-4{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}.grid-aside{flex-direction:column}.side-col{flex:1}.bh-summary{grid-template-columns:repeat(2,1fr)}.rpt-grid{grid-template-columns:1fr}.stats-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.grid-4{grid-template-columns:1fr}.bh-summary{grid-template-columns:1fr 1fr}.stats-row{grid-template-columns:1fr 1fr}.tab-bar{overflow-x:auto}}
+
+</style><body>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="btn-back" onclick="history.back()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5m7-7l-7 7 7 7"/></svg>Back
+    </button>
+    <span class="topbar-title" id="tbName">Yang Fan · InternDetails</span>
+  </div>
+  <div class="topbar-spacer"></div>
+  <button class="btn-ghost-sm" onclick="alert('Meeting feature in dev')" style="margin-right:8px">Schedule Meeting</button>
+  <button class="btn-green" onclick="alert('TaskAssign feature in dev')">QuickAssign Task</button>
+</header>
+
+<div class="main" id="mainContent"><p class="emp">Loading......</p></div>
+
+<script>
+// ===== Yang Fan AIHR Database =====
+// 20 interns + 6 mentors + 3-week performance data
+
+var AIHR_DB = {
+
+// ===== Mentor Data (6) =====
+mentors: [
+  { id:'M001', name:'Ma (Mentor)', dept:'Product', title:'Senior Product Manager', interns:6, avatar:'Ma', rating:4.8, completedTasks:42, color:'#6366F1' },
+  { id:'M002', name:'Li (Mentor)', dept:'Product', title:'Product Director',     interns:4, avatar:'Li', rating:4.6, completedTasks:38, color:'#3B82F6' },
+  { id:'M003', name:'Wang (Mentor)', dept:'R&D', title:'Tech Lead',   interns:4, avatar:'Wang', rating:4.9, completedTasks:45, color:'#10B981' },
+  { id:'M004', name:'Zhang (Mentor)', dept:'R&D', title:'Senior Architect',   interns:3, avatar:'Zh', rating:4.7, completedTasks:36, color:'#34D399' },
+  { id:'M005', name:'Zhao (Mentor)', dept:'Sales', title:'Sales VP',       interns:2, avatar:'Zh', rating:4.5, completedTasks:30, color:'#F59E0B' },
+  { id:'M006', name:'Chen (Mentor)', dept:'Sales', title:'Key Account Director',   interns:1, avatar:'Ch', rating:4.4, completedTasks:28, color:'#FBBF24' }
+],
+
+// ===== Intern Data (20, 3-week performance) =====
+interns: [
+  // ---- Product Dept (7) ----
+  { id:'I001', name:'Zhang Yao',   dept:'Product', mentor:'Ma (Mentor)', avatar:'Zh', avColor:'a1',
+    weeks:[
+      { wk:1, rate:58, quality:62, tasks:3 },
+      { wk:2, rate:55, quality:58, tasks:2 },
+      { wk:3, rate:52, quality:51, tasks:2 }
+    ],
+    competency:61, risk:'high', trend:-3.2, fit:58, status:'Business understanding weak for 3 weeks', taskStatus:'In Progress' },
+
+  { id:'I002', name:'Zhao Qing',   dept:'Product', mentor:'Ma (Mentor)', avatar:'Zh', avColor:'a3',
+    weeks:[
+      { wk:1, rate:82, quality:88, tasks:5 },
+      { wk:2, rate:86, quality:90, tasks:6 },
+      { wk:3, rate:91, quality:93, tasks:7 }
+    ],
+    competency:88, risk:'low', trend:8.3, fit:91, status:'Excellent report review quality', taskStatus:'Completed' },
+
+  { id:'I003', name:'Sun Yue',   dept:'Product', mentor:'Ma (Mentor)', avatar:'Su', avColor:'a2',
+    weeks:[
+      { wk:1, rate:72, quality:75, tasks:4 },
+      { wk:2, rate:74, quality:78, tasks:4 },
+      { wk:3, rate:79, quality:82, tasks:5 }
+    ],
+    competency:76, risk:'low', trend:4.1, fit:78, status:'Steadily improving', taskStatus:'In Progress' },
+
+  { id:'I004', name:'Zhou Ming',   dept:'Product', mentor:'Li (Mentor)', avatar:'Zh', avColor:'a4',
+    weeks:[
+      { wk:1, rate:65, quality:68, tasks:3 },
+      { wk:2, rate:68, quality:70, tasks:4 },
+      { wk:3, rate:63, quality:65, tasks:3 }
+    ],
+    competency:67, risk:'med', trend:-0.5, fit:66, status:'Requirements doc quality inconsistent', taskStatus:'In Progress' },
+
+  { id:'I005', name:'Wu Tong',   dept:'Product', mentor:'Li (Mentor)', avatar:'Wu', avColor:'a1',
+    weeks:[
+      { wk:1, rate:88, quality:91, tasks:6 },
+      { wk:2, rate:92, quality:94, tasks:7 },
+      { wk:3, rate:95, quality:96, tasks:8 }
+    ],
+    competency:92, risk:'low', trend:6.8, fit:94, status:'Outstanding — retention recommended', taskStatus:'Completed' },
+
+  { id:'I006', name:'Zheng Lei',   dept:'Product', mentor:'Li (Mentor)', avatar:'Zh', avColor:'a3',
+    weeks:[
+      { wk:1, rate:45, quality:50, tasks:2 },
+      { wk:2, rate:48, quality:52, tasks:2 },
+      { wk:3, rate:55, quality:58, tasks:3 }
+    ],
+    competency:51, risk:'high', trend:6.2, fit:53, status:'Clear progress but fundamentals weak', taskStatus:'In Progress' },
+
+  { id:'I007', name:'Feng Yuan',   dept:'Product', mentor:'Ma (Mentor)', avatar:'Fe', avColor:'a2',
+    weeks:[
+      { wk:1, rate:70, quality:72, tasks:4 },
+      { wk:2, rate:73, quality:75, tasks:4 },
+      { wk:3, rate:76, quality:79, tasks:5 }
+    ],
+    competency:74, risk:'low', trend:3.5, fit:76, status:'Stable growth', taskStatus:'In Progress' },
+
+  // ---- R&D Dept (8) ----
+  { id:'I008', name:'Li Ming',   dept:'R&D', mentor:'Wang (Mentor)', avatar:'Li', avColor:'a2',
+    weeks:[
+      { wk:1, rate:80, quality:85, tasks:5 },
+      { wk:2, rate:78, quality:82, tasks:4 },
+      { wk:3, rate:82, quality:86, tasks:5 }
+    ],
+    competency:82, risk:'low', trend:5.1, fit:86, status:'Arch doc 1 day late, overall solid', taskStatus:'In Progress' },
+
+  { id:'I009', name:'Liu Yang',   dept:'R&D', mentor:'Wang (Mentor)', avatar:'Li', avColor:'a1',
+    weeks:[
+      { wk:1, rate:55, quality:58, tasks:3 },
+      { wk:2, rate:52, quality:54, tasks:2 },
+      { wk:3, rate:48, quality:46, tasks:2 }
+    ],
+    competency:51, risk:'high', trend:-4.8, fit:49, status:'Code quality declining', taskStatus:'Unassigned' },
+
+  { id:'I010', name:'Chen Mo',   dept:'R&D', mentor:'Wang (Mentor)', avatar:'Ch', avColor:'a3',
+    weeks:[
+      { wk:1, rate:90, quality:93, tasks:7 },
+      { wk:2, rate:93, quality:95, tasks:8 },
+      { wk:3, rate:96, quality:97, tasks:9 }
+    ],
+    competency:94, risk:'low', trend:7.5, fit:96, status:'Strong tech skills, takes initiative', taskStatus:'Completed' },
+
+  { id:'I011', name:'Yang Guang',   dept:'R&D', mentor:'Zhang (Mentor)', avatar:'Ya', avColor:'a4',
+    weeks:[
+      { wk:1, rate:68, quality:70, tasks:4 },
+      { wk:2, rate:71, quality:73, tasks:4 },
+      { wk:3, rate:75, quality:78, tasks:5 }
+    ],
+    competency:73, risk:'low', trend:4.2, fit:75, status:'Making steady progress', taskStatus:'In Progress' },
+
+  { id:'I012', name:'Huang Si',   dept:'R&D', mentor:'Zhang (Mentor)', avatar:'Hu', avColor:'a2',
+    weeks:[
+      { wk:1, rate:60, quality:63, tasks:3 },
+      { wk:2, rate:58, quality:60, tasks:3 },
+      { wk:3, rate:62, quality:65, tasks:3 }
+    ],
+    competency:64, risk:'med', trend:1.8, fit:63, status:'Needs stronger coding standards', taskStatus:'In Progress' },
+
+  { id:'I013', name:'Xu Da',   dept:'R&D', mentor:'Wang (Mentor)', avatar:'Xu', avColor:'a1',
+    weeks:[
+      { wk:1, rate:75, quality:78, tasks:5 },
+      { wk:2, rate:80, quality:83, tasks:5 },
+      { wk:3, rate:85, quality:88, tasks:6 }
+    ],
+    competency:83, risk:'low', trend:7.0, fit:85, status:'Growing fast', taskStatus:'Completed' },
+
+  { id:'I014', name:'He Chang',   dept:'R&D', mentor:'Zhang (Mentor)', avatar:'He', avColor:'a3',
+    weeks:[
+      { wk:1, rate:40, quality:45, tasks:2 },
+      { wk:2, rate:42, quality:44, tasks:2 },
+      { wk:3, rate:38, quality:40, tasks:1 }
+    ],
+    competency:42, risk:'high', trend:-1.2, fit:38, status:'Needs focused coaching', taskStatus:'Unassigned' },
+
+  { id:'I015', name:'Lin Jie',   dept:'R&D', mentor:'Wang (Mentor)', avatar:'Li', avColor:'a4',
+    weeks:[
+      { wk:1, rate:78, quality:80, tasks:5 },
+      { wk:2, rate:82, quality:84, tasks:6 },
+      { wk:3, rate:84, quality:87, tasks:6 }
+    ],
+    competency:85, risk:'low', trend:5.6, fit:83, status:'Consistent performance', taskStatus:'In Progress' },
+
+  // ---- Sales Dept (5) ----
+  { id:'I016', name:'Wang Yang',   dept:'Sales', mentor:'Zhao (Mentor)', avatar:'Wang', avColor:'a3',
+    weeks:[
+      { wk:1, rate:72, quality:74, tasks:4 },
+      { wk:2, rate:70, quality:72, tasks:4 },
+      { wk:3, rate:74, quality:76, tasks:4 }
+    ],
+    competency:74, risk:'med', trend:0.5, fit:72, status:'Mid-term interview pending approval', taskStatus:'In Progress' },
+
+  { id:'I017', name:'Lyu Feng',   dept:'Sales', mentor:'Zhao (Mentor)', avatar:'Ly', avColor:'a1',
+    weeks:[
+      { wk:1, rate:85, quality:88, tasks:6 },
+      { wk:2, rate:90, quality:92, tasks:7 },
+      { wk:3, rate:93, quality:95, tasks:8 }
+    ],
+    competency:91, risk:'low', trend:9.2, fit:93, status:'Top sales candidate', taskStatus:'Completed' },
+
+  { id:'I018', name:'Shi Lan',   dept:'Sales', mentor:'Chen (Mentor)', avatar:'Sh', avColor:'a2',
+    weeks:[
+      { wk:1, rate:50, quality:55, tasks:3 },
+      { wk:2, rate:55, quality:58, tasks:3 },
+      { wk:3, rate:60, quality:63, tasks:4 }
+    ],
+    competency:58, risk:'med', trend:6.5, fit:60, status:'Improving, needs stronger pitch skills', taskStatus:'In Progress' },
+
+  { id:'I019', name:'Han Bing',   dept:'Sales', mentor:'Zhao (Mentor)', avatar:'Ha', avColor:'a4',
+    weeks:[
+      { wk:1, rate:78, quality:80, tasks:5 },
+      { wk:2, rate:76, quality:78, tasks:5 },
+      { wk:3, rate:80, quality:82, tasks:5 }
+    ],
+    competency:79, risk:'low', trend:2.0, fit:80, status:'High customer satisfaction', taskStatus:'In Progress' },
+
+  { id:'I020', name:'Cao Yu',   dept:'Sales', mentor:'Chen (Mentor)', avatar:'Ca', avColor:'a1',
+    weeks:[
+      { wk:1, rate:35, quality:40, tasks:2 },
+      { wk:2, rate:32, quality:35, tasks:1 },
+      { wk:3, rate:30, quality:32, tasks:1 }
+    ],
+    competency:33, risk:'high', trend:-3.8, fit:34, status:'Falling behind — intervention needed', taskStatus:'Unassigned' }
+],
+
+// ===== Task Data =====
+tasks: {
+  core: [
+    { id:'T001', name:'User Requirements Analysis',    assignee:'I001', start:'03/12/2021', end:'5/12/2021', status:'Unassigned', type:'Core Task' },
+    { id:'T002', name:'Low-Fidelity Prototyping',  assignee:'I009', start:'03/12/2021', end:'5/12/2021', status:'Unassigned', type:'Core Task' },
+    { id:'T003', name:'Competitive Feature Matrix',    assignee:'I008', start:'05/20/2021', end:'06/02/2021', status:'Completed', type:'Core Task' }
+  ],
+  daily: [
+    { id:'T004', name:'Requirements Consolidation',    assignee:'I004', start:'03/12/2021', end:'5/12/2021', status:'In Progress', type:'Daily Task' },
+    { id:'T005', name:'User Research Consolidation',    assignee:'I012', start:'03/12/2021', end:'5/12/2021', status:'In Progress', type:'Daily Task' }
+  ],
+  study: [
+    { id:'T006', name:'Market Research',        assignee:'I003', start:'01/12/2021', end:'3/12/2021', status:'Completed', type:'Learning Task' }
+  ]
+},
+
+// ===== Department Summary =====
+deptSummary: {
+  'Product': { interns:7, avgRate:74, avgQuality:76, highRisk:2, lowRisk:4, medRisk:1 },
+  'R&D': { interns:8, avgRate:73, avgQuality:76, highRisk:2, lowRisk:5, medRisk:1 },
+  'Sales': { interns:5, avgRate:69, avgQuality:72, highRisk:1, lowRisk:2, medRisk:2 }
+},
+
+// ===== Global Stats =====
+stats: {
+  totalInterns: 20,
+  totalMentors: 6,
+  avgCompetency: 72,
+  avgCompletionRate: 71,
+  avgQuality: 74,
+  highRiskCount: 5,
+  lowRiskCount: 11,
+  medRiskCount: 4,
+  overallHealth: 70,
+  teachingQuality: 70,
+  teamCompetency: 70,
+  taskProgress: 70,
+  pendingTasks: 12
+},
+
+// ===== Utility Functions =====
+getIntern: function(id){ return this.interns.find(i=>i.id===id); },
+getMentor: function(id){ return this.mentors.find(m=>m.id===id); },
+getDeptInterns: function(dept){ return this.interns.filter(i=>i.dept===dept); },
+getMentorInterns: function(mentorName){ return this.interns.filter(i=>i.mentor===mentorName); },
+getHighRisk: function(){ return this.interns.filter(i=>i.risk==='high'); },
+getLatestWeek: function(intern){ return intern.weeks[intern.weeks.length-1]; },
+
+	// ===== Intern Detail Data =====
+	// ===== Intern Detail Data =====
+	// ===== Intern Detail Data =====
+	internDetails: {
+		"I001": {
+			entryDate: "2026-05-20", stage: "Growth Phase", stageWeek: 6, tags: ["High Potential", "Day 38", "52 days to retention review"],
+			weeklyReports: [
+				{ wk:1, date:"2026-05-26", title:"Business Understanding & Tool Learning", score:75,
+					internContent: "Key work this week:\n1. Became familiar with the product admin system\n2. Participated in product requirements review meetings\n3. Learned Axure prototyping tool basics\n4. Read The Elements of User Experience chapters\n\nChallenges:\n- Need to improve technical feasibility assessment\n- User scenario breakdown needs more detail\n\nPlan for next week:\n- Follow up on requirements analysis exercises\n- Complete competitive feature matrix draft",
+					mentorComment: "Overall: High learning motivation, quick with tools, adapted to team rhythm quickly.\nMethods & Process: Prototyping tool proficiency exceeded expectations, but requirements understanding and scenario breakdown methodology need more structure — recommend 15 min scenario mapping before starting.\nNext Phase Focus: Schedule requirements analysis exercises to build user-perspective definition skills." },
+				{ wk:2, date:"2026-06-02", title:"Requirements Analysis Practice", score:72,
+					internContent: "Key work this week:\n1. Completed requirements analysis exercise problems\n2. Organized user stories for core user scenarios\n3. Conducted user interviews\n4. Learned SQL data analysis fundamentals\n\nWhat I learned:\n- Developed more systematic understanding of user needs discovery\n- Discovered previously overlooked pain points in user interviews\n\nAreas to improve:\n- Data analysis dimension still needs strengthening\n\nPlan for next week:\n- Completed competitive analysis assignment\n- Continue SQL learning",
+					mentorComment: "Overall: User scenario breakdown showing early systematic structure; user interview performance was excellent.\nKnowledge & Skills: User research methods well grasped, but Data Analysis dimension was weak (score 61),  SQL fundamentals need reinforcement.\nNext Phase Focus: Schedule data-driven decision training, practice data interpretation with competitive analysis tasks." },
+				{ wk:3, date:"2026-06-09", title:"Competitive Analysis & Data-Driven", score:68,
+					internContent: "Key work this week:\n1. Completed competitive analysis assignment, produced 3 improvement opportunities\n2. Studied Data Analysis course (50% complete)\n3. Participated in product growth team weekly and presented\n4. Assisted mentor with Q2 product roadmap\n\nReflection:\n- Competitive analysis missed business model dimension\n- Data-driven decision training needs reinforcement\n\nKnowledge applied:\n- Applied GROUP BY and JOIN from SQL course to user behavior analysis, identified a churn cause\n\nPlan for next week:\n- Complete Data Analysis course\n- Start low-fidelityPrototyping",
+					mentorComment: "Overall: Competitive analysis quality significantly improved, from feature comparison to structured decomposition.\nAttitude & Habits: Proactively participated in team weekly and presented, demonstrating strong team integration.\nImprovement Suggestions: Data Analysis remains a gap but progress is accelerating; recommend 30 min daily data exercises.\nNext Phase Focus: Complete Data Analysis course then start low-fidelity prototyping." },
+				{ wk:4, date:"2026-06-16", title:"Prototyping & User Testing", score:70,
+					internContent: "Key work this week:\n1. Completed low-fidelity prototyping draft (3 core pages)\n2. Conducted usability testing with 2 users\n3. Iterated prototype based on test feedback\n4. Completed weekly report reflection summary\n\nTest findings:\n- Navigation structure needs simplification\n- Search entry point not prominent enough\n\nWhat I learned:\n- Mastered the full closed loop from low-fidelity prototype to user testing\n- Learned to extract actionable design improvements from user feedback\n\nKnowledge applied:\n- Applied user interview techniques and competitive analysis framework to testing; test script received mentor praise\n\nPlan for next week:\n- Complete final prototype\n- Prepare mid-term interview materials",
+					mentorComment: "Overall: Prototyping was outstanding, quality far above average for this stage. Starting from low-fidelity was highly professional.\nKnowledge & Skills: Proficient with prototyping tools, logical IA and interaction flows, user testing was standard-compliant.\nMethods & Process: The design-test-iterate closed loop was thoroughly executed, demonstrating excellent Product Thinking.\nNext Phase Focus: Complete final prototype and prepare mid-term interview materials; can start exploring high-fidelity visual design." }
+			],
+			interviews: [
+				{ date:"2026-05-27", type:"Onboarding Interview", summary:"Confirmed internship goals: product thinking development + requirements analysis skill improvement. Reviewed past project experience (2nd prize in campus product competition). Established 90-day development path.",
+					keyPoints: ["Clear understanding of the PM role", "Wants to strengthen data analysis skills", "Interested in B2B products"], nextSteps:"Schedule requirements analysis exercises; weekly 1:1 in 2 weeks" },
+				{ date:"2026-06-10", type:"Weekly 1:1", summary:"Reviewed first 3 weeks: tool learning on track, requirements analysis showing clear progress, data analysis still a gap. Discussed mid-term interview preparation.",
+					keyPoints: ["Data analysis dimension is low — needs attention", "Prototyping can be scheduled earlier", "Recommended to join cross-team communication practice"], nextSteps:"Schedule data-driven decision training; mid-term interview in 2 weeks" }
+			],
+			assessments: [
+				{ week:1, self:{requirementsAnalysis:60, userResearch:55, Prototyping:50, dataAnalysis:45, communication:65}, mentor:{requirementsAnalysis:65, userResearch:58, Prototyping:52, dataAnalysis:48, communication:70} },
+				{ week:2, self:{requirementsAnalysis:65, userResearch:60, Prototyping:55, dataAnalysis:48, communication:68}, mentor:{requirementsAnalysis:70, userResearch:63, Prototyping:58, dataAnalysis:50, communication:72} },
+				{ week:3, self:{requirementsAnalysis:72, userResearch:68, Prototyping:62, dataAnalysis:52, communication:72}, mentor:{requirementsAnalysis:75, userResearch:70, Prototyping:65, dataAnalysis:55, communication:74} },
+				{ week:4, self:{requirementsAnalysis:78, userResearch:74, Prototyping:70, dataAnalysis:58, communication:76}, mentor:{requirementsAnalysis:80, userResearch:76, Prototyping:72, dataAnalysis:61, communication:78} }
+			],
+			keyBehaviors: [
+				{ date:"2026-06-02", action:"Initiated Cross-Team Communication", detail:"Proactively contacted the R&D team to discuss requirement feasibility, identified 2 technical risk points early", impact:"Shortened requirements confirmation cycle by 2 days" },
+				{ date:"2026-06-08", action:"Led User Interview", detail:"Independently conducted a user interview, from outline preparation to notes — fully autonomous", impact:"Obtained critical user feedback" },
+				{ date:"2026-06-15", action:"Knowledge Sharing", detail:"Shared competitive analysis insights at team weekly, produced methodology documentation", impact:"Adopted by team as reference material" }
+			],
+			behaviorArchive: {
+				questions: [
+					{ date:"2026-06-05", to:"Ma (Mentor)", question:"How to balance user needs with technical feasibility?", response:"Recommend conducting competitive research first to understand industry approaches, then evaluate jointly with R&D." },
+					{ date:"2026-06-12", to:"HR", question:"What materials are needed for the mid-term interview?", response:"Need to prepare: 1) Internship summary report 2) Representative work samples 3) Self-assessment form." }
+				],
+				learning: [
+					{ course:"Product Prototyping Intro", duration:"3.5h", applied:true, applyDetail:"Applied in low-fidelity prototyping assignment" },
+					{ course:"SQL Data Analysis Fundamentals", duration:"4h", applied:false, applyDetail:"" },
+					{ course:"User Interview Techniques", duration:"2h", applied:true, applyDetail:"Applied open-ended questioning techniques in user interviews" }
+				],
+				collaboration: [
+					{ from:"Li (Mentor)", role:"R&D Mentor", feedback:"Zhang Yao communicates clearly and efficiently in cross-team collaboration", type:"Kudos" },
+					{ from:"Wang Yang", role:"Fellow Intern", feedback:"Proactively shared learning resources during prototyping exercise", type:"Thanks" }
+				]
+			}
+		}
+	},
+
+	// ===== V3 Mock Data =====
+mentorHealth:{M001:{healthScore:88,reviewRate:92,behaviorScore:85,alertInterns:1,weeklyHealth:[85,87,89,88],avgInternCompetency:71},M002:{healthScore:76,reviewRate:82,behaviorScore:72,alertInterns:2,weeklyHealth:[78,76,74,76],avgInternCompetency:70},M003:{healthScore:92,reviewRate:96,behaviorScore:90,alertInterns:0,weeklyHealth:[90,91,93,92],avgInternCompetency:79},M004:{healthScore:80,reviewRate:88,behaviorScore:78,alertInterns:1,weeklyHealth:[82,81,79,80],avgInternCompetency:61},M005:{healthScore:72,reviewRate:75,behaviorScore:68,alertInterns:1,weeklyHealth:[75,73,74,72],avgInternCompetency:81},M006:{healthScore:56,reviewRate:62,behaviorScore:58,alertInterns:2,weeklyHealth:[68,64,60,56],avgInternCompetency:46}},
+plans:[{id:'P001',name:'Mastering Technical Solution Design',category:'Skill Building',usageCount:89,successCases:12,status:'active',submitter:'Ma (Mentor)',reviewStatus:'approved',rating:4.6},{id:'P002',name:'Requirements Analysis Skill Building',category:'Skill Building',usageCount:67,successCases:9,status:'active',submitter:'Li (Mentor)',reviewStatus:'approved',rating:4.3},{id:'P003',name:'90-Day New Hire Onboarding Plan',category:'Stage Essential',usageCount:156,successCases:28,status:'active',submitter:'Wang (Mentor)',reviewStatus:'approved',rating:4.8},{id:'P004',name:'Growth Phase Comprehensive Plan',category:'Stage Essential',usageCount:94,successCases:15,status:'active',submitter:'Zhang (Mentor)',reviewStatus:'approved',rating:4.4},{id:'P005',name:'Design Review Simulation Plan',category:'Practical Exercise',usageCount:73,successCases:11,status:'active',submitter:'Zhao (Mentor)',reviewStatus:'approved',rating:4.2},{id:'P006',name:'Sales Pitch Scenario Training',category:'Practical Exercise',usageCount:45,successCases:6,status:'pending',submitter:'Chen (Mentor)',reviewStatus:'pending',rating:null},{id:'P007',name:'Intro to Data Analysis Coaching Plan',category:'Skill Building',usageCount:0,successCases:0,status:'draft',submitter:'Chen (Mentor)',reviewStatus:'draft',rating:null},{id:'P008',name:'Project Management Basics Plan',category:'Stage Essential',usageCount:0,successCases:0,status:'draft',submitter:'Li (Mentor)',reviewStatus:'draft',rating:null},{id:'P009',name:'API Integration Hands-On Plan',category:'Practical Exercise',usageCount:18,successCases:12,status:'pending',submitter:'Zhang (Mentor)',reviewStatus:'pending',rating:null},{id:'P010',name:'Customer Objection Handling Plan',category:'Practical Exercise',usageCount:8,successCases:3,status:'active',submitter:'Wang (Mentor)',reviewStatus:'approved',rating:3.9}],
+courses:[{id:'C001',name:'Intro to Product Prototyping',category:'Product Thinking',instructor:'Ma (Mentor)',rating:4.9,planRefs:15,status:'published'},{id:'C002',name:'Core Product Thinking Methods',category:'Product Thinking',instructor:'Ma (Mentor)',rating:4.8,planRefs:8,status:'published'},{id:'C003',name:'Frontend Development Bootcamp',category:'Tech Development',instructor:'Wang (Mentor)',rating:4.9,planRefs:12,status:'published'},{id:'C004',name:'Cross-Platform App Development',category:'Tech Development',instructor:'Zhang (Mentor)',rating:4.7,planRefs:6,status:'published'},{id:'C005',name:'SQL Data Analysis Fundamentals',category:'Data Analysis',instructor:'Li (Mentor)',rating:4.5,planRefs:10,status:'published'},{id:'C006',name:'Effective Workplace Communication',category:'Workplace Communication',instructor:'Zhao (Mentor)',rating:4.6,planRefs:5,status:'published'},{id:'C007',name:'Design Thinking Innovation Practice',category:'Innovation Practice',instructor:'Chen (Mentor)',rating:4.4,planRefs:4,status:'published'}],
+contentReviewQueue:[{id:'CR001',title:'Effective Requirements Communication',author:'Li (Engineer)',submittedDate:'6/12',type:'Micro-course',status:'pending'},{id:'CR002',title:'Code Review Best Practices',author:'Zhang Wei',submittedDate:'6/10',type:'Document',status:'approved'},{id:'CR003',title:'React Hooks Best Practices',author:'External Share',submittedDate:'6/8',type:'Micro-course',status:'pending'},{id:'CR004',title:'Python Data Analysis Intro',author:'Intern Contribution',submittedDate:'6/7',type:'Document',status:'pending'},{id:'CR005',title:'Team Collaboration & Communication',author:'External Hire Share',submittedDate:'6/5',type:'Micro-course',status:'approved'},{id:'CR006',title:'Agile Development Process Guide',author:'Wang Min',submittedDate:'6/3',type:'Document',status:'rejected'},{id:'CR007',title:'UI Design Standards Intro',author:'Chen Si',submittedDate:'6/1',type:'Micro-course',status:'approved'}],
+	// Content Ecosystem Data
+	contentEcosystem:{totalContent:156,monthlyNew:12,avgRating:4.3,pendingReview:3,lowRatedCount:3,lowRatedItems:['SQL Data Analysis Fundamentals','Customer Objection Handling Plan','Design Thinking Innovation Practice'],deptCoverage:{'Product':72,'R&D':68,'Sales':45,'All Roles':81},weeklyTrend:[35,42,58,47,63,71,68,82],topContent:[{name:'Intro to Product Prototyping',learners:2340,appliedRate:68},{name:'Frontend Development Bootcamp',learners:1890,appliedRate:62},{name:'Data Analysis Thinking & Tools Handbook',learners:2100,appliedRate:55},{name:'Technical Proposal Design Template',learners:1890,appliedRate:71},{name:'How to Give Effective Feedback',learners:1560,appliedRate:74},{name:'Effective Requirements Communication',learners:1420,appliedRate:58},{name:'PRD Writing Standards',learners:2340,appliedRate:65},{name:'User Research Report Writing Guide',learners:1560,appliedRate:52},{name:'Core Product Thinking Methods',learners:1280,appliedRate:67},{name:'Cross-Platform App Development',learners:1150,appliedRate:49}],conversionNote:'Based on content marked "Applied" in reports;  overall learning-to-application conversion rate is 62%'},
+teamCapabilities:{dimensions:['Professional Skills','Tech Awareness','User Insight','Communication','Solution Design','Project Mgmt'],companyAvg:[3.5,3.6,3.4,3.5,3.3,3.5],departments:{'R&D':{scores:[4.1,4.3,2.9,2.8,3.6,3.2],internCount:8,color:'var(--info)'},'Product':{scores:[3.4,2.7,4.1,3.3,3.2,3.0],internCount:7,color:'var(--warning)'},'Sales':{scores:[3.0,2.5,3.2,4.0,2.5,2.8],internCount:5,color:'var(--purple)'}},gapThresholds:{warn:0.5,danger:0.8}},
+mentorExpertise:[{id:'M003',name:'Wang (Mentor)',dept:'R&D',title:'Tech Lead',expertise:['Backend Architecture','Technical Design Review','Code Quality'],courses:3,plans:2,bio:'10 years backend development experience'},{id:'M004',name:'Zhang (Mentor)',dept:'R&D',title:'Senior Architect',expertise:['Frontend Technology','Cross-Platform Design'],courses:1,docs:5,plans:1,bio:'Full-stack engineer, passionate about technical documentation'},{id:'M001',name:'Ma (Mentor)',dept:'Product',title:'Senior Product Manager',expertise:['User Research','Requirements Analysis','Prototyping'],courses:2,docs:3,plans:2,bio:'12 years product experience, skilled in user insights and data analysis'},{id:'M005',name:'Zhao (Mentor)',dept:'Sales',title:'Sales VP',expertise:['Client Communication','Business Negotiation'],courses:1,docs:1,plans:1,bio:'15 years sales management experience'}],
+coachingProjects:[{id:'CP001',name:'Boost Product Team Tech Awareness',initiator:'HR Yixuan',initiatedDate:'6/15',mentorName:'Wang (Mentor)',mentorDept:'R&D Dept',targetDept:'Product Dept',targetCount:7,capability:'Tech Awareness',period:'4 weeks',status:'active',participation:100,satisfaction:4.5,contents:[{type:'Workshop',title:'Backend Architecture & Product Decisions',speaker:'Wang (Mentor)',duration:'45 min'},{type:'Learning Task',title:'Complete course: "How to Make Technical Proposals Understandable for Product"',source:'Learning Community',duration:'25 min'},{type:'Reflection Session',title:'Product interns discuss learnings with mentor',trigger:'Week 3 after project launch'}],effect:{before:2.7,after:3.2,gapReduction:0.5,attendance:'7/7',completion:'7/7',feedback:['Finally understand what "distributed transactions" means!','Wang explained things clearly — suggest making this a regular event']}},{id:'CP002',name:'Improve R&D Communication',initiator:'HR Yixuan',initiatedDate:'6/22',mentorName:'Zhao (Mentor)',mentorDept:'Sales Dept',targetDept:'R&D Dept',targetCount:8,capability:'Communication',period:'3 weeks',status:'active',participation:87,satisfaction:4.2,contents:[{type:'Workshop',title:'How Engineers Can Excel at Cross-Team Communication',speaker:'Zhao (Mentor)',duration:'40 min'},{type:'Learning Task',title:'Read doc: "Communication Tips for Requirements Review"',source:'Yang Fan Knowledge Base',duration:'20 min'}],effect:{before:2.8,after:3.1,gapReduction:0.3,attendance:'7/8',completion:'7/8',feedback:['Learned how to explain technical proposals to non-technical people','Hope to have regular cross-team sessions like this']}}],
+dashboardAlerts:[{id:'A001',type:'urgent',text:'Zhang Yao: business understanding weak for 3 weeks — intervention advised',time:'2h ago',relatedId:'I001'},{id:'A002',type:'urgent',text:'Chen (Mentor) health score dropped to 56, below warning threshold',time:'4h ago',relatedId:'M006'},{id:'A003',type:'warn',text:'Cao Yu: competency at only 33%, needs focused coaching',time:'1 day ago',relatedId:'I020'},{id:'A004',type:'warn',text:'He Chang: no new tasks assigned for 2 weeks',time:'1 day ago',relatedId:'I014'},{id:'A005',type:'warn',text:'Zhao (Mentor): 2 weeks without reviewing intern reports',time:'2 days ago',relatedId:'M005'},{id:'A006',type:'info',text:'Wang Yang: mid-term interview pending HR approval',time:'2 days ago',relatedId:'I016'},{id:'A007',type:'info',text:'Zhao Lin: negative sentiment for 3 weeks — needs attention',time:'3 days ago',relatedId:'I013'}],
+dashboardReviewQueue:[{id:'R001',type:'plan',text:'Sales Pitch Scenario Training pending review',count:2,urgent:false},{id:'R002',type:'plan',text:'API Integration Hands-On Plan pending review',count:2,urgent:false},{id:'R003',type:'content',text:'Newly submitted courses/docs pending review',count:3,urgent:false},{id:'R004',type:'mentor',text:'2 mentors have not completed report reviews for 48h+',count:2,urgent:true}],
+getInternDetail: function(id){ return this.internDetails[id] || null; }
+};
+
+</script>
+
+<script>
+(function(){
+
+function _H(tag,attrs,kids){
+  var el=document.createElement(tag);
+  if(attrs)for(var k in attrs){if(k==='c')el.className=attrs[k];else if(k==='s')el.style.cssText=attrs[k];else if(k==='h')el.innerHTML=attrs[k];else if(k==='t')el.textContent=attrs[k];else if(k==='on')el.setAttribute('onclick',attrs[k]);else el.setAttribute(k,attrs[k]);}
+  if(kids){if(typeof kids==='string')el.textContent=kids;else if(Array.isArray(kids))kids.forEach(function(k){if(k)el.appendChild(k)});else el.appendChild(kids);}
+  return el;
+}
+var qs=window.location.search.substring(1);
+var params={};
+qs.split('&').forEach(function(p){var x=p.split('=');if(x[0])params[decodeURIComponent(x[0])]=decodeURIComponent(x[1]||'');});
+var internId=params.id;
+var main=document.getElementById('mainContent');
+if(typeof AIHR_DB==='undefined'){main.innerHTML='<div class="emp"><p style="font-size:18px;font-weight:600">Data loading failed</p><p>AIHR_DB undefined</p></div>';return;}
+
+var intern,detail;
+if(!internId){main.innerHTML='<div class="emp"><p style="font-size:18px;font-weight:600">Missing parameter</p><p>Please access from the Interns list</p></div>';return;}
+try{intern=AIHR_DB.getIntern(internId);}catch(e){main.innerHTML='<div class="emp"><p style="font-size:18px;font-weight:600">Data loading failed</p><p>getIntern: '+e.message+'</p></div>';return;}
+if(!intern){main.innerHTML='<div class="emp"><p style="font-size:18px;font-weight:600">Intern not found</p><p>Not foundID: '+internId+'</p></div>';return;}
+try{detail=AIHR_DB.getInternDetail(internId);}catch(e){main.innerHTML='<div class="emp"><p style="font-size:18px;font-weight:600">Data loading failed</p><p>getInternDetail: '+e.message+'</p></div>';return;}
+if(!detail){
+  var weeks=intern.weeks||[];
+  var NL=String.fromCharCode(10);
+  detail={
+    entryDate:'N/A',stage:'In Progress',stageWeek:weeks.length,tags:[intern.dept||'',intern.mentor||''],
+    weeklyReports:weeks.map(function(w,i){
+      return {wk:w.wk||(i+1),date:'N/A',title:'W'+(i+1)+'WeekWork',score:Math.round(w.quality||60),
+        internContent:['This Week: Key Work:','Internship tasks progressing','Completion Rate:'+(w.rate||50)+'%','Quality Score:'+(w.quality||50)+'','','Next Week Plan:','Continue advancing internship tasks'].join(NL),
+        mentorComment:['Overall Assessment:Internship progressing normally。','Knowledge & Skills:Continuously learning，Please focus on weekly report quality。','Next Phase Focus:Advance internship tasks on schedule。'].join(NL)};
+    }),
+    interviews:[{date:'N/A',type:'Onboarding Interview',summary:'No meeting records yet',keyPoints:['Confirm internship goals & coaching path'],nextSteps:'Schedule first meeting'}],
+    assessments:weeks.map(function(w,i){return {week:i+1,self:{'Requirements Analysis':50,'User Research':50,'Prototyping':50,'Data Analysis':50,'Communication':50},mentor:{'Requirements Analysis':50,'User Research':50,'Prototyping':50,'Data Analysis':50,'Communication':50}};}),
+    keyBehaviors:[],
+    behaviorArchive:{questions:[],learning:[],collaboration:[]}
+  };
+}
+
+document.getElementById('tbName').textContent='Yang Fan · '+intern.name+' · Details';
+
+var avColors={a1:'#6366F1',a2:'#3B82F6',a3:'#10B981',a4:'#34D399'};
+var sc=function(v){return v>=80?'high':v>=65?'mid':'low';};
+var dims=['Requirements Analysis','User Research','Prototyping','Data Analysis','Communication'];
+var allWeeks=detail.weeklyReports.map(function(r){return r.wk;});
+var currentWk=allWeeks[allWeeks.length-1];
+var currentTab=0;
+var frag=document.createDocumentFragment();
+
+// ═══════ HERO ═══════
+var riskLabel=intern.risk==='high'?'High Risk':intern.risk==='med'?'Medium Risk':'Low Risk';
+var riskClr=intern.risk==='high'?'#E57373':intern.risk==='med'?'#F59E0B':'var(--green)';
+var hero=_H('div',{c:'hero-card'});
+var heroL=_H('div',{c:'hero-left'});
+heroL.appendChild(_H('div',{c:'hero-av',s:'background:'+(avColors[intern.avColor]||'#6366F1')},intern.avatar));
+var heroInfo=_H('div',{c:'hero-info'});
+heroInfo.appendChild(_H('p',{c:'hero-tag',t:'Intern Profile'}));
+heroInfo.appendChild(_H('h1',{c:'hero-name',h:intern.name+'<span style="font-size:14px;color:rgba(255,255,255,0.65);font-weight:400"> | '+intern.dept+'Intern | Mentor: '+intern.mentor+' | W'+detail.stageWeek+'Week | '+detail.stage+'</span>'}));
+var tagsDiv=_H('div',{c:'hero-tags'});
+detail.tags.forEach(function(t,i){tagsDiv.appendChild(_H('span',{c:'htag '+(i===0?'purple':'gray'),t:(i===0?'🟣 ':'')+t}));});
+heroInfo.appendChild(tagsDiv);
+heroL.appendChild(heroInfo);
+hero.appendChild(heroL);
+var heroR=_H('div',{s:'display:flex;gap:12px;align-items:flex-start'});
+heroR.appendChild(_H('div',{c:'hero-stat-box',h:'<div class="hero-stat-num">'+intern.competency+'</div><div class="hero-stat-label">Competency</div>'}));
+heroR.appendChild(_H('div',{c:'hero-stat-box',h:'<div class="hero-stat-num" style="color:'+riskClr+'">'+(intern.risk==='high'?'⚠':'●')+'</div><div class="hero-stat-label">'+riskLabel+'</div>'}));
+heroR.appendChild(_H('div',{c:'hero-btns'},[_H('button',{c:'btn-white',t:'Schedule Meeting',on:'alert("Meeting feature in dev")'}),_H('button',{c:'btn-outline-w',t:'Assign Task',on:'alert("Assign feature in dev")'})]));
+hero.appendChild(heroR);
+frag.appendChild(hero);
+
+// ═══════ STATS (rebuilt per week) ═══════
+var statsCtr=_H('div',{id:'statsCtr'});
+function buildStats(wkNum){
+  var wkData=intern.weeks.find(function(w){return w.wk===wkNum;})||AIHR_DB.getLatestWeek(intern);
+  var row=_H('div',{c:'stats-row'});
+  [{l:'Completion Rate',v:wkData.rate+'%'},{l:'Quality Score',v:wkData.quality},{l:'ThisWeekTask',v:wkData.tasks+'items'},{l:'Fit Level',v:intern.fit}].forEach(function(s){row.appendChild(_H('div',{c:'stat-card',h:'<div class="val">'+s.v+'</div><div class="lbl">'+s.l+'</div>'}));});
+  return row;
+}
+statsCtr.appendChild(buildStats(currentWk));
+frag.appendChild(statsCtr);
+
+// ═══════ WEEK SELECTOR HELPER ═══════
+function mkWeekSelect(currentWkNum){
+  var sel=_H('select',{c:'wk-select'});
+  allWeeks.forEach(function(wk){
+    var opt=document.createElement('option');
+    opt.value=wk;opt.textContent='W'+wk+'Week';
+    if(wk===currentWkNum)opt.selected=true;
+    sel.appendChild(opt);
+  });
+  sel.onchange=function(){
+    var wk=parseInt(sel.value);
+    currentWk=wk;
+    statsCtr.innerHTML='';statsCtr.appendChild(buildStats(wk));
+    buildTabs(wk);
+    // Update all selects to sync
+    tabsWrap.querySelectorAll('.wk-select').forEach(function(s){s.value=wk;});
+  };
+  return sel;
+}
+
+// ═══════ TAB BAR ═══════
+var tabBar=_H('div',{c:'tab-bar'});
+var tabBtns=[];
+['Growth Status','Competency Evolution','Behavior Record'].forEach(function(t,i){
+  var btn=_H('button',{c:'tab-btn'+(i===0?' active':''),t:t});
+  btn.onclick=function(){currentTab=i;buildTabs(currentWk);tabBtns.forEach(function(b,j){b.classList.toggle('active',j===i);});};
+  tabBtns.push(btn);tabBar.appendChild(btn);
+});
+frag.appendChild(tabBar);
+
+// ═══════ TABS WRAPPER ═══════
+var tabsWrap=_H('div',{id:'tabsWrap'});
+frag.appendChild(tabsWrap);
+
+// ═══════ BUILD TABS (filtered by week) ═══════
+// Format structured report text
+function formatReport(text,type){
+  var NL=String.fromCharCode(10);
+  if(type==='mentor'){return formatMentor(text);}
+  // Extract content between section headers
+  function extract(re,text){
+    var m=text.match(re);if(!m)return'';
+    var rest=text.substring(m.index+m[0].length);
+    var next=rest.search(/\n(?:This Week: Key Work|Completeitems|Learnings|Test Findings|Challenges|Areas to Improve|Reflection|Next Week Plan|Knowledge Applied)[::]/);
+    if(next<0)next=rest.length;
+    return rest.substring(0,next).trim();
+  }
+  var sections={
+    work:    extract(/This Week: Key Work[::]/,text)||extract(/Completeitems[::]/,text)||'',
+    growth:  extract(/Learnings[::]/,text)||'',
+    plan:    extract(/Next Week Plan[::]/,text)||'',
+    apply:   extract(/Knowledge Applied[::]/,text)||'',
+    find:    extract(/Test Findings[::]/,text),
+    issue:   extract(/Challenges[::]/,text),
+    improve: extract(/Areas to Improve[::]/,text),
+    reflect: extract(/Reflection[::]/,text)
+  };
+  var req=[{id:'work',icon:'📋',cls:'work',label:'Work Content'},{id:'growth',icon:'💡',cls:'growth',label:'Learnings& Growth'},{id:'plan',icon:'📅',cls:'plan',label:'Next Week Plan'},{id:'apply',icon:'📚',cls:'apply',label:'Knowledge Applied'}];
+  var opt=[{id:'find',icon:'🔍',cls:'find',label:'Test Findings'},{id:'issue',icon:'⚠️',cls:'issue',label:'Challenges'},{id:'improve',icon:'📌',cls:'improve',label:'Needs Improvement'},{id:'reflect',icon:'💭',cls:'reflect',label:'Reflection'}];
+  var h='';
+  req.forEach(function(s){
+    h+='<div class="rpt-sec"><div class="rpt-sec-title"><span class="rpt-sec-icon '+s.cls+'">'+s.icon+'</span>'+s.label+' <span style="font-size:10px;color:var(--text-muted);font-weight:400">Required</span></div>';
+    h+=sections[s.id]?'<div class="rpt-sec-body">'+sections[s.id].split(NL).join('<br>')+'</div>':'<div class="rpt-placeholder">No content</div>';
+    h+='</div>';
+  });
+  opt.forEach(function(s){
+    if(sections[s.id]){
+      h+='<div class="rpt-sec"><div class="rpt-sec-title"><span class="rpt-sec-icon '+s.cls+'">'+s.icon+'</span>'+s.label+' <span style="font-size:10px;color:var(--text-muted);font-weight:400">Optional</span></div>';
+      h+='<div class="rpt-sec-body">'+sections[s.id].split(NL).join('<br>')+'</div></div>';
+    }
+  });
+  return h;
+}
+function formatMentor(text){
+  var NL=String.fromCharCode(10);
+  var dims=[
+    {id:'overall',icon:'📊',label:'Overall Assessment',hint:'Overall Assessment',req:true},
+    {id:'skill',icon:'🎯',label:'Knowledge & Skills',hint:'Professional Skills & Tools',req:false},
+    {id:'process',icon:'🔄',label:'Methods & Process',hint:'Work Methods & Process',req:false},
+    {id:'attitude',icon:'🌟',label:'Attitude & Habits',hint:'Proactiveness、Collaboration & Time Mgmt',req:false},
+    {id:'improve',icon:'📈',label:'Improvement Suggestions',hint:'Specific actionable improvements',req:false},
+    {id:'next',icon:'🎪',label:'Next Phase Focus',hint:'next Weekphase key goals',req:true}
+  ];
+  // Extract dimension content from structured text
+  function extractDim(label,text){
+    var re=new RegExp(label+'[::]\s*');
+    var m=text.match(re);if(!m)return'';
+    var rest=text.substring(m.index+m[0].length);
+    // Find next dimension header
+    var nextLabels=dims.map(function(d){return h.label;}).join('|');
+    var next=rest.search(new RegExp('\n(?:'+nextLabels+')[::]'));
+    if(next<0)next=rest.length;
+    return rest.substring(0,next).trim();
+  }
+  var h='';
+  dims.forEach(function(d){
+    var content=extractDim(d.label,text);
+    if(!content&&!d.req)return; // Skip empty optional dimensions
+    h+='<div class="mf-dim '+d.id+'"><div class="mf-dim-label"><span class="mf-dim-icon">'+d.icon+'</span>'+d.label+(d.req?' <span style="font-size:10px;color:var(--text-muted);font-weight:400">Required</span>':' <span style="font-size:10px;color:var(--text-muted);font-weight:400">Optional</span>')+'<span style="font-size:10px;color:var(--text-muted);font-weight:400;margin-left:6px">'+d.hint+'</span></div>';
+    h+=content?'<div class="mf-dim-text">'+content.split(NL).join('<br>')+'</div>':'<div class="rpt-placeholder" style="padding-left:0">MentorNot filled</div>';
+    h+='</div>';
+  });
+  return h;
+}
+
+
+function buildTabs(wkNum){
+  var wkIdx=allWeeks.indexOf(wkNum);
+  var wkData=intern.weeks.find(function(w){return w.wk===wkNum;})||AIHR_DB.getLatestWeek(intern);
+  var rpt=detail.weeklyReports[wkIdx]||detail.weeklyReports[detail.weeklyReports.length-1];
+  var assess=detail.assessments[wkIdx]||detail.assessments[detail.assessments.length-1];
+
+  // TAB 0
+  var tab0=_H('div',{c:'tab-content'+(currentTab===0?' active':'')});
+  var aside=_H('div',{c:'grid-aside'});
+  var mainCol=_H('div',{c:'main-col'});
+  var tlCard=_H('div',{c:'card'});
+  var tlHead=_H('div',{c:'section-head'});
+  tlHead.appendChild(_H('h3',{},'📋 Tasks & Feedback Timeline'));
+  tlHead.appendChild(mkWeekSelect(wkNum));
+  tlCard.appendChild(tlHead);
+  var wkDiv=_H('div',{c:'tl-wk'});
+  wkDiv.appendChild(_H('div',{c:'tl-wk-hd'},[_H('span',{c:'tl-wk-lbl',t:'ThisWeekTaskProgress'}),_H('span',{c:'tl-wk-dt',t:'Completion Rate '+wkData.rate+'% · Quality '+wkData.quality+' · Task '+wkData.tasks})]));
+  [{n:'Business & Tool Learning',s:70+wkIdx*5},{n:'Requirements AnalysisBasic Training',s:68+wkIdx*5},{n:'WeekReport Reflection Summary',s:72+wkIdx*5}].forEach(function(pt,ti){
+    var isFirst=(ti===0);
+    var item=_H('div',{c:'tl-item'+(isFirst?' open':'')});
+    var hd=_H('div',{c:'tl-item-hd'});
+    var top=_H('div',{c:'tl-item-top'});
+    top.appendChild(_H('span',{c:'tl-item-name',t:pt.n}));
+    top.appendChild(_H('span',{c:'tl-item-meta',t:pt.s+'pts'}));
+    hd.appendChild(top);
+    hd.appendChild(_H('span',{c:'tl-item-hint',t:isFirst?'Expanded · Click to collapse':'Click to ExpandDetails'}));
+    item.appendChild(hd);
+    var exp=_H('div',{c:'tl-expand'+(isFirst?' show':'')});
+    exp.appendChild(_H('div',{c:'tl-exp-lbl',t:'TaskDetails'}));exp.appendChild(_H('div',{c:'tl-exp-txt',t:'ThisWeekOn ScheduleTask，Phase goals completed。'}));
+    exp.appendChild(_H('div',{c:'tl-exp-lbl',t:'MentorComments',s:'margin-top:10px'}));exp.appendChild(_H('div',{c:'tl-exp-txt',t:rpt.mentorComment}));
+    item.appendChild(exp);
+    item.onclick=function(){
+      var wasOpen=item.classList.contains('open');
+      wkDiv.querySelectorAll('.tl-item').forEach(function(s){s.classList.remove('open');s.querySelector('.tl-expand').classList.remove('show');s.querySelector('.tl-item-hint').textContent='Click to ExpandDetails';});
+      if(!wasOpen){item.classList.add('open');exp.classList.add('show');item.querySelector('.tl-item-hint').textContent='Expanded · Click to collapse';}
+    };
+    wkDiv.appendChild(item);
+  });
+  tlCard.appendChild(wkDiv);mainCol.appendChild(tlCard);aside.appendChild(mainCol);
+  var sideCol=_H('div',{c:'side-col'});
+  var ivCard=_H('div',{c:'card'});
+  ivCard.appendChild(_H('div',{c:'section-head',h:'<h3>💬 Meeting Records</h3><span class="badge-sm purple">'+detail.interviews.length+'</span>'}));
+  var ivIdx=Math.min(wkIdx,detail.interviews.length-1);
+  var iv=detail.interviews[ivIdx];
+  var ic=_H('div',{c:'iv-card'});ic.appendChild(_H('div',{c:'iv-hd'},[_H('span',{c:'iv-type',t:iv.type}),_H('span',{c:'iv-date',t:iv.date})]));ic.appendChild(_H('div',{c:'iv-summary',t:iv.summary}));
+  var pts=_H('div',{c:'iv-points'});iv.keyPoints.forEach(function(kp){pts.appendChild(_H('span',{c:'iv-point',t:kp}));});ic.appendChild(pts);ic.appendChild(_H('div',{c:'iv-next',t:'→ Next Step:'+iv.nextSteps}));ivCard.appendChild(ic);
+  sideCol.appendChild(ivCard);aside.appendChild(sideCol);tab0.appendChild(aside);
+  sideCol.appendChild(ivCard);aside.appendChild(sideCol);tab0.appendChild(aside);
+  var rptCard=_H('div',{c:'card'});
+  var rptHead=_H('div',{c:'section-head'});
+  rptHead.appendChild(_H('h3',{},'📝 WeekReport & MentorComments'));
+  rptHead.appendChild(mkWeekSelect(wkNum));
+  rptCard.appendChild(rptHead);
+  var ri=_H('div',{c:'rpt-item'});ri.appendChild(_H('div',{c:'rpt-hd'},[_H('span',{c:'rpt-title',t:rpt.title}),_H('span',{c:'rpt-score '+sc(rpt.score),t:rpt.score+'pts'})]));
+  var grid=_H('div',{c:'rpt-grid'});
+  var c1=_H('div',{c:'rpt-col'});c1.appendChild(_H('div',{c:'rpt-col-lbl',h:'<span class="dot-g"></span>InternWeekReport'}));c1.appendChild(_H('div',{c:'rpt-col-txt',h:formatReport(rpt.internContent,"intern")}));
+  var c2=_H('div',{c:'rpt-col'});c2.appendChild(_H('div',{c:'rpt-col-lbl',h:'<span class="dot-b"></span>Mentor Notes'}));c2.appendChild(_H('div',{c:'rpt-col-txt',h:formatMentor(rpt.mentorComment)}));
+  grid.appendChild(c1);grid.appendChild(c2);ri.appendChild(grid);rptCard.appendChild(ri);tab0.appendChild(rptCard);
+
+  // TAB 1: Competency Evolution
+  var tab1=_H('div',{c:'tab-content'+(currentTab===1?' active':'')});
+
+  // Time range selector bar
+  var trBar=_H('div',{s:'display:flex;align-items:center;gap:12px;margin-bottom:16px'});
+  trBar.appendChild(_H('span',{s:'font-size:14px;font-weight:700;color:var(--text-heading)',t:'Competency Evolution'}));
+  var trSel=_H('select',{c:'wk-select'});
+  allWeeks.forEach(function(wk){var o=document.createElement('option');o.value=wk;o.textContent='W'+wk+'Week';if(wk===wkNum)o.selected=true;trSel.appendChild(o);});
+  trSel.onchange=function(){var w=parseInt(trSel.value);currentWk=w;statsCtr.innerHTML='';statsCtr.appendChild(buildStats(w));['radarCard','compTrendCard','taskQualCard','learnCard'].forEach(function(id){var c=document.getElementById(id);if(c){var p=c.parentNode;var nc=null;if(id==='radarCard')nc=buildRadarCard(w);else if(id==='compTrendCard')nc=buildCompTrendCard(w);else if(id==='taskQualCard')nc=buildTaskQualityCard(w);else if(id==='learnCard')nc=buildLearningCard(w);if(nc&&p)p.replaceChild(nc,c);}});};
+  trBar.appendChild(trSel);
+  tab1.appendChild(trBar);
+
+  // Row: 4 charts side by side
+  var chartsRow=_H('div',{c:'grid-4'});
+  chartsRow.appendChild(buildRadarCard(wkNum));
+  chartsRow.appendChild(buildCompTrendCard(wkNum));
+  chartsRow.appendChild(buildTaskQualityCard(wkNum));
+  chartsRow.appendChild(buildLearningCard(wkNum));
+  tab1.appendChild(chartsRow);
+
+
+
+	  // TAB 2 — Behavior Record (Redesigned)
+	  var tab2=_H('div',{c:'tab-content'+(currentTab===2?' active':'')});
+
+	  // --- Behavior Summary Stats ---
+	  var bhData=detail.behaviorArchive;
+	  var completedCourses=bhData.learning.filter(function(l){return l.applied;}).length;
+	  var totalCourses=bhData.learning.length;
+	  var likeCount=bhData.collaboration.filter(function(c){return c.type==='Likes';}).length;
+	  var thanksCount=bhData.collaboration.filter(function(c){return c.type==='Thanks';}).length;
+	  var behKeys=detail.keyBehaviors||[];
+
+	  var bhSumRow=_H('div',{c:'bh-summary'});
+	  [{v:bhData.questions.length,l:'Questions & Help'},
+	   {v:completedCourses+'/'+totalCourses,l:'CoursesApplied'},
+	   {v:bhData.collaboration.length,l:'Collaboration Received'},
+	   {v:behKeys.length,l:'Key BehaviorsRecords'}
+	  ].forEach(function(s){
+	    var stat=_H('div',{c:'bh-sum-stat'});
+	    stat.appendChild(_H('div',{c:'bh-sum-val',t:s.v}));
+	    stat.appendChild(_H('div',{c:'bh-sum-lbl',t:s.l}));
+	    bhSumRow.appendChild(stat);
+	  });
+	  tab2.appendChild(bhSumRow);
+
+	  // --- Q&A + Learning side by side ---
+	  var ar=_H('div',{c:'grid-2'});
+
+	  // Questions Section
+	  var qaSection=_H('div',{c:'bh-section'});
+	  var qaHead=_H('div',{c:'section-head'});
+	  qaHead.appendChild(_H('h3',{},'❓ Questions & Help'));
+	  qaHead.appendChild(_H('span',{c:'badge-sm purple',t:bhData.questions.length+''}));
+	  qaSection.appendChild(qaHead);
+	  if(bhData.questions.length===0){
+	    qaSection.appendChild(_H('div',{c:'bh-empty',h:'<div class="bh-empty-icon">💬</div>No questions yet<br><span style="font-size:11px">EncourageInternproactive questions，Promote learning growth</span>'}));
+	  }else{
+	    bhData.questions.forEach(function(q){
+	      var qc=_H('div',{c:'qa-card'});
+	      var toIcon=q.to==='HR'?'👩‍💼':'🧑‍🏫';
+	      qc.appendChild(_H('div',{c:'qa-hd'},[
+	        _H('span',{c:'qa-to',h:'<span class="qa-to-icon">'+toIcon+'</span> To: '+q.to}),
+	        _H('span',{c:'qa-date',t:q.date})
+	      ]));
+	      qc.appendChild(_H('div',{c:'qa-q',t:q.question}));
+	      qc.appendChild(_H('div',{c:'qa-a',t:q.response}));
+	      qaSection.appendChild(qc);
+	    });
+	  }
+	  ar.appendChild(qaSection);
+
+	  // Learning Section
+	  var lrnSection=_H('div',{c:'bh-section'});
+	  var lrnHead=_H('div',{c:'section-head'});
+	  lrnHead.appendChild(_H('h3',{},'📚 Learning Behavior'));
+	  lrnHead.appendChild(_H('span',{c:'badge-sm green',t:completedCourses+'/'+totalCourses+' Applied'}));
+	  lrnSection.appendChild(lrnHead);
+	  if(bhData.learning.length===0){
+	    lrnSection.appendChild(_H('div',{c:'bh-empty',h:'<div class="bh-empty-icon">📖</div>No learning records<br><span style="font-size:11px">Courses forIntern，Track learning outcomes</span>'}));
+	  }else{
+	    bhData.learning.forEach(function(l){
+	      var lc=_H('div',{c:'lrn-card'});
+	      lc.appendChild(_H('div',{c:'lrn-icon'},l.applied?'✅':'📖'));
+	      var lb=_H('div',{c:'lrn-body'});
+	      lb.appendChild(_H('div',{c:'lrn-name',t:l.course}));
+	      lb.appendChild(_H('div',{c:'lrn-meta-row'},[
+	        _H('span',{c:'lrn-dur',t:l.duration}),
+	        _H('div',{c:'lrn-progress'},[_H('div',{c:'lrn-progress-bar '+(l.applied?'done':'wait')})])
+	      ]));
+	      lb.appendChild(_H('div',{c:'lrn-detail',t:l.applied?l.applyDetail:'Not yet applied — Practice to reinforce skills'}));
+	      lc.appendChild(lb);
+	      lc.appendChild(_H('span',{c:'lrn-st '+(l.applied?'done':'wait'),t:l.applied?'✅ Applied':'⏳ Learning'}));
+	      lrnSection.appendChild(lc);
+	    });
+	  }
+	  ar.appendChild(lrnSection);
+	  tab2.appendChild(ar);
+
+	  // --- Collaboration Section (full width) ---
+	  var clbSection=_H('div',{c:'bh-section'});
+	  var clbHead=_H('div',{c:'section-head'});
+	  clbHead.appendChild(_H('h3',{},'🤝 Collaboration Feedback'));
+	  var clbBadgeWrap=_H('span',{s:'display:flex;gap:4px'});
+	  if(likeCount>0)clbBadgeWrap.appendChild(_H('span',{c:'badge-sm',s:'background:#fef3c7;color:#d97706',t:'👍 '+likeCount+' Likes'}));
+	  if(thanksCount>0)clbBadgeWrap.appendChild(_H('span',{c:'badge-sm blue',t:'🙏 '+thanksCount+' Thanks'}));
+	  clbHead.appendChild(clbBadgeWrap);
+	  clbSection.appendChild(clbHead);
+	  if(bhData.collaboration.length===0){
+	    clbSection.appendChild(_H('div',{c:'bh-empty',h:'<div class="bh-empty-icon">🤗</div>NoneCollaboration Feedback<br><span style="font-size:11px">Cross-team contributions shown here</span>'}));
+	  }else{
+	    bhData.collaboration.forEach(function(c,i){
+	      var cc=_H('div',{c:'clb-card'});
+	      cc.appendChild(_H('div',{c:'clb-av',s:'background:'+(avColors['a'+(i%4+1)]||'#3B82F6')},c.from.charAt(0)));
+	      var ci=_H('div',{c:'clb-info'});
+	      ci.appendChild(_H('div',{c:'clb-header'},[
+	        _H('span',{c:'clb-from',t:c.from}),
+	        _H('span',{c:'clb-role',t:c.role})
+	      ]));
+	      ci.appendChild(_H('div',{c:'clb-fb',t:c.feedback}));
+	      cc.appendChild(ci);
+	      cc.appendChild(_H('span',{c:'clb-type '+(c.type==='Likes'?'like':'thanks'),t:(c.type==='Likes'?'👍 ':'🙏 ')+c.type}));
+	      clbSection.appendChild(cc);
+	    });
+	  }
+	  tab2.appendChild(clbSection);
+
+	  // --- Key Behaviors Section ---
+	  if(behKeys.length>0){
+	    var keySection=_H('div',{c:'bh-section',s:'margin-top:16px'});
+	    var keyHead=_H('div',{c:'section-head'});
+	    keyHead.appendChild(_H('h3',{},'⚡ Key Behaviors'));
+	    keyHead.appendChild(_H('span',{c:'badge-sm',s:'background:#fff7ed;color:var(--orange)',t:behKeys.length+'Highlights'}));
+	    keySection.appendChild(keyHead);
+	    var keyGrid=_H('div',{c:'bh-key-grid'});
+	    var keyIcons=['s1','s2','s3'];
+	    var keySyms=['★','⚡','♥'];
+	    behKeys.forEach(function(kb,i){
+	      var kc=_H('div',{c:'bh-key-card'});
+	      kc.appendChild(_H('div',{c:'bh-key-icon '+keyIcons[i%3]},keySyms[i%3]));
+	      kc.appendChild(_H('div',{c:'bh-key-action',t:kb.action}));
+	      kc.appendChild(_H('div',{c:'bh-key-date',t:kb.date}));
+	      kc.appendChild(_H('div',{c:'bh-key-detail',t:kb.detail}));
+	      kc.appendChild(_H('span',{c:'bh-key-impact',t:'📈 '+kb.impact}));
+	      keyGrid.appendChild(kc);
+	    });
+	    keySection.appendChild(keyGrid);
+	    tab2.appendChild(keySection);
+	  }
+
+  tabsWrap.innerHTML='';tabsWrap.appendChild(tab0);tabsWrap.appendChild(tab1);tabsWrap.appendChild(tab2);
+}
+
+// ===== CHART BUILDERS =====
+function buildRadarCard(wkNum){ var wkIdx=allWeeks.indexOf(wkNum); var assess=detail.assessments[wkIdx]||detail.assessments[detail.assessments.length-1];
+  var card=_H('div',{c:'chart-box'});
+  var hd=_H('div',{s:'display:flex;justify-content:space-between;align-items:center;margin-bottom:8px'});
+  hd.appendChild(_H('h4',{s:'font-size:13px;font-weight:700;color:var(--text-heading);margin:0'},'5-Dimension Competency Radar'));
+  card.setAttribute('id','radarCard');hd.appendChild(mkChartWeekSelect(wkNum,'radarCard',buildRadarCard));
+  card.appendChild(hd);
+  var dims=['Requirements Analysis','User Research','Prototyping','Data Analysis','Communication'];
+  var cx=100,cy=80,r=60,w=200,h=160;
+  var angles=dims.map(function(d,i){return -Math.PI/2+(2*Math.PI*i)/dims.length;});
+  var svg='<svg viewBox="0 0 '+w+' '+h+'" style="max-width:100%;width:100%">';
+  for(var l=1;l<=4;l++){svg+='<polygon points="'+angles.map(function(a){var rr=r*l/4;return(cx+rr*Math.cos(a)).toFixed(1)+','+(cy+rr*Math.sin(a)).toFixed(1)}).join(' ')+'" fill="none" stroke="#e8edea" stroke-width="0.8"/>';}
+  dims.forEach(function(d,i){var a=angles[i];svg+='<text x="'+(cx+(r+14)*Math.cos(a)).toFixed(0)+'" y="'+(cy+(r+14)*Math.sin(a)).toFixed(0)+'" text-anchor="middle" dominant-baseline="middle" font-size="4.8" fill="#80828a" font-weight="600">'+d+'</text>';});
+  svg+='<polygon points="'+angles.map(function(a,i){var v=(assess.self[dims[i]]||50)/100;return(cx+r*v*Math.cos(a)).toFixed(1)+','+(cy+r*v*Math.sin(a)).toFixed(1)}).join(' ')+'" fill="rgba(44,197,111,0.18)" stroke="#2cc56f" stroke-width="1.5"/>';
+  svg+='<polygon points="'+angles.map(function(a,i){var v=(assess.mentor[dims[i]]||50)/100;return(cx+r*v*Math.cos(a)).toFixed(1)+','+(cy+r*v*Math.sin(a)).toFixed(1)}).join(' ')+'" fill="rgba(59,130,246,0.1)" stroke="#3B82F6" stroke-width="1.2" stroke-dasharray="4,2"/>';
+  svg+='</svg>';
+  card.appendChild(el(svg));
+  card.appendChild(el('<div class="chart-legend"><span><i class="ld" style="background:#2cc56f"></i>Self</span><span><i class="ld" style="background:#3B82F6;opacity:0.7"></i>Mentor</span></div>'));
+  return card;
+}
+function buildCompTrendCard(wkNum){ var weeks=intern.weeks;
+  var card=_H('div',{c:'chart-box'});
+  var hd=_H('div',{s:'display:flex;justify-content:space-between;align-items:center;margin-bottom:8px'});
+  hd.appendChild(_H('h4',{s:'font-size:13px;font-weight:700;color:var(--text-heading);margin:0'},'CompetencyTrend'));
+  card.setAttribute('id','compTrendCard');hd.appendChild(mkChartWeekSelect(wkNum,'compTrendCard',buildCompTrendCard));
+  card.appendChild(hd);
+  var w=340,h=160,pl=38,pr=36,pt=14,pb=22,bw=28,gap=18;
+  var ymax=100;
+  function xs(i){return pl+i*(bw*2+gap)+bw/2;}
+  function ys(v){return pt+((ymax-v)/ymax)*(h-pt-pb);}
+  var svg='<svg viewBox="0 0 '+w+' '+h+'" style="max-width:100%;width:100%">';
+  // Grid lines + Y-axis labels
+  for(var g=0;g<=ymax;g+=20){
+    var gy=ys(g);
+    svg+='<line x1="'+pl+'" y1="'+gy+'" x2="'+(w-pr)+'" y2="'+gy+'" stroke="#e8edea" stroke-width="0.5"/>';
+    svg+='<text x="'+(pl-5)+'" y="'+gy+'" text-anchor="end" font-size="9" fill="#80828a" dominant-baseline="middle">'+g+'</text>';
+  }
+  // Dual bars (rate=green left, quality=blue right) + Competency line
+  var compPts=[];
+  weeks.forEach(function(wk,i){
+    var x=xs(i),c=Math.round(wk.rate*wk.quality/100);
+    // Rate bar (green, left side of pair)
+    var rateH=ys(wk.rate)-ys(0);
+    svg+='<rect x="'+(x-bw-2).toFixed(0)+'" y="'+ys(wk.rate).toFixed(1)+'" width="'+(bw-2)+'" height="'+rateH.toFixed(1)+'" fill="#2cc56f" rx="3" opacity="0.85"/>';
+    // Quality bar (blue, right side of pair)
+    var qualH=ys(wk.quality)-ys(0);
+    svg+='<rect x="'+(x+2).toFixed(0)+'" y="'+ys(wk.quality).toFixed(1)+'" width="'+(bw-2)+'" height="'+qualH.toFixed(1)+'" fill="#3B82F6" rx="3" opacity="0.85"/>';
+    // Competency point + line
+    compPts.push(x.toFixed(1)+','+ys(c).toFixed(1));
+    svg+='<circle cx="'+x.toFixed(1)+'" cy="'+ys(c).toFixed(1)+'" r="4" fill="#fff" stroke="#e17100" stroke-width="2.5"/>';
+    // Week label
+    svg+='<text x="'+x.toFixed(0)+'" y="'+(h-6)+'" text-anchor="middle" font-size="9" fill="#80828a">W'+(i+1)+'</text>';
+  });
+  // Competency trend line (behind dots but visible)
+  svg+='<polyline points="'+compPts.join(' ')+'" fill="none" stroke="#e17100" stroke-width="2.2" stroke-linejoin="round"/>';
+  svg+='</svg>';
+  card.appendChild(el(svg));
+  card.appendChild(el('<div class="chart-legend"><span><i class="ld" style="background:#2cc56f"></i>Completion Rate</span><span><i class="ld" style="background:#3B82F6"></i>Quality</span><span><i class="ld" style="background:#e17100"></i>Competency</span></div>'));
+  return card;
+}function buildTaskQualityCard(wkNum){
+  var card=_H('div',{c:'chart-box'});
+  var hd=_H('div',{s:'display:flex;justify-content:space-between;align-items:center;margin-bottom:8px'});
+  hd.appendChild(_H('h4',{s:'font-size:13px;font-weight:700;color:var(--text-heading);margin:0'},'TaskQuality ScoreDistribution'));
+  card.setAttribute('id','taskQualCard');hd.appendChild(mkChartWeekSelect(wkNum,'taskQualCard',buildTaskQualityCard));
+  card.appendChild(hd);
+  var data=[{wk:1,high:2,pass:2,fail:1,none:0},{wk:2,high:3,pass:1,fail:1,none:0},{wk:3,high:2,pass:2,fail:0,none:1},{wk:4,high:3,pass:2,fail:0,none:0}];
+  var w=340,h=160,pl=30,pr=10,pt=14,pb=20,bw=32;
+  var maxTasks=Math.max.apply(null,data.map(function(d){return d.high+d.pass+d.fail+d.none;}));
+  function xs(i){return pl+i*(bw+12);}
+  function ys(v){return pt+((maxTasks-v)/maxTasks)*(h-pt-pb);}
+  var svg='<svg viewBox="0 0 '+w+' '+h+'" style="max-width:100%;width:100%">';
+  for(var g=0;g<=maxTasks;g+=2){var gy=ys(g);svg+='<line x1="'+pl+'" y1="'+gy+'" x2="'+(w-pr)+'" y2="'+gy+'" stroke="#e8edea" stroke-width="0.5"/><text x="'+(pl-4)+'" y="'+gy+'" text-anchor="end" font-size="9" fill="#80828a" dominant-baseline="middle">'+g+'</text>';}
+  var colors={high:'#2cc56f',pass:'#3B82F6',fail:'#F59E0B',none:'#e0e0e0'};
+  var order=['high','pass','fail','none'];
+  data.forEach(function(d,i){
+    var x=xs(i),stack=0;
+    order.forEach(function(k){
+      if(d[k]>0){var bh=ys(stack)-ys(stack+d[k]);svg+='<rect x="'+x.toFixed(0)+'" y="'+ys(stack+d[k]).toFixed(1)+'" width="'+bw+'" height="'+bh.toFixed(1)+'" fill="'+colors[k]+'" rx="3"/>';stack+=d[k];}
+    });
+    svg+='<text x="'+(x+bw/2).toFixed(0)+'" y="'+(h-4)+'" text-anchor="middle" font-size="9" fill="#80828a">W'+(i+1)+'</text>';
+  });
+  svg+='</svg>';
+  card.appendChild(el(svg));
+  card.appendChild(el('<div class="chart-legend"><span><i class="ld" style="background:#2cc56f"></i>High</span><span><i class="ld" style="background:#3B82F6"></i>Pass</span><span><i class="ld" style="background:#F59E0B"></i>Needs Fix</span><span><i class="ld" style="background:#e0e0e0"></i>No Feedback</span></div>'));
+  return card;
+}
+function buildLearningCard(wkNum){
+  var card=_H('div',{c:'chart-box'});
+  var hd=_H('div',{s:'display:flex;justify-content:space-between;align-items:center;margin-bottom:8px'});
+  hd.appendChild(_H('h4',{s:'font-size:13px;font-weight:700;color:var(--text-heading);margin:0'},'Learning Transfer'));
+  card.setAttribute('id','learnCard');hd.appendChild(mkChartWeekSelect(wkNum,'learnCard',buildLearningCard));
+  card.appendChild(hd);
+  var data=[{wk:1,hours:3.5,pass:60},{wk:2,hours:5,pass:72},{wk:3,hours:2,pass:68},{wk:4,hours:4.5,pass:80}];
+  var w=340,h=160,pl=36,pr=36,pt=10,pb=20,bw=28;
+  var maxH=Math.ceil(Math.max.apply(null,data.map(function(d){return d.hours;})));
+  function xs(i){return pl+i*((w-pl-pr-bw*4)/3+bw)+bw/2;}
+  function ysh(v){return pt+((maxH-v)/maxH)*(h-pt-pb);}
+  function ysp(v){return pt+((100-v)/100)*(h-pt-pb);}
+  var svg='<svg viewBox="0 0 '+w+' '+h+'" style="max-width:100%;width:100%">';
+  for(var g=0;g<=maxH;g+=1){var gy=ysh(g);svg+='<line x1="'+pl+'" y1="'+gy+'" x2="'+(w-pr)+'" y2="'+gy+'" stroke="#e8edea" stroke-width="0.5"/><text x="'+(pl-4)+'" y="'+gy+'" text-anchor="end" font-size="9" fill="#80828a" dominant-baseline="middle">'+g+'h</text>';}
+  for(var g=0;g<=100;g+=20){svg+='<text x="'+(w-pr+6)+'" y="'+ysp(g).toFixed(0)+'" font-size="9" fill="#3B82F6" dominant-baseline="middle">'+g+'%</text>';}
+  var passPts=[];
+  data.forEach(function(d,i){
+    var x=xs(i),bh=ysh(0)-ysh(d.hours);
+    svg+='<rect x="'+(x-bw/2).toFixed(0)+'" y="'+ysh(d.hours).toFixed(1)+'" width="'+bw+'" height="'+bh.toFixed(1)+'" fill="#2cc56f" rx="3" opacity="0.8"/>';
+    svg+='<text x="'+x.toFixed(0)+'" y="'+(h-4)+'" text-anchor="middle" font-size="9" fill="#80828a">W'+(i+1)+'</text>';
+    passPts.push(x.toFixed(1)+','+ysp(d.pass).toFixed(1));
+  });
+  svg+='<polyline points="'+passPts.join(' ')+'" fill="none" stroke="#3B82F6" stroke-width="2"/>';
+  data.forEach(function(d,i){svg+='<circle cx="'+xs(i).toFixed(1)+'" cy="'+ysp(d.pass).toFixed(1)+'" r="3" fill="#3B82F6"/>';});
+  svg+='</svg>';
+  card.appendChild(el(svg));
+  card.appendChild(el('<div class="chart-legend"><span><i class="ld" style="background:#2cc56f"></i>Study Hours</span><span><i class="ld" style="background:#3B82F6"></i>Pass Rate</span></div>'));
+  return card;
+}
+function mkChartWeekSelect(currentWkNum,cardId,rebuildFn){
+  var sel=_H('select',{c:'wk-select',s:'font-size:12px;padding:5px 10px'});
+  allWeeks.forEach(function(wk){
+    var opt=document.createElement('option');
+    opt.value=wk;opt.textContent='W'+wk+'Week';
+    if(wk===currentWkNum)opt.selected=true;
+    sel.appendChild(opt);
+  });
+  sel.onchange=function(){
+    var w=parseInt(sel.value);
+    var card=document.getElementById(cardId);
+    var container=card?card.parentNode:null;
+    if(container){
+      var newCard=rebuildFn(w);
+      if(newCard)container.replaceChild(newCard,card);
+    }
+  };
+  return sel;
+}
+function el(html){var d=document.createElement('div');d.innerHTML=html;return d.firstChild;}
+
+// ═══════ INITIAL RENDER ═══════
+try{buildTabs(currentWk);main.innerHTML='';main.appendChild(frag);}catch(e){main.innerHTML='<div class="emp" style="padding-top:80px"><p style="font-size:18px;font-weight:600;color:var(--red)">Error</p><p>'+e.message+'</p></div>';}
+})();
+</script>
+</body>
+</html>

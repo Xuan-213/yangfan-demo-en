@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Creation Lab · Yang Fan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+/* =================================================================
+   DESIGN TOKENS — 8pt grid, OKLCH, fluid type
+   ================================================================= */
+:root{
+  /* Green brand */
+  --g1:oklch(0.97 0.025 145);--g2:oklch(0.94 0.05 145);--g3:oklch(0.88 0.09 145);
+  --g4:oklch(0.78 0.13 145);--g5:oklch(0.60 0.17 145);--g6:oklch(0.52 0.15 145);--g7:oklch(0.44 0.13 145);
+  /* Warm neutrals — always tinted, never pure gray */
+  --n0:oklch(1 0 0);--n50:oklch(0.985 0.004 96);--n100:oklch(0.965 0.007 96);--n200:oklch(0.92 0.010 96);
+  --n300:oklch(0.86 0.012 96);--n400:oklch(0.68 0.012 96);--n500:oklch(0.50 0.012 96);--n600:oklch(0.38 0.010 96);
+  --n700:oklch(0.30 0.008 96);--n800:oklch(0.20 0.006 96);--n900:oklch(0.12 0.004 96);
+  /* Semantic layers */
+  --bg:#F5F5F5;--bg-hover:var(--n0);--bg-input:var(--n0);
+  --primary:var(--g5);--primary-hover:var(--g6);--primary-subtle:var(--g1);
+  --text-strong:var(--n900);--text-body:var(--n600);--text-soft:var(--n500);--text-placeholder:var(--n400);
+  --border-subtle:oklch(0.94 0.005 96);--border-default:oklch(0.90 0.008 96);
+  /* Shadows — oklch for color accuracy */
+  --shadow-card:0 1px 3px oklch(0 0 0/0.04),0 4px 16px oklch(0 0 0/0.04);
+  --shadow-input:0 0 0 1px oklch(0 0 0/0.04),0 4px 12px oklch(0 0 0/0.06);
+  --shadow-btn:0 2px 8px oklch(0.60 0.17 145/0.25);
+  /* Status */
+  --danger:oklch(0.53 0.19 18);--purple:oklch(0.48 0.16 280);--purple-subtle:oklch(0.94 0.03 280);
+  /* Typography */
+  --font:'DM Sans',-apple-system,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
+  /* Fluid type — 1.200 modular scale */
+  --fs-xs:clamp(0.69rem,0.67rem+0.10vw,0.75rem);
+  --fs-sm:clamp(0.83rem,0.81rem+0.12vw,0.875rem);
+  --fs-base:clamp(0.94rem,0.92rem+0.15vw,1rem);
+  --fs-md:clamp(1.06rem,1.03rem+0.18vw,1.125rem);
+  --fs-lg:clamp(1.20rem,1.16rem+0.25vw,1.25rem);
+  --fs-xl:clamp(1.35rem,1.30rem+0.35vw,1.50rem);
+  --fs-2xl:clamp(1.50rem,1.42rem+0.50vw,1.75rem);
+  --lh-tight:1.25;--lh-normal:1.55;--lh-relaxed:1.65;
+  /* Spacing — pure 4px grid */
+  --s0:4px;--s1:8px;--s2:12px;--s3:16px;--s4:20px;--s5:24px;--s6:32px;--s8:40px;--s10:48px;--s12:56px;--s14:64px;--s16:80px;
+  /* Radius */
+  --r-sm:6px;--r-md:10px;--r-lg:14px;--r-xl:18px;--r-2xl:22px;--r-full:9999px;
+  /* Motion */
+  --e-out:cubic-bezier(0.16,1,0.3,1);--e-standard:cubic-bezier(0.4,0,0.2,1);
+  --t-fast:120ms;--t-normal:180ms;--t-slow:280ms;
+  /* Layout */
+  --header-h:60px;--page-px:120px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{font-family:var(--font);background:var(--bg);color:var(--text-strong);line-height:var(--lh-normal);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+::selection{background:var(--g2);color:var(--g7)}
+:focus-visible{outline:2px solid var(--g4);outline-offset:2px;border-radius:2px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}}
+
+/* =================================================================
+   HEADER
+   ================================================================= */
+.header{background:var(--n0);border-bottom:1px solid var(--border-subtle);height:var(--header-h);display:flex;align-items:center;gap:var(--s3);padding:0 var(--page-px);flex-shrink:0;z-index:40}
+.hdr-back{display:inline-flex;align-items:center;gap:5px;font-weight:500;font-size:var(--fs-sm);color:var(--text-soft);text-decoration:none;white-space:nowrap;transition:color var(--t-fast) var(--e-out);padding:var(--s1) var(--s2);margin-left:calc(var(--s2) * -1);border-radius:var(--r-sm)}
+.hdr-back:hover{color:var(--text-strong);background:var(--bg-hover)}
+.hdr-spacer{flex:1}
+.search-box{width:240px;height:38px;background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:var(--r-full);display:flex;align-items:center;gap:var(--s1);padding:0 var(--s3);font-size:var(--fs-xs);color:var(--text-soft);transition:all var(--t-normal) var(--e-out);cursor:text;user-select:none}
+.search-box:hover{border-color:var(--border-default)}
+.search-box:focus-within{background:var(--n0);border-color:var(--g4);box-shadow:0 0 0 3px var(--g1)}
+.notif-btn{width:38px;height:38px;border-radius:50%;border:none;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background var(--t-fast) var(--e-out);position:relative;color:var(--text-soft);flex-shrink:0}
+.notif-btn:hover{background:var(--bg-hover);color:var(--text-strong)}
+.notif-btn .dot{position:absolute;top:6px;right:6px;width:8px;height:8px;background:var(--danger);border-radius:50%;border:2px solid var(--n0)}
+.avatar-btn{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--g4),var(--g6));cursor:pointer;border:2px solid transparent;transition:all var(--t-fast) var(--e-out);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;flex-shrink:0}
+.avatar-btn:hover{border-color:var(--g4);box-shadow:0 0 0 3px var(--g1)}
+
+/* =================================================================
+   MAIN — viewport fill, no page scroll
+   ================================================================= */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0}
+.content{flex:1;display:flex;flex-direction:column;padding:0 var(--page-px);overflow:hidden;min-height:0}
+
+/* =================================================================
+   CHAT SURFACE
+   ================================================================= */
+.chat-surface{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0}
+
+/* Scrollable area */
+.chat-body{flex:1;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;align-items:center;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+.chat-body::-webkit-scrollbar{display:none}
+
+/* Message column — max 672px like ChatGPT */
+.chat-inner{width:100%;max-width:672px;padding:var(--s4) var(--s3) var(--s6);display:flex;flex-direction:column;margin:auto 0}
+
+/* =================================================================
+   EMPTY STATE
+   ================================================================= */
+.empty-state{display:flex;flex-direction:column;align-items:center;text-align:center;padding:var(--s6) var(--s3) var(--s3);animation:a-fadeIn var(--t-slow) var(--e-out) both}
+.empty-icon{font-size:36px;margin-bottom:var(--s3);opacity:0.90;line-height:1}
+.empty-title{font-size:var(--fs-lg);font-weight:700;color:var(--text-strong);margin-bottom:var(--s0);letter-spacing:-0.01em;line-height:var(--lh-tight)}
+.empty-desc{font-size:var(--fs-xs);color:var(--text-soft);max-width:420px;line-height:var(--lh-relaxed)}
+
+/* =================================================================
+   SUGGESTIONS — conversational cards
+   ================================================================= */
+.suggestions{display:flex;flex-direction:column;gap:var(--s3);width:100%;margin-top:var(--s3)}
+.sug-card{display:flex;align-items:center;gap:var(--s2);padding:var(--s2) var(--s4);background:var(--n0);border:1px solid var(--border-subtle);border-radius:var(--r-md);cursor:pointer;font-family:var(--font);font-size:var(--fs-sm);color:var(--text-body);text-align:left;width:100%;transition:all var(--t-normal) var(--e-out);animation:a-cardIn var(--t-slow) var(--e-out) both;user-select:none}
+.sug-card:hover{background:var(--n50);border-color:var(--g3);color:var(--text-strong);box-shadow:0 1px 4px oklch(0 0 0/0.04)}
+.sug-card:active{transform:scale(0.99);transition-duration:80ms}
+.sug-card:nth-child(1){animation-delay:30ms}
+.sug-card:nth-child(2){animation-delay:80ms}
+.sug-card:nth-child(3){animation-delay:130ms}
+.sug-card:nth-child(4){animation-delay:180ms}
+.sug-icon{font-size:16px;flex-shrink:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--bg);border:1px solid var(--border-subtle);border-radius:var(--r-sm);line-height:1}
+.sug-text{flex:1;line-height:var(--lh-normal)}
+
+/* =================================================================
+   MESSAGES
+   ================================================================= */
+.msgs{display:flex;flex-direction:column;gap:var(--s5);padding:var(--s5) 0 var(--s10)}
+.msg{display:flex;gap:var(--s3);max-width:88%;animation:a-msgIn var(--t-slow) var(--e-out) both}
+.msg.user{align-self:flex-end;flex-direction:row-reverse}
+.msg.ai{align-self:flex-start}
+.msg-avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;line-height:1;letter-spacing:-0.01em}
+.msg.user .msg-avatar{background:var(--primary);color:#fff}
+.msg.ai .msg-avatar{background:var(--purple-subtle);color:var(--purple)}
+.msg-body{display:flex;flex-direction:column;gap:4px;min-width:0}
+.msg-bubble{padding:var(--s2) var(--s4);font-size:var(--fs-sm);line-height:var(--lh-relaxed);word-break:break-word}
+.msg.user .msg-bubble{background:var(--g1);color:var(--text-strong);border-radius:var(--r-lg) var(--r-lg) 3px var(--r-lg)}
+.msg.ai .msg-bubble{background:var(--n50);color:var(--text-body);border-radius:var(--r-lg) var(--r-lg) var(--r-lg) 3px}
+.msg-bubble b{color:var(--text-strong);font-weight:600}
+.msg-time{font-size:11px;color:var(--text-soft);padding:0 2px;opacity:0.55}
+.msg.user .msg-time{text-align:right}
+
+/* =================================================================
+   INPUT AREA — anchored bottom, substantial feel
+   ================================================================= */
+.input-area{padding:var(--s3) var(--s3) var(--s4);border-top:1px solid var(--border-subtle);background:var(--bg);flex-shrink:0}
+.input-inner{max-width:672px;margin:0 auto;width:100%}
+.input-row{display:flex;gap:var(--s1);align-items:flex-end;background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:var(--r-2xl);padding:var(--s1);transition:all var(--t-normal) var(--e-out)}
+.input-row:focus-within{background:var(--n0);border-color:var(--g4);box-shadow:var(--shadow-input)}
+.chat-input{flex:1;padding:var(--s2) var(--s3) var(--s2) var(--s4);min-height:44px;background:transparent;border:none;font-size:var(--fs-base);font-family:var(--font);color:var(--text-strong);outline:none;resize:none;min-width:0;line-height:var(--lh-normal)}
+.chat-input::placeholder{color:var(--text-placeholder)}
+.send-btn{width:38px;height:38px;min-width:38px;background:var(--primary);color:#fff;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--t-fast) var(--e-out);flex-shrink:0;align-self:flex-end;margin:3px}
+.send-btn:hover{background:var(--primary-hover);box-shadow:var(--shadow-btn)}
+.send-btn:active{transform:scale(0.92);transition-duration:60ms}
+.send-btn:disabled{opacity:0.30;cursor:not-allowed;box-shadow:none;transform:none}
+.send-btn svg{width:18px;height:18px}
+.input-hint{font-size:11px;color:var(--text-soft);text-align:center;margin-top:var(--s2);opacity:0.55}
+
+/* =================================================================
+   KEYFRAMES
+   ================================================================= */
+@keyframes a-fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes a-cardIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes a-msgIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* =================================================================
+   RESPONSIVE — mobile-first with min-width
+   ================================================================= */
+/* 640px+ */
+@media(min-width:640px){
+  :root{--page-px:32px}
+  .chat-inner{padding:var(--s4) var(--s4) var(--s6)}
+  .input-area{padding:var(--s3) var(--s4) var(--s4)}
+  .sug-card{padding:var(--s2) var(--s4)}
+}
+/* 768px+ */
+@media(min-width:768px){
+  :root{--page-px:48px}
+  .chat-inner{padding:var(--s4) var(--s5) var(--s6)}
+  .input-area{padding:var(--s4) var(--s5) var(--s5)}
+  .sug-card{padding:var(--s4) var(--s5)}
+}
+/* 1024px+ */
+@media(min-width:1024px){
+  :root{--page-px:80px}
+  .chat-inner{max-width:672px}
+}
+/* 1280px+ */
+@media(min-width:1280px){
+  :root{--page-px:120px}
+}
+/* 1440px+ */
+@media(min-width:1440px){
+  .chat-inner{max-width:700px}
+}
+
+/* Touch devices — suppress hover */
+@media(hover:none) and (pointer:coarse){
+  .sug-card:hover{background:var(--n0);border-color:var(--border-subtle);color:var(--text-body);box-shadow:none}
+  .sug-card:active{background:var(--n50);border-color:var(--g3);color:var(--text-strong)}
+  .send-btn:hover{box-shadow:none}
+  .hdr-back:hover{background:transparent}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="javascript:history.back()" class="hdr-back">← Back</a>
+  <div class="hdr-spacer"></div>
+  <div class="search-box" tabindex="0" role="searchbox" aria-label="Search">🔍 Search</div>
+  <button class="notif-btn" aria-label="Notifications">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+    <span class="dot"></span>
+  </button>
+  <button class="avatar-btn" aria-label="User menu">HR</button>
+</header>
+
+<div class="main">
+  <div class="content">
+    <div class="chat-surface">
+
+      <!-- Scrollable zone -->
+      <div class="chat-body" id="chatBody">
+        <div class="chat-inner" id="chatInner">
+
+          <div class="empty-state" id="emptyState">
+            <div class="empty-icon">✨</div>
+            <h1 class="empty-title">AI Creation Lab</h1>
+            <p class="empty-desc">Based on the SECI knowledge extraction model, transforming tacit experience into reusable knowledge assets</p>
+          </div>
+
+          <div class="suggestions" id="suggestions">
+            <button class="sug-card" onclick="sendSuggestion(this)"><span class="sug-icon">📝</span><span class="sug-text">Help me organize this week's learning & reflections</span></button>
+            <button class="sug-card" onclick="sendSuggestion(this)"><span class="sug-icon">📄</span><span class="sug-text">Write my internship project summary report</span></button>
+            <button class="sug-card" onclick="sendSuggestion(this)"><span class="sug-icon">🎯</span><span class="sug-text">Create a personal competency improvement action plan</span></button>
+            <button class="sug-card" onclick="sendSuggestion(this)"><span class="sug-icon">📊</span><span class="sug-text">Generate an internship report for me</span></button>
+          </div>
+
+          <div class="msgs" id="msgs" style="display:none"></div>
+
+        </div>
+      </div>
+
+      <!-- Input — always visible -->
+      <div class="input-area">
+        <div class="input-inner">
+          <div class="input-row">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Enter your creative topic…" onkeydown="if(event.key==='Enter')sendMessage()" autofocus>
+            <button class="send-btn" onclick="sendMessage()" title="Send" aria-label="Send message">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+          <p class="input-hint">Yang Fan AI · SECI Knowledge Extraction · Scenario → Action → Insight → Validate → Output</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var role = params.get('role') || 'intern';
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var suggestions=document.getElementById('suggestions');
+    var data={
+      intern:[
+        {e:'📝',t:'Help me organize this week’s learning & reflections'},
+        {e:'📄',t:'Write my internship project summary report'},
+        {e:'🎯',t:'Create a personal competency improvement action plan'},
+        {e:'📊',t:'Generate an internship report for me'}
+      ],
+      mentor:[
+        {e:'📝',t:'Write intern training micro-course script'},
+        {e:'📄',t:'Generate a product requirements doc template'},
+        {e:'🎯',t:'Design a mentoring conversation guide'},
+        {e:'📊',t:'Create a report & reflection analysis framework'}
+      ]
+    };
+    var chips=data[role]||data.intern;
+    suggestions.innerHTML='';
+    chips.forEach(function(c){
+      var b=document.createElement('button');
+      b.className='sug-card';
+      b.innerHTML='<span class="sug-icon">'+c.e+'</span><span class="sug-text">'+esc(c.t)+'</span>';
+      b.onclick=function(){sendSuggestion(b);};
+      suggestions.appendChild(b);
+    });
+    setTimeout(function(){document.getElementById('chatInput').focus();},300);
+  });
+
+  function sendSuggestion(btn){
+    var t=btn.querySelector('.sug-text');
+    document.getElementById('chatInput').value=t?t.textContent:btn.textContent.replace(/^[^\s]+\s/,'');
+    sendMessage();
+  }
+  window.sendSuggestion=sendSuggestion;
+
+  function sendMessage(){
+    var input=document.getElementById('chatInput');
+    var text=input.value.trim();
+    if(!text)return;
+    var empty=document.getElementById('emptyState');
+    var sug=document.getElementById('suggestions');
+    if(empty)empty.style.display='none';
+    if(sug)sug.style.display='none';
+    var msgs=document.getElementById('msgs');
+    msgs.style.display='flex';
+    var now=new Date();
+    var time=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+    var u=document.createElement('div');
+    u.className='msg user';
+    u.innerHTML='<div class="msg-avatar">Me</div><div class="msg-body"><div class="msg-bubble">'+esc(text)+'</div><div class="msg-time">'+time+'</div></div>';
+    msgs.appendChild(u);
+    input.value='';
+    scrollBottom();
+    setTimeout(function(){
+      var a=document.createElement('div');
+      a.className='msg ai';
+      a.innerHTML='<div class="msg-avatar">AI</div><div class="msg-body"><div class="msg-bubble">'+respond(text,role)+'</div><div class="msg-time">'+time+'</div></div>';
+      msgs.appendChild(a);
+      scrollBottom();
+    },650);
+  }
+  window.sendMessage=sendMessage;
+
+  function scrollBottom(){
+    var b=document.getElementById('chatBody');
+    if(b)requestAnimationFrame(function(){b.scrollTo({top:b.scrollHeight,behavior:'smooth'});});
+  }
+
+  function respond(text,role){
+    var t=text.toLowerCase();
+    if(role==='mentor'){
+      if(t.includes('course')||t.includes('training')||t.includes('script'))return 'Great! Here is the <b>Intern Training Micro-Course Script Framework</b>: <br><br>🎯 <b>Scenario Reconstruction</b>: Clarify intern roles and business scenarios<br>📋 <b>Action Breakdown</b>: Break down key tasks into actionable steps<br>💡 <b>Core Insight Extraction</b>: Extract mentor experience into core principles and decision logic<br>✅ <b>Validation Method</b>: Design practical testing standards<br>📦 <b>Output</b>: Structured micro-course outline and assessment points<br><br>Need me to expand on any section? ';
+      if(t.includes('Mentor')||t.includes('script')||t.includes('coaching'))return 'Great! Here is the <b>Mentoring Conversation Guide</b>: <br><br>👤 <b>Opening Trust Building</b>: Use structured questions to guide intern expression<br>🎓 <b>Scenario-Based Teaching</b>: Embed learning points within real tasks<br>📝 <b>Feedback Script Template</b>: Positive guidance + specific improvement points<br>🔄 <b>Knowledge Internalization Questions</b>: Promote intern reflection and synthesis<br>📈 <b>Growth Tracking Script</b>: Regular reflection and direction calibration<br><br>Need me to elaborate on any specific scenario? ';
+      if(t.includes('Reports')||t.includes('Reflect')||t.includes('analysis'))return 'Here is the <b>Mentoring Results Reflection & Analysis Report Framework</b>: <br><br>📊 <b>Intern Key Metrics</b>: Task Completion Rate, Quality Ratings, Growth Curve<br>🔍 <b>Highlights Analysis</b>: Intern progress and bright spots this week<br>⚠️ <b>Risk Alerts</b>: Competency gaps or attitude issues needing attention<br>💡 <b>Coaching Recommendations</b>: Targeted mentoring strategy adjustments<br>📅 <b>Next Mentoring Plan</b>: Focus on 2-3 key coaching objectives<br><br>Need me to help fill in specific data? ';
+      if(t.includes('doc')||t.includes('template'))return 'Got it! Generating a <b>Structured Document Template</b>: <br><br>📄 <b>Document Title</b>: [Please fill in]<br>📌 <b>Applicable Scenarios</b>: Clarify document usage boundaries<br>🗂 <b>Core Structure</b>: Follow the SECI model knowledge externalization logic<br>✏️ <b>Writing Guide</b>: Each section includes examples and instructions<br>🔍 <b>Review Checklist</b>: Ensure document quality and completeness<br><br>Need me to elaborate on any template? ';
+    }else{
+      if(t.includes('Reports')||t.includes('Reflect'))return 'Here is the <b>Internship Report Framework</b>: <br><br>📊 <b>Tasks Completed This Week</b>: List completed tasks and key outcomes<br>🔍 <b>Learnings & Reflection</b>: New skills and insights gained this week<br>⚠️ <b>Challenges Encountered</b>: Difficulties faced and how you responded<br>💡 <b>Next Steps Plan</b>: Focus on 2-3 learning and growth goals<br>📅 <b>Support Needed</b>: Help desired from mentor or team<br><br>Need me to expand on any section? ';
+      if(t.includes('Learning')||t.includes('Learnings')||t.includes('Reflection'))return 'Great! Let me help you organize <b>This Week's Learning & Reflections</b>: <br><br>📚 <b>New Knowledge/Skills</b>: What new things did you learn this week?<br>🛠 <b>Practical Application</b>: In which tasks did you apply new learnings?<br>💡 <b>Key Insights</b>: Any enlightening moments?<br>⚠️ <b>Pitfalls Encountered</b>: What mistakes did you make, and how to avoid them next time?<br>🎯 <b>Next Learning Goals</b>: Which 1-2 competencies do you most want to improve?<br><br>Need me to dive deeper into any dimension? ';
+      if(t.includes('Project')||t.includes('summary')||t.includes('report'))return 'Got it! Let me help you organize <b>Internship Project Summary Report</b>: <br><br>📌 <b>Project Background</b>: Project goals and your role definition<br>📋 <b>Key Tasks</b>: Specific work you were responsible for<br>📊 <b>Results & Data</b>: Quantifiable outputs and impact<br>💡 <b>Experience Accumulated</b>: Reusable methods, tools, or processes<br>🚀 <b>Future Recommendations</b>: Thoughts on project optimization<br><br>Need me to elaborate on any section? ';
+      if(t.includes('Competency')||t.includes('improve')||t.includes('action')||t.includes('plan'))return 'Great! Here is the <b>Personal Competency Improvement Action Plan</b>: <br><br>🎯 <b>Target Role</b>: The role you aspire to qualify for<br>📊 <b>Current Competency Status</b>: Existing strengths and gaps to address<br>📋 <b>Learning Path</b>: Phased learning and practice plan<br>🔄 <b>Practice Methods</b>: Which tasks/projects to use for skill-building<br>📈 <b>Validation Criteria</b>: How to measure whether competency has truly improved<br><br>Need me to elaborate on any specific competency? ';
+      if(t.includes('doc')||t.includes('template'))return 'Got it! Generating a <b>Structured Document Template</b>: <br><br>📄 <b>Document Title</b>: [Please fill in]<br>📌 <b>Applicable Scenarios</b>: Clarify document usage boundaries<br>🗂 <b>Core Structure</b>: Follow the SECI model knowledge externalization logic<br>✏️ <b>Writing Guide</b>: Each section includes examples and instructions<br>🔍 <b>Review Checklist</b>: Ensure document quality and completeness<br><br>Need me to elaborate on any template? ';
+    }
+    return 'Got it! Based on the <b>SECI knowledge extraction model</b>, let me help you organize "'+text.substring(0,18)+'..." related content: <br><br>🔬 <b>Scenario Reconstruction</b>: Identify key business scenarios and roles<br>🛠 <b>Action Breakdown</b>: Decompose tacit experience into executable steps<br>🧠 <b>Core Insight Extraction</b>: Extract underlying logic and evaluation criteria<br>✔️ <b>Validate Design</b>: Establish measurable effectiveness testing methods<br>📦 <b>Output</b>: Generate structured knowledge assets<br><br>Need me to elaborate on any dimension? ';
+  }
+
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+})();
+</script>
+</body>
+</html>

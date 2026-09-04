@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yang Fan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+
+/* ================================================================
+  YANG FAN · MENTOR WORKBENCH V3 — Modern Minimalist Design System
+  Design Tokens: OKLCH Color Space · 8pt Grid · DM Sans · ease-out
+  ================================================================ */
+:root {
+ /* ── Spring Green Palette (OKLCH) ── */
+ --green-50: oklch(0.97 0.025 145);
+ --green-100: oklch(0.94 0.05 145);
+ --green-200: oklch(0.88 0.09 145);
+ --green-300: oklch(0.78 0.13 145);
+ --green-400: oklch(0.68 0.16 145);
+ --green-500: oklch(0.60 0.17 145);
+ --green-600: oklch(0.52 0.15 145);
+ --green-700: oklch(0.44 0.13 145);
+ --green-800: oklch(0.36 0.10 145);
+ --green-900: oklch(0.28 0.08 145);
+
+ /* ── Warm Neutrals ── */
+ --neutral-0:  oklch(1 0 0);
+ --neutral-50: oklch(0.985 0.004 96);
+ --neutral-100: oklch(0.965 0.007 96);
+ --neutral-200: oklch(0.92 0.010 96);
+ --neutral-300: oklch(0.86 0.012 96);
+ --neutral-400: oklch(0.72 0.012 96);
+ --neutral-500: oklch(0.58 0.012 96);
+ --neutral-600: oklch(0.46 0.010 96);
+ --neutral-700: oklch(0.34 0.008 96);
+ --neutral-800: oklch(0.22 0.006 96);
+ --neutral-900: oklch(0.13 0.004 96);
+
+ /* ── Semantic Aliases ── */
+ --bg-app:    oklch(0.978 0.006 145);
+ --bg-card:    var(--neutral-0);
+ --bg-header:   oklch(1 0 0 / 0.82);
+ --bg-stat:    var(--neutral-50);
+ --bg-rec:     var(--neutral-50);
+ --bg-nav-active: var(--green-50);
+ --bg-sidebar:   var(--neutral-0);
+
+ --primary:     var(--green-500);
+ --primary-hover:  var(--green-600);
+ --primary-light:  var(--green-50);
+ --primary-text:  var(--green-700);
+
+ --text-primary:  var(--neutral-900);
+ --text-secondary: var(--neutral-600);
+ --text-muted:   var(--neutral-500);
+ --text-placeholder:var(--neutral-400);
+
+ --border:     oklch(0.91 0.008 145);
+ --border-light:  oklch(0.95 0.005 145);
+
+ --danger:     oklch(0.55 0.19 18);
+ --danger-light:  oklch(0.96 0.02 18);
+ --warning:     oklch(0.72 0.15 65);
+ --warning-light:  oklch(0.96 0.06 65);
+ --info:      oklch(0.52 0.16 250);
+ --info-light:   oklch(0.95 0.03 250);
+ --purple:     oklch(0.48 0.16 280);
+ --purple-light:  oklch(0.94 0.03 280);
+
+ /* ── Shadows (Layered, Subtle) ── */
+ --shadow-xs: 0 1px 2px oklch(0 0 0 / 0.03);
+ --shadow-sm: 0 2px 8px oklch(0 0 0 / 0.05);
+ --shadow-md: 0 4px 20px oklch(0 0 0 / 0.07);
+ --shadow-lg: 0 8px 40px oklch(0 0 0 / 0.09);
+ --shadow-xl: 0 16px 60px oklch(0 0 0 / 0.12);
+ --shadow-sidebar: 12px 0 32px oklch(0 0 0 / 0.06);
+
+ /* ── Typography (DM Sans + System) ── */
+ --font: 'DM Sans', system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+ --font-heading: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+
+ /* ── Fluid Typography Scale (1.25 ratio) ── */
+ --text-xs:  clamp(0.625rem, 0.6rem + 0.1vw, 0.75rem);  /* 10-12px */
+ --text-sm:  clamp(0.75rem, 0.72rem + 0.15vw, 0.875rem); /* 12-14px */
+ --text-base: clamp(0.875rem, 0.85rem + 0.2vw, 1rem);   /* 14-16px */
+ --text-lg:  clamp(1rem, 0.95rem + 0.25vw, 1.25rem);   /* 16-20px */
+ --text-xl:  clamp(1.125rem, 1.05rem + 0.4vw, 1.5rem);  /* 18-24px */
+ --text-2xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.75rem);  /* 20-28px */
+ --text-3xl: clamp(1.5rem, 1.3rem + 0.8vw, 2.25rem);   /* 24-36px */
+ --text-4xl: clamp(1.75rem, 1.4rem + 1.2vw, 3rem);    /* 28-48px */
+
+ --leading-tight: 1.2;
+ --leading-normal: 1.5;
+ --leading-relaxed:1.7;
+
+ /* ── Spacing (8pt Grid) ── */
+ --sp-1: 4px;
+ --sp-2: 8px;
+ --sp-3: 12px;
+ --sp-4: 16px;
+ --sp-5: 20px;
+ --sp-6: 24px;
+ --sp-8: 32px;
+ --sp-10: 40px;
+ --sp-12: 48px;
+ --sp-16: 64px;
+ --sp-20: 80px;
+
+ /* ── Border Radii ── */
+ --r-sm:  6px;
+ --r-md:  10px;
+ --r-lg:  14px;
+ --r-xl:  18px;
+ --r-2xl: 24px;
+ --r-full: 9999px;
+
+ /* ── Animation Tokens ── */
+ --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+ --ease-in-out:cubic-bezier(0.65, 0, 0.35, 1);
+ --ease-std:  cubic-bezier(0.4, 0, 0.2, 1);
+ --dur-fast:  120ms;
+ --dur-normal: 200ms;
+ --dur-slow:  350ms;
+ --dur-page:  400ms;
+
+ /* ── Layout ── */
+ --sidebar-w: 264px;
+ --topbar-h: 64px;
+ --content-max: 1280px;
+}
+
+/* ── prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+ *, *::before, *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+ }
+}
+
+/* ================================================================
+  RESET & BASE
+  ================================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{
+ font-family:var(--font);
+ background:var(--bg-app);
+ color:var(--text-primary);
+ line-height:var(--leading-normal);
+ display:flex;
+ min-height:100vh;
+ overflow-x:hidden;
+}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--neutral-300);border-radius:2px}
+::selection{background:var(--green-100);color:var(--green-800)}
+
+/* ================================================================
+  SIDEBAR — Refined, Minimal
+  ================================================================ */
+.sidebar{
+ width:var(--sidebar-w);
+ min-height:100vh;
+ background:var(--bg-sidebar);
+ position:fixed;top:0;left:0;bottom:0;z-index:100;
+ display:flex;flex-direction:column;
+ padding:var(--sp-6);
+ border-right:1px solid var(--border-light);
+}
+.sidebar-brand{
+ display:flex;align-items:center;gap:var(--sp-3);
+ padding:var(--sp-2) var(--sp-2) var(--sp-6);
+}
+.sidebar-brand .logo-icon{
+ width:36px;height:36px;
+ background:linear-gradient(135deg,var(--green-400),var(--green-600));
+ border-radius:var(--r-md);
+ display:flex;align-items:center;justify-content:center;
+ color:#fff;font-weight:800;font-size:18px;
+ flex-shrink:0;
+}
+.sb-info h1{font-size:18px;font-weight:700;color:var(--text-primary);letter-spacing:-0.3px;line-height:1.3;font-family:var(--font-heading)}
+.sb-info span{font-size:var(--text-xs);color:var(--text-muted);line-height:1.3;display:block}
+
+.sidebar-nav{flex:1;padding-top:var(--sp-6);display:flex;flex-direction:column;gap:var(--sp-1)}
+.nav-item{
+ display:flex;align-items:center;gap:var(--sp-3);
+ padding:var(--sp-3) var(--sp-4);
+ border-radius:var(--r-md);
+ cursor:pointer;
+ transition:all var(--dur-fast) var(--ease-std);
+ color:var(--text-secondary);
+ font-weight:500;font-size:var(--text-sm);
+ border:none;background:none;
+ width:100%;font-family:var(--font);
+ text-align:left;
+}
+.nav-item .nav-dot{width:6px;height:6px;border-radius:50%;background:transparent;transition:all var(--dur-fast) var(--ease-std);flex-shrink:0}
+.nav-item{transition:all var(--dur-normal) var(--ease-std)}
+.nav-item:hover{background:var(--neutral-50);color:var(--text-primary);transform:translateX(2px)}
+.nav-item:hover .nav-dot{background:var(--neutral-300);transform:scale(1.3)}
+.nav-item.active{background:var(--green-50);color:var(--primary-text);font-weight:600;transform:translateX(2px)}
+.nav-item.active .nav-dot{background:var(--primary);width:8px;height:8px;box-shadow:0 0 0 3px var(--green-100);transform:scale(1)}
+
+.btn-logout{
+ display:flex;align-items:center;justify-content:center;gap:var(--sp-2);
+ padding:var(--sp-3) var(--sp-5);
+ background:var(--neutral-50);color:var(--text-secondary);
+ border:none;border-radius:var(--r-full);
+ cursor:pointer;font-weight:500;font-size:var(--text-sm);
+ font-family:var(--font);transition:all var(--dur-fast) var(--ease-std);
+ margin-bottom:var(--sp-4);width:100%;
+}
+.btn-logout:hover{background:var(--neutral-100);color:var(--text-primary)}
+
+.sidebar-bottom{
+ background:linear-gradient(160deg,var(--green-400),var(--green-600) 60%,var(--green-700));
+ border-radius:var(--r-xl);
+ padding:var(--sp-5);
+ color:#fff;flex-shrink:0;
+ position:relative;overflow:hidden;
+}
+.sidebar-bottom::before{
+ content:'';position:absolute;top:-40px;right:-40px;
+ width:120px;height:120px;
+ background:radial-gradient(circle,oklch(1 0 0 / 0.15) 0%,transparent 70%);
+ border-radius:50%;
+}
+.sidebar-bottom h3{font-size:var(--text-lg);font-weight:700;margin-bottom:var(--sp-1);color:#fff;position:relative;font-family:var(--font-heading)}
+.sidebar-bottom p{font-size:var(--text-xs);color:oklch(1 0 0 / 0.8);margin-bottom:var(--sp-4);line-height:1.4;position:relative}
+.btn-white-pill{
+ padding:var(--sp-2) var(--sp-4);
+ background:#fff;color:var(--green-700);
+ border:none;border-radius:var(--r-full);
+ font-size:var(--text-xs);font-weight:600;
+ cursor:pointer;font-family:var(--font);
+ transition:all var(--dur-fast) var(--ease-std);
+ position:relative;
+}
+.btn-white-pill:hover{transform:translateY(-1px);box-shadow:0 4px 16px oklch(0 0 0 / 0.12)}
+.btn-white-pill:active{transform:translateY(0) scale(0.97)}
+
+/* ================================================================
+  MAIN CONTENT AREA
+  ================================================================ */
+.main{flex:1;margin-left:var(--sidebar-w);min-height:100vh;display:flex;flex-direction:column}
+
+/* ================================================================
+  TOPBAR — Glassmorphism
+  ================================================================ */
+.topbar{
+ background:var(--bg-header);
+ backdrop-filter:blur(16px) saturate(180%);
+ -webkit-backdrop-filter:blur(16px) saturate(180%);
+ border-bottom:1px solid var(--border-light);
+ height:var(--topbar-h);
+ display:flex;align-items:center;gap:var(--sp-4);
+ padding:0 var(--sp-8);
+ position:sticky;top:0;z-index:50;
+}
+.topbar-spacer{flex:1}
+.search-box{
+ flex:0 0 300px;height:40px;
+ background:var(--neutral-50);
+ border:1px solid transparent;
+ border-radius:var(--r-full);
+ display:flex;align-items:center;gap:var(--sp-2);
+ padding:0 var(--sp-4);
+ transition:all var(--dur-normal) var(--ease-std);
+}
+.search-box:focus-within{
+ background:var(--neutral-0);
+ border-color:var(--green-300);
+ box-shadow:0 0 0 3px var(--green-50);
+}
+.search-box svg{width:16px;height:16px;color:var(--text-muted);flex-shrink:0}
+.search-box input{border:none;background:transparent;outline:none;font-size:var(--text-sm);color:var(--text-primary);width:100%;font-family:var(--font)}
+.search-box input::placeholder{color:var(--text-placeholder)}
+.topbar-btn{
+ width:40px;height:40px;border-radius:50%;border:none;
+ background:transparent;
+ display:flex;align-items:center;justify-content:center;
+ cursor:pointer;transition:all var(--dur-fast) var(--ease-std);
+ flex-shrink:0;position:relative;color:var(--text-secondary);
+}
+.topbar-btn:hover{background:var(--neutral-50);color:var(--text-primary)}
+.topbar-btn:active{transform:scale(0.95)}
+.topbar-btn svg{width:20px;height:20px}
+.notif-dot{
+ position:absolute;top:8px;right:8px;
+ width:8px;height:8px;
+ background:var(--danger);border-radius:50%;
+ border:2px solid var(--bg-header);
+}
+.topbar-avatar{
+ width:36px;height:36px;border-radius:50%;
+ background:linear-gradient(135deg,var(--green-400),var(--green-600));
+ cursor:pointer;border:2px solid transparent;
+ transition:all var(--dur-fast) var(--ease-std);
+ display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;
+ flex-shrink:0;
+}
+.topbar-avatar:hover{border-color:var(--green-300);transform:scale(1.05)}
+.topbar-avatar:active{transform:scale(0.95)}
+
+/* ================================================================
+  PAGE TRANSITIONS
+  ================================================================ */
+.page{display:none;padding:var(--sp-8);flex-direction:column;gap:var(--sp-6);flex:1;max-width:var(--content-max)}
+.page.active{display:flex;animation:pageEnter var(--dur-page) var(--ease-std) both}
+@keyframes pageEnter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ================================================================
+  ENTRY ANIMATIONS (Staggered)
+  ================================================================ */
+.a-up{animation:a-fadeUp var(--dur-slow) var(--ease-std) both}
+@keyframes a-fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.a-up.d1{animation-delay:.04s}.a-up.d2{animation-delay:.08s}.a-up.d3{animation-delay:.12s}.a-up.d4{animation-delay:.16s}.a-up.d5{animation-delay:.20s}
+
+/* ================================================================
+  SHARED COMPONENTS
+  ================================================================ */
+/* ── Section Header ── */
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-4)}
+.section-head h3{font-size:var(--text-lg);font-weight:700;color:var(--text-primary);font-family:var(--font-heading)}
+.section-head .more{font-size:var(--text-sm);color:var(--primary);cursor:pointer;font-weight:600;transition:opacity var(--dur-fast)}
+.section-head .more:hover{opacity:.7}
+
+/* ── Page Title ── */
+.page-title-row{margin-bottom:var(--sp-6);padding-bottom:var(--sp-4);border-bottom:1px solid var(--border-light)}
+.page-title-row h3{font-size:var(--text-2xl);font-weight:700;color:var(--text-primary);font-family:var(--font-heading)}
+.page-title-row p{font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--sp-1)}
+
+/* ── Gradient Divider ── */
+.grad-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border-light) 20%,var(--border-light) 80%,transparent);margin:var(--sp-5) 0}
+
+/* ── Badge ── */
+.badge-sm{
+ background:var(--neutral-50);padding:2px var(--sp-3);
+ border-radius:var(--r-full);font-size:var(--text-xs);color:var(--text-muted);
+ font-weight:500;
+}
+
+/* ── Tags ── */
+.tag{padding:3px var(--sp-2);border-radius:var(--r-sm);font-size:var(--text-xs);line-height:1.4;font-weight:600}
+.tag.green{background:var(--green-50);color:var(--primary-text)}
+.tag.blue{background:var(--info-light);color:var(--info)}
+.tag.purple{background:var(--purple-light);color:var(--purple)}
+.tag.orange{background:var(--warning-light);color:var(--warning)}
+.tag.red{background:var(--danger-light);color:var(--danger)}
+
+/* ── Buttons ── */
+.btn-primary{
+ padding:var(--sp-2) var(--sp-5);
+ background:var(--primary);color:#fff;
+ border:none;border-radius:var(--r-full);
+ font-size:var(--text-sm);font-weight:600;
+ cursor:pointer;font-family:var(--font);
+ transition:all var(--dur-fast) var(--ease-std);
+ display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);
+}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);box-shadow:0 4px 16px oklch(0.6 0.17 145 / 0.3)}
+.btn-primary:active{transform:translateY(0) scale(0.97)}
+.btn-ghost{
+ padding:var(--sp-2) var(--sp-4);
+ background:transparent;color:var(--text-secondary);
+ border:1px solid var(--border);border-radius:var(--r-full);
+ font-size:var(--text-sm);font-weight:500;
+ cursor:pointer;font-family:var(--font);
+ transition:all var(--dur-fast) var(--ease-std);
+ display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);
+}
+.btn-ghost:hover{background:var(--neutral-50);color:var(--text-primary);border-color:var(--neutral-300)}
+.btn-ghost:active{transform:scale(0.97)}
+.btn-pill-dark{
+ padding:var(--sp-1) var(--sp-4);
+ background:var(--neutral-800);color:#fff;
+ border:none;border-radius:var(--r-full);
+ font-size:var(--text-xs);font-weight:500;
+ cursor:pointer;font-family:var(--font);
+ transition:all var(--dur-fast) var(--ease-std);
+}
+.btn-pill-dark:hover{background:var(--neutral-900);transform:translateY(-1px)}
+
+/* ── Card Polish ── */
+.card-hover{transition:all var(--dur-normal) var(--ease-std);border:1px solid var(--border-light)}
+.card-hover:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--border)}
+
+/* ── Status Badges ── */
+.st-badge{
+ display:inline-flex;align-items:center;justify-content:center;
+ padding:3px var(--sp-3);border-radius:var(--r-full);
+ font-size:var(--text-xs);font-weight:600;white-space:nowrap;
+ font-family:var(--font);
+}
+.st-badge.orange{background:var(--danger-light);color:var(--danger)}
+.st-badge.blue{background:var(--info-light);color:var(--info)}
+.st-badge.green{background:var(--green-50);color:var(--primary-text)}
+.st-badge.gray{background:var(--neutral-50);color:var(--text-muted)}
+.st-badge.purple{background:var(--purple-light);color:var(--purple)}
+
+/* ── Risk Tags ── */
+.risk-tag{padding:3px var(--sp-3);border-radius:var(--r-full);font-size:var(--text-xs);font-weight:600;display:inline-block}
+.risk-tag.hi{background:var(--danger-light);color:var(--danger)}
+.risk-tag.lo{background:var(--green-50);color:var(--primary-text)}
+.risk-tag.med{background:var(--warning-light);color:var(--warning)}
+.fit-bar{width:80px;height:5px;background:var(--neutral-100);border-radius:3px;overflow:hidden}
+.fit-fill{height:100%;background:var(--primary);border-radius:3px;width:0;transition:width 1s var(--ease-out)}
+
+/* ================================================================
+  PAGE 1: DASHBOARD — Hero + Inline Todo
+  ================================================================ */
+.hero-card{
+ background:linear-gradient(155deg,var(--neutral-800) 0%,var(--neutral-900) 60%,oklch(0.18 0.03 145) 100%);
+ border-radius:var(--r-2xl);padding:var(--sp-5) var(--sp-6);
+ box-shadow:var(--shadow-lg);margin-bottom:var(--sp-5);
+ position:relative;overflow:hidden;
+}
+.hero-card::after{
+ content:'';position:absolute;top:-120px;right:-80px;
+ width:400px;height:400px;
+ background:radial-gradient(circle,var(--green-500) 0%,transparent 70%);
+ opacity:.08;border-radius:50%;pointer-events:none;
+}
+.hero-card::before{
+ content:'';position:absolute;bottom:-80px;left:10%;
+ width:350px;height:350px;
+ background:radial-gradient(circle,var(--green-400) 0%,transparent 70%);
+ opacity:.06;border-radius:50%;pointer-events:none;
+}
+.hero-grid{display:flex;gap:var(--sp-6);position:relative;z-index:1;align-items:flex-start}
+.hero-left{flex:1;display:flex;flex-direction:column;justify-content:center;align-self:center}
+.hero-tag{font-size:var(--text-xs);font-weight:700;color:var(--green-300);text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--sp-2);opacity:.9}
+.hero-title{font-size:var(--text-2xl);font-weight:800;color:#fff;line-height:var(--leading-tight);font-family:var(--font-heading);letter-spacing:-0.02em}
+.hero-desc{font-size:var(--text-sm);color:oklch(1 0 0 / 0.5);line-height:1.6;margin-top:var(--sp-2);max-width:420px}
+
+/* ── Hero Right: Inline Todo ── */
+.hero-todo-panel{flex:0 0 440px;display:flex;flex-direction:column;gap:var(--sp-3)}
+.hero-todo-tabs{display:flex;gap:var(--sp-1)}
+.hero-todo-tab{
+ padding:var(--sp-1) var(--sp-3);border-radius:var(--r-full);
+ font-size:var(--text-xs);border:1px solid oklch(1 0 0 / 0.12);
+ cursor:pointer;font-family:var(--font);background:transparent;
+ color:oklch(1 0 0 / 0.55);transition:all var(--dur-fast) var(--ease-std);
+ font-weight:500;white-space:nowrap;
+}
+.hero-todo-tab:hover{background:oklch(1 0 0 / 0.06);color:oklch(1 0 0 / 0.8)}
+.hero-todo-tab.active{background:oklch(1 0 0 / 0.12);color:#fff;border-color:oklch(1 0 0 / 0.2);font-weight:600}
+.hero-todo-cards{display:flex;gap:var(--sp-3);flex-wrap:wrap}
+.hero-todo-card{
+ flex:1;min-width:120px;max-width:200px;
+ background:oklch(1 0 0 / 0.06);
+ border:1px solid oklch(1 0 0 / 0.08);
+ border-radius:var(--r-lg);padding:var(--sp-3) var(--sp-4);
+ cursor:pointer;transition:all var(--dur-fast) var(--ease-std);
+ backdrop-filter:blur(4px);display:flex;flex-direction:column;gap:var(--sp-2);
+ position:relative;overflow:hidden;
+}
+.hero-todo-card:hover{background:oklch(1 0 0 / 0.1);border-color:oklch(1 0 0 / 0.15);transform:translateY(-1px)}
+.hero-todo-card .ht-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.hero-todo-card .ht-dot.urgent{background:var(--danger)}
+.hero-todo-card .ht-dot.normal{background:var(--primary)}
+.hero-todo-card .ht-text{font-size:var(--text-xs);color:oklch(1 0 0 / 0.85);line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.hero-todo-card .ht-action{font-size:10px;font-weight:600;color:oklch(1 0 0 / 0.7);align-self:flex-end;padding:2px var(--sp-2);background:oklch(1 0 0 / 0.08);border-radius:var(--r-sm);transition:all var(--dur-fast)}
+.hero-todo-card:hover .ht-action{background:var(--primary);color:#fff}
+.hero-todo-cat{display:none;flex-wrap:wrap;gap:var(--sp-3)}
+.hero-todo-cat.active{display:flex}
+
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-4);margin-bottom:var(--sp-8)}
+.stat-card-dash{
+ background:var(--bg-card);border:1px solid var(--border-light);
+ border-radius:var(--r-lg);padding:var(--sp-5);
+ text-align:center;
+ box-shadow:var(--shadow-xs);
+ transition:all var(--dur-normal) var(--ease-std);
+}
+.stat-card-dash:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.stat-card-dash .val{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--primary);line-height:1.2;font-family:var(--font-heading)}
+.stat-card-dash .lbl{font-size:var(--text-xs);color:var(--text-muted);margin-top:var(--sp-1)}
+
+.analysis-card{
+ background:var(--bg-card);border:1px solid var(--border-light);
+ border-radius:var(--r-2xl);box-shadow:var(--shadow-xs);padding:var(--sp-8);
+ transition:all var(--dur-normal) var(--ease-std);
+}
+.analysis-card:hover{box-shadow:var(--shadow-sm)}
+.analysis-grid{display:flex;gap:var(--sp-12)}
+.analysis-left{flex:0 0 380px}
+.analysis-right{flex:1}
+.radar-legend{display:flex;flex-wrap:wrap;gap:var(--sp-4);margin-bottom:var(--sp-4);font-size:var(--text-xs)}
+.radar-legend .l1{color:var(--green-700)}.radar-legend .l2{color:var(--info)}.radar-legend .l3{color:var(--warning)}.radar-legend .l4{color:var(--danger)}
+.rec-warn{font-size:var(--text-xs);color:var(--warning);line-height:1.5;margin-bottom:var(--sp-4);padding:var(--sp-3) var(--sp-4);background:var(--warning-light);border-radius:var(--r-md)}
+.rec-card{
+ background:var(--neutral-50);border:1px solid transparent;
+ border-radius:var(--r-lg);padding:var(--sp-5);margin-bottom:var(--sp-3);
+ transition:all var(--dur-fast) var(--ease-std);cursor:pointer;
+}
+.rec-card:hover{border-color:var(--border);box-shadow:var(--shadow-sm)}
+.rec-card-top{display:flex;justify-content:space-between;font-size:var(--text-xs);color:var(--text-muted);margin-bottom:var(--sp-2)}
+.rec-card-title{font-size:var(--text-base);font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-1)}
+.rec-voice{font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--sp-1)}
+.rec-desc{font-size:var(--text-xs);color:var(--text-muted);line-height:1.5}
+.rec-assign-row{display:flex;justify-content:flex-end;margin-top:var(--sp-3)}
+
+/* ── Shared Table & Cell (used by Page 2) ── */
+.table-card{
+ flex:1;background:var(--bg-card);border:1px solid var(--border-light);
+ border-radius:var(--r-2xl);box-shadow:var(--shadow-xs);padding:var(--sp-6);
+}
+.table-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-4)}
+.table-hd h3{font-size:var(--text-lg);font-weight:700;color:var(--text-primary);font-family:var(--font-heading)}
+.styled-table{width:100%;border-collapse:collapse}
+.styled-table th{text-align:left;padding:var(--sp-2) var(--sp-3);font-size:var(--text-xs);font-weight:600;color:var(--text-muted);border-bottom:1px solid var(--border-light);text-transform:uppercase;letter-spacing:.03em}
+.styled-table td{padding:var(--sp-3);font-size:var(--text-sm)}
+.styled-table tbody tr{border-radius:var(--r-md);transition:all var(--dur-fast) var(--ease-std);cursor:pointer}
+.styled-table tbody tr:hover{background:var(--neutral-50)}
+.stu-cell{display:flex;align-items:center;gap:var(--sp-3)}
+.stu-av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;font-size:12px;color:#fff;text-indent:-9999px;overflow:hidden}
+.stu-av.a1{background:#6366F1}.stu-av.a2{background:#3B82F6}.stu-av.a3{background:#10B981}.stu-av.a4{background:#34D399}
+.stu-name{font-weight:600;font-size:var(--text-sm);color:var(--text-primary)}
+.stu-role{font-size:var(--text-xs);color:var(--text-muted)}
+.score{font-weight:700;font-size:var(--text-sm);color:var(--text-primary)}
+.trend-txt{font-size:var(--text-xs);color:var(--text-muted);max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* ===== PAGE LAYOUT ===== */
+.page{display:none}.page.active{display:block;padding:var(--sp-5) var(--sp-8)}
+
+/* ===== 3 KPI Sparkline Cards ===== */
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-4);margin-bottom:var(--sp-4)}
+.kpi-spark{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-4) var(--sp-5);display:flex;align-items:center;gap:var(--sp-4);box-shadow:var(--shadow-xs);transition:all var(--dur-normal) var(--ease-std)}
+.kpi-spark:hover{box-shadow:var(--shadow-sm)}
+.ks-left{flex:1;min-width:0}
+.ks-label{font-size:var(--text-xs);color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;font-weight:600;margin-bottom:2px}
+.ks-val{font-size:32px;font-weight:800;color:var(--text-primary);font-family:var(--font-heading);letter-spacing:-.03em;line-height:1.1}
+.ks-sub{font-size:var(--text-xs);color:var(--text-muted);margin-top:2px}
+.ks-right{flex:0 0 120px;height:48px}
+.ks-sparkline{width:100%;height:100%}
+
+/* ===== 4 Department Pill Filters ===== */
+.dept-pills{display:flex;gap:var(--sp-3);margin-bottom:var(--sp-4);align-items:stretch}
+.dpill{flex:1;display:flex;align-items:center;justify-content:center;gap:var(--sp-2);padding:var(--sp-4) var(--sp-5);border-radius:var(--r-xl);cursor:pointer;transition:all .3s var(--ease-out);user-select:none;background:var(--bg-card);border:2px solid var(--border-light);color:var(--text-primary);overflow:hidden;white-space:nowrap}
+.dpill:hover:not(.on){border-color:var(--border);background:var(--neutral-50)}
+.dpill.on{flex:2.5;background:var(--neutral-800);color:#fff;border-color:var(--neutral-800);box-shadow:var(--shadow-md)}
+.dpill.on .dp-name,.dpill.on .dp-num,.dpill.on .dp-unit{color:#fff}
+.dp-name{font-size:var(--text-sm);font-weight:500;color:var(--text-secondary);transition:color .3s var(--ease-out)}
+.dp-num{font-size:var(--text-xl);font-weight:800;font-family:var(--font-heading);transition:color .3s var(--ease-out)}
+.dp-unit{font-size:var(--text-xs);color:var(--text-muted);margin-left:2px}
+
+/* ===== CHARTS ROW ===== *//* ===== CHARTS ROW ===== */
+.charts-row{display:grid;grid-template-columns:1.22fr 380px;gap:var(--sp-4)}
+.chart-wide{flex:1}.chart-narrow{flex-shrink:0}
+
+/* ===== PANEL ===== */
+.panel{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-4) var(--sp-5);box-shadow:var(--shadow-xs)}
+.panel h4{font-size:var(--text-base);font-weight:700;color:var(--text-primary);margin-bottom:var(--sp-5);font-family:var(--font-heading);display:flex;align-items:center;gap:var(--sp-2)}
+.panel-divider{height:1px;background:var(--border-light);margin:var(--sp-6) 0}
+
+/* ===== CHART TABS — Plain text ===== */
+.chart-tabs{display:flex;gap:var(--sp-6);width:fit-content}
+.ctab{padding:0 0 8px 0;border:none;border-bottom:2px solid transparent;font-size:var(--text-sm);font-weight:500;cursor:pointer;font-family:var(--font);background:transparent;color:var(--text-muted);transition:all var(--dur-fast) var(--ease-std);border-radius:0}
+.ctab.active{border-bottom-color:var(--primary);color:var(--primary);font-weight:600;box-shadow:none;background:transparent}
+.ctab:hover:not(.active){color:var(--text-primary);border-bottom-color:var(--neutral-300)}
+
+/* ===== STACKED BARS ===== */
+.stack-row{display:flex;align-items:center;gap:var(--sp-4);padding:var(--sp-4) var(--sp-2)}
+.stack-row .st-label{width:60px;font-size:var(--text-sm);font-weight:500;color:var(--text-primary);flex-shrink:0;text-align:right}
+.stack-row .st-bar{flex:1;height:38px;display:flex;gap:5px}
+.stack-row .st-seg{height:100%}
+.stack-row .st-seg:first-child{border-radius:6px 0 0 6px}.stack-row .st-seg:last-child{border-radius:0 6px 6px 0}
+.stack-row .st-val{width:44px;font-size:var(--text-xs);font-weight:600;color:var(--text-secondary);flex-shrink:0;text-align:right}
+.chart-note{font-size:var(--text-xs);color:var(--text-muted);line-height:1.6;margin-top:var(--sp-4);padding:var(--sp-3) var(--sp-4);background:var(--bg-stat);border-radius:var(--r-md)}
+
+/* ===== DONUT CHART ===== */
+.donut-wrap{display:flex;flex-direction:column;align-items:center;padding:var(--sp-6) 0;gap:var(--sp-2)}
+.donut-center{text-align:center;margin-top:-6px}
+.donut-num{font-size:var(--text-2xl);font-weight:800;color:var(--text-primary);font-family:var(--font-heading)}
+.donut-lbl{display:block;font-size:var(--text-xs);color:var(--text-muted);margin-top:2px}
+
+/* ===== RISK BAR ===== */
+.risk-head{font-size:var(--text-sm);font-weight:600;color:var(--text-primary);margin-bottom:var(--sp-4)}
+.risk-hbar{height:18px;background:var(--neutral-100);border-radius:var(--r-full);overflow:hidden;display:flex;margin-bottom:var(--sp-3)}
+.risk-hbar span{height:100%;min-width:2px}
+.risk-tags{display:flex;gap:var(--sp-5);flex-wrap:wrap;margin-bottom:var(--sp-3)}
+.risk-tags span{display:flex;align-items:center;gap:6px;font-size:var(--text-xs);color:var(--text-secondary)}.risk-tags .ld{width:8px;height:8px;border-radius:50%}
+
+/* ===== DEPT BARS ===== */
+.dept-row{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-2) 0}
+.dept-row .dr-name{font-size:var(--text-sm);font-weight:500;color:var(--text-primary);width:64px;flex-shrink:0}
+.dept-row .dr-track{flex:1;height:18px;background:var(--neutral-100);border-radius:var(--r-full);overflow:hidden}
+.dept-row .dr-fill{height:100%;border-radius:var(--r-full);transition:width .5s var(--ease-out);opacity:.85}
+.dept-row .dr-val{font-size:var(--text-sm);font-weight:700;color:var(--text-primary);width:48px;text-align:right;flex-shrink:0}
+
+/* ===== MENTOR QUALITY ===== */
+.mq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-4);padding:var(--sp-4) 0}
+.mq-card{background:var(--bg-stat);border-radius:var(--r-lg);padding:var(--sp-4);display:flex;align-items:center;gap:var(--sp-3);transition:all var(--dur-normal) var(--ease-std);border:none}
+.mq-card:hover{background:var(--bg-card);box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+.health-dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0}.health-dot.good{background:var(--primary)}.health-dot.warn{background:var(--warning)}.health-dot.poor{background:var(--danger)}
+.badge-sm{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 10px;border-radius:var(--r-full);font-size:11px;font-weight:600;background:var(--neutral-100);color:var(--text-secondary)}
+.badge-sm.red{background:var(--danger-light);color:var(--danger)}.badge-sm.purple{background:var(--purple-light);color:var(--purple)}
+
+/* ===== PAGE 2: INTERN TABLE ===== */
+.page2-inner{display:flex;flex-direction:column;gap:var(--sp-6)}
+.p2-top{display:flex;flex-direction:column;gap:var(--sp-6)}
+.p2-stats{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4)}
+.p2-stat-info{background:var(--bg-card);border-radius:var(--r-xl);padding:var(--sp-4) var(--sp-6);display:flex;align-items:center;justify-content:space-between;gap:var(--sp-4);box-shadow:var(--shadow-sm);transition:all var(--dur-normal) var(--ease-std)}.p2-stat-info:hover{transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.p2si-label{font-size:var(--text-xs);color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;font-weight:600;margin-bottom:2px}
+.p2si-val{font-size:40px;font-weight:800;color:var(--text-primary);font-family:var(--font-heading);letter-spacing:-.03em}
+.p2si-sub{font-size:var(--text-xs);color:var(--text-muted);margin-top:2px;opacity:.65}
+/* Table Toolbar */
+.tbl-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3)}
+.tbl-meta{font-size:var(--text-xs);color:var(--text-muted);margin-left:var(--sp-2);background:var(--bg-stat);padding:2px 10px;border-radius:var(--r-full)}
+.tbl-sorts{display:flex;align-items:center;gap:6px}
+.sbtn{height:30px;padding:0 14px;border-radius:var(--r-full);font-size:var(--text-xs);font-family:var(--font);cursor:pointer;transition:all var(--dur-fast);border:1px solid var(--border-light);background:var(--bg-card);color:var(--text-secondary);font-weight:500}
+.sbtn:hover{background:var(--neutral-50);border-color:var(--border)}
+.sbtn.on{background:var(--primary-light);border-color:var(--primary);color:var(--primary-text);font-weight:600}
+.btn-export{padding:var(--sp-2) var(--sp-5);background:var(--primary);color:#fff;border:none;border-radius:var(--r-full);font-size:var(--text-sm);font-weight:600;cursor:pointer;font-family:var(--font)}.btn-export:hover{background:var(--primary-hover)}
+/* Table */
+.p2-table{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-xs)}
+.p2t{width:100%;border-collapse:collapse}
+.p2t th{text-align:left;padding:var(--sp-3);font-size:var(--text-xs);font-weight:600;color:var(--text-muted);background:var(--bg-stat);border-bottom:1px solid var(--border-light);white-space:nowrap}
+.p2t td{padding:var(--sp-4) var(--sp-3);font-size:var(--text-sm);font-size:var(--text-sm);border-bottom:1px solid var(--border-light);white-space:nowrap}
+.p2t tbody tr{cursor:pointer;transition:background var(--dur-fast)}
+.p2t tbody tr:hover{background:var(--neutral-50)}
+.p2t tbody tr:last-child td{border-bottom:none}
+.p2t .comp-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;flex-shrink:0}
+.p2t .comp-dot.purple{background:var(--purple)}.p2t .comp-dot.green{background:var(--primary)}.p2t .comp-dot.amber{background:var(--warning)}.p2t .comp-dot.red{background:var(--danger)}
+.p2t .comp-val{font-weight:700}
+.p2t .mini-bar{width:80px;height:6px;background:var(--neutral-100);border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:6px}
+.p2t .mini-fill{height:100%;border-radius:3px;background:var(--primary)}
+.p2t .signal-txt{font-size:var(--text-xs);color:var(--text-secondary);max-width:120px;display:inline-block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.p2t .btn-detail{padding:4px 12px;font-size:var(--text-xs);font-weight:600;border:1px solid var(--border-light);border-radius:var(--r-full);background:var(--bg-card);color:var(--text-secondary);cursor:pointer;font-family:var(--font);transition:all var(--dur-fast)}.p2t .btn-detail:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.p2t .badge-lv{display:inline-flex;padding:2px 10px;border-radius:var(--r-full);font-size:11px;font-weight:600}
+.p2t .badge-lv.high{background:var(--green-50);color:var(--green-700)}.p2t .badge-lv.risk{background:var(--danger-light);color:var(--danger)}.p2t .badge-lv.warn{background:var(--warning-light);color:var(--warning)}.p2t .badge-lv.potential{background:var(--purple-light);color:var(--purple)}
+.trend-up{color:var(--primary);font-weight:600}.trend-down{color:var(--danger);font-weight:600}.trend-flat{color:var(--text-muted)}
+/* Mentor Detail */
+.detail-head{display:flex;align-items:center;gap:var(--sp-4);margin-bottom:var(--sp-5)}.btn-back{padding:var(--sp-2) var(--sp-4);background:var(--bg-stat);border:1px solid var(--border-light);border-radius:var(--r-full);font-size:var(--text-sm);font-weight:500;cursor:pointer;font-family:var(--font);color:var(--text-secondary);transition:all var(--dur-fast)}.btn-back:hover{background:var(--neutral-100);color:var(--text-primary)}.detail-name{font-size:var(--text-xl);font-weight:700;color:var(--text-primary);font-family:var(--font-heading)}.detail-sub{font-size:var(--text-xs);color:var(--text-muted);margin-top:2px}
+.health-dot-sm{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0}.health-dot-sm.good{background:var(--primary)}.health-dot-sm.warn{background:var(--warning)}.health-dot-sm.poor{background:var(--danger)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.a-up{animation:fadeUp var(--dur-slow) var(--ease-out) both}.a-up.d1{animation-delay:0.04s}.a-up.d2{animation-delay:0.08s}.a-up.d3{animation-delay:0.12s}
+@media(max-width:1400px){.charts-row{grid-template-columns:1fr}.kpi-bar{grid-template-columns:repeat(3,1fr)}.dept-filters{grid-template-columns:repeat(2,1fr)}.mq-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1024px){.sidebar{display:none}.main{margin-left:0}}
+@media(max-width:768px){.topbar{padding:0 var(--sp-4)}.page.active{padding:var(--sp-4)}.kpi-bar{grid-template-columns:1fr}.dept-filters{grid-template-columns:repeat(2,1fr)}.mq-grid{grid-template-columns:1fr}}
+@media(hover:none){.df-card:hover,.mq-card:hover{transform:none}}
+
+/* ================================================================
+   PAGE 5: Data Insights — Refined Data Dashboard
+   ================================================================ */
+
+/* ── KPI Stat Cards ── */
+.insight-kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-4);margin-bottom:var(--sp-6)}
+.insight-kpi{
+  background:var(--bg-card);border:1px solid var(--border-light);
+  border-radius:var(--r-xl);padding:var(--sp-5) var(--sp-6);
+  display:flex;align-items:center;gap:var(--sp-4);
+  box-shadow:var(--shadow-xs);
+  transition:all var(--dur-normal) var(--ease-std);
+}
+.insight-kpi:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--border)}
+.insight-kpi .ik-icon{
+  width:48px;height:48px;border-radius:var(--r-lg);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+}
+.insight-kpi .ik-info{flex:1;min-width:0}
+.insight-kpi .ik-val{
+  font-size:clamp(1.5rem,3vw,2rem);font-weight:800;
+  color:var(--text-primary);line-height:1.1;font-family:var(--font-heading);
+}
+.insight-kpi .ik-lbl{font-size:var(--text-xs);color:var(--text-muted);margin-top:2px;font-weight:500}
+.insight-kpi .ik-sub{font-size:10px;color:var(--text-muted);margin-top:1px}
+
+/* ── Chart Cards ── */
+.insight-chart-card{
+  background:var(--bg-card);border:1px solid var(--border-light);
+  border-radius:var(--r-xl);padding:var(--sp-6) var(--sp-8);
+  box-shadow:var(--shadow-xs);
+  transition:all var(--dur-normal) var(--ease-std);
+}
+.insight-chart-card:hover{box-shadow:var(--shadow-sm)}
+.insight-chart-hd{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:var(--sp-6);
+}
+.insight-chart-hd h4{
+  font-size:var(--text-base);font-weight:700;
+  color:var(--text-primary);font-family:var(--font-heading);margin:0;
+}
+.insight-chart-hd .ic-badge{
+  font-size:10px;color:var(--text-muted);font-weight:500;
+  background:var(--neutral-50);padding:2px 10px;border-radius:var(--r-full);
+}
+
+/* ── Trend Bar Chart ── */
+.insight-trend-wrap{
+  position:relative;height:200px;
+  display:flex;align-items:flex-end;gap:6px;
+  padding:0 var(--sp-1);
+}
+/* subtle horizontal grid lines */
+.insight-trend-wrap::before{
+  content:'';position:absolute;inset:0 0 0 0;
+  background:repeating-linear-gradient(
+    to bottom,transparent 0px,transparent 31px,
+    var(--neutral-50) 31px,var(--neutral-50) 32px
+  );
+  pointer-events:none;z-index:0;
+}
+.insight-trend-wrap .it-bar-col{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  position:relative;z-index:1;height:100%;justify-content:flex-end;
+}
+.insight-trend-wrap .it-bar{
+  width:100%;max-width:48px;border-radius:var(--r-sm) var(--r-sm) 0 0;
+  background:linear-gradient(180deg,var(--green-400),var(--green-500));
+  transition:all var(--dur-normal) var(--ease-std);
+  cursor:pointer;min-height:2px;
+}
+.insight-trend-wrap .it-bar:hover{
+  filter:brightness(1.1);transform:scaleY(1.02);transform-origin:bottom;
+}
+.insight-trend-wrap .it-label{
+  font-size:10px;color:var(--text-muted);font-weight:600;
+  margin-top:6px;text-align:center;
+}
+.insight-trend-xaxis{
+  display:flex;justify-content:space-between;
+  margin-top:var(--sp-2);padding:0 var(--sp-1);
+}
+.insight-trend-xaxis span{font-size:10px;color:var(--text-muted);font-weight:400}
+
+/* ── Department Coverage Bars ── */
+.insight-dept-list{display:flex;flex-direction:column;gap:var(--sp-5)}
+.insight-dept-row{display:flex;align-items:center;gap:var(--sp-4)}
+.insight-dept-row .id-name{width:72px;font-size:var(--text-sm);font-weight:600;color:var(--text-primary);flex-shrink:0}
+.insight-dept-row .id-track{flex:1;height:8px;background:var(--neutral-100);border-radius:4px;overflow:hidden}
+.insight-dept-row .id-fill{
+  height:100%;border-radius:4px;
+  background:linear-gradient(90deg,var(--green-400),var(--green-500));
+  transition:width .6s var(--ease-std);
+}
+.insight-dept-row .id-fill.warn{background:linear-gradient(90deg,var(--warning),oklch(0.68 0.14 60))}
+.insight-dept-row .id-fill.danger{background:linear-gradient(90deg,oklch(0.6 0.18 18),var(--danger))}
+.insight-dept-row .id-val{width:44px;text-align:right;font-size:var(--text-sm);font-weight:700;color:var(--text-primary);flex-shrink:0;font-family:var(--font-heading)}
+
+/* ── TOP Content Ranking ── */
+.insight-rank-list{display:flex;flex-direction:column;gap:2px}
+.insight-rank-item{
+  display:flex;align-items:center;gap:var(--sp-3);
+  padding:var(--sp-2) var(--sp-3);border-radius:var(--r-md);
+  cursor:pointer;transition:all var(--dur-fast) var(--ease-std);
+}
+.insight-rank-item:hover{background:var(--neutral-50)}
+.insight-rank-item .ir-rank{
+  width:24px;height:24px;border-radius:var(--r-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;flex-shrink:0;
+  color:var(--text-muted);background:var(--neutral-100);
+}
+.insight-rank-item.top1 .ir-rank{background:linear-gradient(135deg,#f5c542,#d4a017);color:#fff;box-shadow:0 2px 8px rgba(212,160,23,.25)}
+.insight-rank-item.top2 .ir-rank{background:linear-gradient(135deg,#bcc6d0,#8a93a0);color:#fff;box-shadow:0 2px 8px rgba(138,147,160,.2)}
+.insight-rank-item.top3 .ir-rank{background:linear-gradient(135deg,#d4a574,#b8733b);color:#fff;box-shadow:0 2px 8px rgba(184,115,59,.2)}
+.insight-rank-item .ir-name{flex:1;font-size:var(--text-xs);font-weight:500;color:var(--text-primary);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.insight-rank-item .ir-bar-wrap{flex:0 0 80px;height:5px;background:var(--neutral-100);border-radius:3px;overflow:hidden}
+.insight-rank-item .ir-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green-300),var(--green-500))}
+.insight-rank-item .ir-count{flex:0 0 48px;text-align:right;font-size:10px;color:var(--text-muted);font-weight:500}
+
+/* ── Alert Cards (dot + clean card pattern) ── */
+.insight-alert-list{display:flex;flex-direction:column;gap:var(--sp-3)}
+.insight-alert{
+  display:flex;gap:var(--sp-3);padding:var(--sp-4) var(--sp-5);
+  background:var(--bg-card);border:1px solid var(--border-light);
+  border-radius:var(--r-lg);
+  transition:all var(--dur-fast) var(--ease-std);
+  cursor:default;
+}
+.insight-alert:hover{border-color:var(--border);box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+.insight-alert .ia-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.insight-alert .ia-dot.warn{background:var(--warning);box-shadow:0 0 0 3px var(--warning-light)}
+.insight-alert .ia-dot.info{background:var(--info);box-shadow:0 0 0 3px var(--info-light)}
+.insight-alert .ia-dot.good{background:var(--primary);box-shadow:0 0 0 3px var(--green-50)}
+.insight-alert .ia-icon{font-size:16px;flex-shrink:0;line-height:1.4}
+.insight-alert .ia-body{flex:1;min-width:0}
+.insight-alert .ia-title{font-size:var(--text-xs);font-weight:700;color:var(--text-primary);margin-bottom:2px}
+.insight-alert .ia-desc{font-size:11px;color:var(--text-secondary);line-height:1.5}
+
+/* ── Chart Grid Row ── */
+.insight-grid2{display:grid;grid-template-columns:1.3fr 1fr;gap:var(--sp-4);margin-bottom:var(--sp-4)}
+.insight-grid2b{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4);margin-bottom:var(--sp-4)}
+
+@media(max-width:1400px){.insight-grid2,.insight-grid2b{grid-template-columns:1fr}.insight-kpi-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.insight-kpi-grid{grid-template-columns:1fr}}
+</style>
+<script src="data.js"></script>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+ <div class="sidebar-brand">
+  <div class="logo-icon">⛵</div>
+  <div class="sb-info"><h1>Yang Fan</h1><span>HR Management System</span></div>
+ </div>
+ <nav class="sidebar-nav">
+  <a href="hr_v3_dashboard.html" class="nav-item" style="text-decoration:none"><span class="nav-dot"></span>Workbench</a>
+  <a href="hr_v3_dashboard.html" class="nav-item" style="text-decoration:none"><span class="nav-dot"></span>Interns</a>
+  <a href="hr_v3_dashboard.html" class="nav-item" style="text-decoration:none"><span class="nav-dot"></span>Mentors</a>
+  <a href="hr_v3_dashboard.html" class="nav-item" style="text-decoration:none"><span class="nav-dot"></span>Plan Library</a>
+  <a href="hr_cul.html" class="nav-item active" style="text-decoration:none"><span class="nav-dot"></span>Community</a>
+  <div style="flex:1"></div>
+  <button class="btn-logout" onclick="location.href='signin.html'">Logout</button>
+ </nav>
+ <div class="sidebar-bottom">
+  <h3>Coaching Upgrade Pack</h3>
+  <p>Unlock 20+ smart suggestions & competency models</p>
+  <button class="btn-white-pill">Upgrade Now</button>
+ </div>
+</aside>
+
+<div class="main">
+
+<header class="topbar" id="topbar">
+ <div class="topbar-spacer"></div>
+ <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><input type="text" placeholder="SearchInterns, Mentor, Plans…"></div>
+ <button class="topbar-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="notif-dot"></span></button>
+ <button class="topbar-avatar">HR</button>
+</header>
+
+<!-- ============================================================
+   Coaching Management — Main Content Area
+   ============================================================ -->
+<div style="padding:var(--sp-6) var(--sp-8);max-width:var(--content-max)">
+
+ <div class="page-title-row">
+  <h3>Coaching Management</h3>
+  <p>Content Ecosystem Operations — Browse, Review, Insight, empowering HR as Learning Content Manager</p>
+ </div>
+
+ <div class="chart-tabs" style="margin-bottom:var(--sp-6)">
+  <button class="ctab active" onclick="switchTab('browse',this)">📖 Content Browser</button>
+  <button class="ctab" onclick="switchTab('review',this)">✅ Content Review <span class="badge-sm red" id="reviewBadge">3</span></button>
+  <button class="ctab" onclick="switchTab('insight',this)">📊 Data Insights</button>
+ </div>
+
+ <!-- ===== TAB 1: Content Browser ===== -->
+ <div id="tab-browse">
+
+  <!-- Module 1: Coaching Tools -->
+  <div class="a-up d1">
+   <div style="display:flex;align-items:baseline;margin-bottom:var(--sp-5)">
+    <h3 style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-heading);color:var(--text-primary);letter-spacing:-0.02em">Coaching Tools</h3>
+    <span style="font-size:11px;color:var(--text-muted);margin-left:var(--sp-3);font-weight:500">Featured Teaching Methods</span>
+    <button onclick="location.href='ai_lab.html'" style="margin-left:auto;padding:10px 24px;background:linear-gradient(135deg,var(--green-500),var(--green-600));color:#fff;border:none;border-radius:var(--r-full);font-size:var(--text-sm);font-weight:700;cursor:pointer;font-family:var(--font);box-shadow:0 4px 14px oklch(0.6 0.17 145/0.3)">🤖 AI Creation Lab →</button>
+   </div>
+   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-5);margin-bottom:var(--sp-16)">
+    <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-6) var(--sp-5);cursor:pointer;text-align:center"><div style="width:52px;height:52px;border-radius:var(--r-xl);display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-4);font-size:24px;background:oklch(0.96 0.02 280)">💡</div><h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:4px;font-family:var(--font-heading)">How to Give Effective Feedback</h5><p style="font-size:var(--text-xs);color:var(--text-muted);line-height:1.5">SBI Feedback Model · Positive Guidance Techniques</p></div>
+    <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-6) var(--sp-5);cursor:pointer;text-align:center"><div style="width:52px;height:52px;border-radius:var(--r-xl);display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-4);font-size:24px;background:oklch(0.96 0.02 10)">📊</div><h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:4px;font-family:var(--font-heading)">How to Evaluate Plan Design Competency</h5><p style="font-size:var(--text-xs);color:var(--text-muted);line-height:1.5">Evaluation Dimension Design · Rating Standards</p></div>
+    <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-6) var(--sp-5);cursor:pointer;text-align:center"><div style="width:52px;height:52px;border-radius:var(--r-xl);display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-4);font-size:24px;background:oklch(0.96 0.03 240)">🗣️</div><h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:4px;font-family:var(--font-heading)">1-on-1 Interview Guidance</h5><p style="font-size:var(--text-xs);color:var(--text-muted);line-height:1.5">Question Framework · Listening and Responding</p></div>
+    <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-6) var(--sp-5);cursor:pointer;text-align:center"><div style="width:52px;height:52px;border-radius:var(--r-xl);display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-4);font-size:24px;background:oklch(0.96 0.03 160)">🎯</div><h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:4px;font-family:var(--font-heading)">Setting Intern Growth Goals</h5><p style="font-size:var(--text-xs);color:var(--text-muted);line-height:1.5">SMART Principles · Goal Breakdown</p></div>
+   </div>
+  </div>
+
+  <!-- Module 2: Coaching Community -->
+  <div class="a-up d2">
+   <div style="display:flex;align-items:baseline;margin-bottom:var(--sp-4)">
+    <h3 style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-heading);color:var(--text-primary);letter-spacing:-0.02em">Coaching Community</h3>
+    <span style="font-size:11px;color:var(--text-muted);margin-left:var(--sp-3);font-weight:500">Featured Content</span>
+   </div>
+
+   <!-- Search Bar -->
+   <div style="display:flex;gap:var(--sp-3);margin-bottom:var(--sp-12)">
+    <div style="flex:1;position:relative">
+     <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--text-muted);pointer-events:none;z-index:1">🔍</span>
+     <input placeholder="Search courses, docs, cases…" style="width:100%;height:48px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:0 var(--sp-4) 0 38px;font-size:var(--text-sm);font-family:var(--font);color:var(--text-primary);outline:none;transition:all var(--dur-fast) var(--ease-std);box-shadow:var(--shadow-xs)" onfocus="this.style.borderColor='var(--primary)';this.style.boxShadow='0 0 0 3px var(--green-50)'" onblur="this.style.borderColor='var(--border-light)';this.style.boxShadow='var(--shadow-xs)'">
+    </div>
+    <select id="typeFilter" onchange="filterContent(this.value)" style="width:140px;height:48px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:0 var(--sp-3);font-size:var(--text-sm);font-family:var(--font);color:var(--text-secondary);cursor:pointer;outline:none;box-shadow:var(--shadow-xs)">
+     <option value="all" selected>📂 All</option>
+     <option value="course">🎬 Courses</option>
+     <option value="doc">📄 Docs</option>
+    </select>
+    <select style="width:140px;height:48px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:0 var(--sp-3);font-size:var(--text-sm);font-family:var(--font);color:var(--text-secondary);cursor:pointer;outline:none;box-shadow:var(--shadow-xs)">
+     <option>All Topics</option><option>Requirements</option><option>User Research</option><option>Prototyping</option><option>Data Analysis</option>
+    </select>
+    <button class="btn-primary" style="padding:0 24px;height:48px;font-size:var(--text-sm);font-weight:600;border-radius:var(--r-lg)">Search</button>
+   </div>
+
+   <!-- AI Creation Lab -->
+   <div style="background:linear-gradient(155deg,oklch(0.18 0.025 150) 0%,oklch(0.13 0.015 150) 100%);border-radius:var(--r-2xl);padding:var(--sp-10) var(--sp-10);margin-bottom:var(--sp-10);color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)">
+    <div style="position:absolute;top:-120px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,var(--green-500) 0%,transparent 65%);opacity:.07;border-radius:50%;pointer-events:none"></div>
+    <div style="position:absolute;bottom:-80px;left:10%;width:300px;height:300px;background:radial-gradient(circle,var(--green-400) 0%,transparent 65%);opacity:.04;border-radius:50%;pointer-events:none"></div>
+    <div style="display:flex;align-items:center;gap:var(--sp-10);position:relative">
+     <div style="flex:1">
+      <p style="font-size:11px;font-weight:700;color:var(--green-300);text-transform:uppercase;letter-spacing:.1em;margin-bottom:var(--sp-3);opacity:.8">AI-Powered Creation</p>
+      <h3 style="font-size:var(--text-xl);font-weight:800;line-height:1.4;margin-bottom:var(--sp-4);font-family:var(--font-heading);letter-spacing:-0.01em">Explore the AI Creation Lab, <br>quickly create your courses or docs</h3>
+      <p style="font-size:var(--text-sm);color:oklch(1 0 0 / 0.45);margin-bottom:var(--sp-5);max-width:520px;line-height:1.7">Based on the SECI knowledge extraction model, through five steps: Scenario Reconstruction → Action Breakdown → Core Insight Extraction → Validate → Output, transforming mentor tacit knowledge into reusable knowledge assets.</p>
+      <button onclick="location.href='ai_lab.html'" class="btn-primary" style="padding:12px 32px;font-size:var(--text-sm);font-weight:700">Start Creating →</button>
+     </div>
+     <div style="flex-shrink:0;width:88px;height:88px;background:oklch(1 0 0 / 0.04);border-radius:var(--r-2xl);display:flex;align-items:center;justify-content:center;font-size:40px;backdrop-filter:blur(12px);border:1px solid oklch(1 0 0 / 0.06)">✨</div>
+    </div>
+   </div>
+
+   <!-- Featured Docs -->
+   <div id="doc-section" style="margin-bottom:var(--sp-10)">
+    <div style="display:flex;align-items:baseline;margin-bottom:var(--sp-5)">
+     <h3 style="font-size:var(--text-lg);font-weight:700;font-family:var(--font-heading);color:var(--text-primary)">📄 Featured Docs</h3>
+     <span style="font-size:var(--text-sm);color:var(--primary);margin-left:auto;cursor:pointer;font-weight:600;transition:opacity var(--dur-fast)" class="more">More →</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-5)">
+     <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-5);cursor:pointer">
+      <div style="display:flex;align-items:flex-start;gap:var(--sp-3);margin-bottom:var(--sp-3)"><div style="width:44px;height:44px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:oklch(0.96 0.04 80)">📄</div><div style="flex:1;min-width:0"><h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:2px;font-family:var(--font-heading);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Product Requirements Doc Writing Guide</h5><p style="font-size:11px;color:var(--text-muted)">Yang Fan Knowledge Base · 30 min</p></div></div>
+      <p style="font-size:var(--text-xs);color:var(--text-muted);line-height:1.6;margin-bottom:var(--sp-3)">PRD standard template, writing standards and review process, helping newcomers get started quickly.</p>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:var(--sp-3)"><span class="tag blue">Product</span><span class="tag green">Intro Phase</span><span class="tag" style="background:var(--warning-light);color:var(--warning)">Requirements</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:10px;color:var(--text-muted)">📖 2,340 reads</span><button class="btn-ghost" style="padding:2px 8px;font-size:10px">⭐ Bookmark</button></div>
+     </div>
+     <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-5);cursor:pointer">
+      <div style="display:flex;align-items:flex-start;gap:var(--sp-3);margin-bottom:var(--sp-3)"><div style="width:44px;height:44px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:oklch(0.96 0.03 260)">📄</div><div style="flex:1;min-width:0"><h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:2px;font-family:var(--font-heading);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Technical Plan Design Template</h5><p style="font-size:11px;color:var(--text-muted)">Yang Fan Knowledge Base · 45 min</p></div></div>
+      <p style="font-size:var(--text-xs);color:var(--text-muted);line-height:1.6;margin-bottom:var(--sp-3)">Architecture design, interface definition, risk assessment and other complete chapter templates.</p>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:var(--sp-3)"><span class="tag blue">R&D</span><span class="tag orange">Growth Phase</span><span class="tag red">Plan Design</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:10px;color:var(--text-muted)">📖 1,890 reads</span><button class="btn-ghost" style="padding:2px 8px;font-size:10px">⭐ Bookmark</button></div>
+     </div>
+     <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-5);cursor:pointer">
+      <div style="display:flex;align-items:flex-start;gap:var(--sp-3);margin-bottom:var(--sp-3)"><div style="width:44px;height:44px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:oklch(0.96 0.03 350)">📄</div><div style="flex:1;min-width:0"><h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:2px;font-family:var(--font-heading);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">User Research Report Writing Guide</h5><p style="font-size:11px;color:var(--text-muted)">Yang Fan Knowledge Base · 25 min</p></div></div>
+      <p style="font-size:var(--text-xs);color:var(--text-muted);line-height:1.6;margin-bottom:var(--sp-3)">From research planning to report output methodology, with real case references.</p>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:var(--sp-3)"><span class="tag blue">Product</span><span class="tag purple">Intro Phase</span><span class="tag" style="background:var(--info-light);color:var(--info)">User Research</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:10px;color:var(--text-muted)">📖 1,560 reads</span><button class="btn-ghost" style="padding:2px 8px;font-size:10px">⭐ Bookmark</button></div>
+     </div>
+     <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-5);cursor:pointer">
+      <div style="display:flex;align-items:flex-start;gap:var(--sp-3);margin-bottom:var(--sp-3)"><div style="width:44px;height:44px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:oklch(0.96 0.03 185)">📄</div><div style="flex:1;min-width:0"><h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:2px;font-family:var(--font-heading);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Data Analysis Thinking & Tools Handbook</h5><p style="font-size:11px;color:var(--text-muted)">Yang Fan Knowledge Base · 40 min</p></div></div>
+      <p style="font-size:var(--text-xs);color:var(--text-muted);line-height:1.6;margin-bottom:var(--sp-3)">SQL query templates, dashboard building and common analysis methods practice guide.</p>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:var(--sp-3)"><span class="tag blue">All Roles</span><span class="tag orange">Growth Phase</span><span class="tag red">Data Analysis</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:10px;color:var(--text-muted)">📖 2,100 reads</span><button class="btn-ghost" style="padding:2px 8px;font-size:10px">⭐ Bookmark</button></div>
+     </div>
+    </div>
+   </div>
+
+   <!-- Featured Courses -->
+   <div id="course-section">
+    <div style="display:flex;align-items:baseline;margin-bottom:var(--sp-5)">
+     <h3 style="font-size:var(--text-lg);font-weight:700;font-family:var(--font-heading);color:var(--text-primary)">🎬 Featured Courses</h3>
+     <span style="font-size:var(--text-sm);color:var(--primary);margin-left:auto;cursor:pointer;font-weight:600;transition:opacity var(--dur-fast)" class="more">More →</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-5)">
+     <div style="cursor:pointer">
+      <div style="height:152px;background:url(img/course_3.png) center/cover,linear-gradient(135deg,var(--green-400),var(--green-600));border-radius:var(--r-xl);position:relative;overflow:hidden;box-shadow:var(--shadow-sm)">
+       <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,oklch(0 0 0 / 0.4));border-radius:var(--r-xl)"></div>
+       <span style="position:absolute;top:12px;left:12px;background:oklch(0 0 0 / 0.35);backdrop-filter:blur(12px);color:#fff;font-size:10px;font-weight:600;padding:3px 10px;border-radius:var(--r-full)">🔥 Popular</span>
+       <span style="position:absolute;bottom:12px;right:12px;color:#fff;font-size:11px;font-weight:700">★ 4.9</span>
+      </div>
+      <p style="font-weight:700;font-size:var(--text-sm);margin-top:var(--sp-2);color:var(--text-primary);line-height:1.4">Product Prototyping Intro</p>
+      <p style="font-size:var(--text-xs);color:var(--text-muted);margin-top:2px">Yang Fan Learning Center · 2,340 learners</p>
+     </div>
+     <div style="cursor:pointer">
+      <div style="height:152px;background:url(img/course_4.png) center/cover,linear-gradient(135deg,#FF743C,#e67e22);border-radius:var(--r-xl);position:relative;overflow:hidden;box-shadow:var(--shadow-sm)">
+       <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,oklch(0 0 0 / 0.4));border-radius:var(--r-xl)"></div>
+       <span style="position:absolute;top:12px;left:12px;background:oklch(0 0 0 / 0.35);backdrop-filter:blur(12px);color:#fff;font-size:10px;font-weight:600;padding:3px 10px;border-radius:var(--r-full)">🔥 Popular</span>
+       <span style="position:absolute;bottom:12px;right:12px;color:#fff;font-size:11px;font-weight:700">★ 4.8</span>
+      </div>
+      <p style="font-weight:700;font-size:var(--text-sm);margin-top:var(--sp-2);color:var(--text-primary);line-height:1.4">Product Thinking Core Methods</p>
+      <p style="font-size:var(--text-xs);color:var(--text-muted);margin-top:2px">Yang Fan Learning Center · 1,280 learners</p>
+     </div>
+     <div style="cursor:pointer">
+      <div style="height:152px;background:url(img/course_0.png) center/cover,linear-gradient(135deg,#2D3652,#4338ca);border-radius:var(--r-xl);position:relative;overflow:hidden;box-shadow:var(--shadow-sm)">
+       <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,oklch(0 0 0 / 0.4));border-radius:var(--r-xl)"></div>
+       <span style="position:absolute;top:12px;left:12px;background:oklch(0 0 0 / 0.35);backdrop-filter:blur(12px);color:#fff;font-size:10px;font-weight:600;padding:3px 10px;border-radius:var(--r-full)">🆕 New</span>
+       <span style="position:absolute;bottom:12px;right:12px;color:#fff;font-size:11px;font-weight:700">★ 4.9</span>
+      </div>
+      <p style="font-weight:700;font-size:var(--text-sm);margin-top:var(--sp-2);color:var(--text-primary);line-height:1.4">Frontend Development Bootcamp</p>
+      <p style="font-size:var(--text-xs);color:var(--text-muted);margin-top:2px">Yang Fan Learning Center · 1,890 learners</p>
+     </div>
+     <div style="cursor:pointer">
+      <div style="height:152px;background:url(img/course_2.png) center/cover,linear-gradient(135deg,#775da6,#a78bfa);border-radius:var(--r-xl);position:relative;overflow:hidden;box-shadow:var(--shadow-sm)">
+       <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,oklch(0 0 0 / 0.4));border-radius:var(--r-xl)"></div>
+       <span style="position:absolute;top:12px;left:12px;background:oklch(0 0 0 / 0.35);backdrop-filter:blur(12px);color:#fff;font-size:10px;font-weight:600;padding:3px 10px;border-radius:var(--r-full)">🔥 Popular</span>
+       <span style="position:absolute;bottom:12px;right:12px;color:#fff;font-size:11px;font-weight:700">★ 4.7</span>
+      </div>
+      <p style="font-weight:700;font-size:var(--text-sm);margin-top:var(--sp-2);color:var(--text-primary);line-height:1.4">Cross-Platform App Development</p>
+      <p style="font-size:var(--text-xs);color:var(--text-muted);margin-top:2px">Yang Fan Learning Center · 1,150 learners</p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <!-- ===== TAB 2: Content Review ===== -->
+ <div id="tab-review" style="display:none">
+
+  <div class="a-up d1" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-4);margin-bottom:var(--sp-8)">
+   <div style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-5) var(--sp-6);transition:box-shadow .2s var(--ease-std)" onmouseover="this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.boxShadow='none'">
+    <div style="font-size:11px;color:var(--text-muted);font-weight:500;letter-spacing:.04em;margin-bottom:var(--sp-2)">Pending Review</div>
+    <div style="font-size:40px;font-weight:700;color:var(--warning);font-family:var(--font-heading);letter-spacing:-.02em;line-height:1.1" id="reviewPendingCount">-</div>
+   </div>
+   <div style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-5) var(--sp-6);transition:box-shadow .2s var(--ease-std)" onmouseover="this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.boxShadow='none'">
+    <div style="font-size:11px;color:var(--text-muted);font-weight:500;letter-spacing:.04em;margin-bottom:var(--sp-2)">Approved</div>
+    <div style="font-size:40px;font-weight:700;color:var(--primary);font-family:var(--font-heading);letter-spacing:-.02em;line-height:1.1" id="reviewApprovedCount">-</div>
+   </div>
+   <div style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-5) var(--sp-6);transition:box-shadow .2s var(--ease-std)" onmouseover="this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.boxShadow='none'">
+    <div style="font-size:11px;color:var(--text-muted);font-weight:500;letter-spacing:.04em;margin-bottom:var(--sp-2)">Rejected</div>
+    <div style="font-size:40px;font-weight:700;color:var(--danger);font-family:var(--font-heading);letter-spacing:-.02em;line-height:1.1" id="reviewRejectedCount">-</div>
+   </div>
+  </div>
+
+  <div class="a-up d2" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-5);flex-wrap:wrap;gap:var(--sp-4)">
+   <div style="display:flex;align-items:baseline;gap:var(--sp-3)">
+    <h3 style="font-size:15px;font-weight:600;color:var(--text-primary);font-family:var(--font-heading);letter-spacing:-.01em">Review Queue</h3>
+    <span style="font-size:12px;color:var(--text-muted);font-weight:400" id="reviewTotalCount"></span>
+   </div>
+   <div style="display:flex;gap:var(--sp-3);align-items:center;flex-wrap:wrap">
+    <div style="display:flex;gap:1px;background:var(--bg-stat);padding:3px;border-radius:var(--r-full)">
+     <button class="review-pill active" onclick="filterReviewByPill('all',this)" style="padding:5px 16px;border:none;border-radius:var(--r-full);font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font);background:var(--bg-card);color:var(--text-primary);box-shadow:0 1px 2px rgba(0,0,0,.04);transition:all .15s var(--ease-std)">All </button>
+     <button class="review-pill" onclick="filterReviewByPill('pending',this)" style="padding:5px 16px;border:none;border-radius:var(--r-full);font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font);background:transparent;color:var(--text-muted);transition:all .15s var(--ease-std)">Pending Review</button>
+     <button class="review-pill" onclick="filterReviewByPill('approved',this)" style="padding:5px 16px;border:none;border-radius:var(--r-full);font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font);background:transparent;color:var(--text-muted);transition:all .15s var(--ease-std)">Approved</button>
+     <button class="review-pill" onclick="filterReviewByPill('rejected',this)" style="padding:5px 16px;border:none;border-radius:var(--r-full);font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font);background:transparent;color:var(--text-muted);transition:all .15s var(--ease-std)">Rejected</button>
+    </div>
+    <button class="btn-primary" style="padding:7px 18px;font-size:12px;font-weight:500" onclick="batchApprove()">Batch Approve</button>
+   </div>
+  </div>
+
+  <div class="a-up d3" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);overflow:hidden">
+   <table class="p2t" style="border:none">
+    <thead><tr style="background:var(--bg-stat)"><th style="padding:var(--sp-3) var(--sp-5);font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.03em;border-bottom:1px solid var(--border-light)">Content Title</th><th style="padding:var(--sp-3) var(--sp-5);font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.03em;border-bottom:1px solid var(--border-light)">Type</th><th style="padding:var(--sp-3) var(--sp-5);font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.03em;border-bottom:1px solid var(--border-light)">Submitter</th><th style="padding:var(--sp-3) var(--sp-5);font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.03em;border-bottom:1px solid var(--border-light)">Submit Date</th><th style="padding:var(--sp-3) var(--sp-5);font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.03em;border-bottom:1px solid var(--border-light)">Status</th><th style="padding:var(--sp-3) var(--sp-5);font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.03em;border-bottom:1px solid var(--border-light)">Actions</th></tr></thead>
+    <tbody id="reviewBody"></tbody>
+   </table>
+  </div>
+ </div>
+
+ <!-- ===== TAB 3: Data Insights — Refined Data Dashboard ===== -->
+ <div id="tab-insight" style="display:none">
+
+  <!-- KPI Row: 4 insight cards with icons -->
+  <div class="a-up d1 insight-kpi-grid">
+   <div class="insight-kpi">
+    <div class="ik-icon" style="background:oklch(0.96 0.03 145)">📚</div>
+    <div class="ik-info">
+     <div class="ik-val" id="totalContent">156</div>
+     <div class="ik-lbl">Total Content</div>
+     <div class="ik-sub">Community Knowledge Assets</div>
+    </div>
+   </div>
+   <div class="insight-kpi">
+    <div class="ik-icon" style="background:oklch(0.96 0.03 250)">🆕</div>
+    <div class="ik-info">
+     <div class="ik-val" id="monthlyNew" style="color:var(--info)">12</div>
+     <div class="ik-lbl">New This Month</div>
+     <div class="ik-sub">vs Last Month +3</div>
+    </div>
+   </div>
+   <div class="insight-kpi">
+    <div class="ik-icon" style="background:oklch(0.96 0.06 80)">⭐</div>
+    <div class="ik-info">
+     <div class="ik-val" id="avgRating" style="color:#d4a017">4.3</div>
+     <div class="ik-lbl">Avg Rating</div>
+     <div class="ik-sub"> / 100 5.0</div>
+    </div>
+   </div>
+   <div class="insight-kpi">
+    <div class="ik-icon" style="background:oklch(0.96 0.04 65)">⏳</div>
+    <div class="ik-info">
+     <div class="ik-val" id="pendingReview" style="color:var(--warning)">3</div>
+     <div class="ik-lbl">Pending Review</div>
+     <div class="ik-sub">Needs timely handling</div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Chart Row: Learning Coverage Trend + Dept Coverage Rate -->
+  <div class="a-up d2 insight-grid2">
+   <div class="insight-chart-card">
+    <div class="insight-chart-hd">
+     <h4>📈 Learning Coverage Trend</h4>
+     <span class="ic-badge">Last 8 </span>
+    </div>
+    <div class="insight-trend-wrap" id="trendChart"></div>
+    <div class="insight-trend-xaxis"><span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>W7</span><span>W8</span></div>
+   </div>
+   <div class="insight-chart-card">
+    <div class="insight-chart-hd">
+     <h4>🏢 Department Learning Coverage Rate</h4>
+    </div>
+    <div class="insight-dept-list" id="deptCoverage"></div>
+   </div>
+  </div>
+
+  <!-- Bottom Row: Hottest Content TOP 10 + Needs Attention -->
+  <div class="a-up d3 insight-grid2b">
+   <div class="insight-chart-card">
+    <div class="insight-chart-hd">
+     <h4>🔥 Hottest Content</h4>
+     <span class="ic-badge">TOP 10</span>
+    </div>
+    <div class="insight-rank-list" id="topContent"></div>
+   </div>
+   <div class="insight-chart-card">
+    <div class="insight-chart-hd">
+     <h4>🔍 Needs Attention & Application</h4>
+    </div>
+    <div class="insight-alert-list">
+     <div class="insight-alert">
+      <span class="ia-dot warn"></span>
+      <span class="ia-icon">⚠️</span>
+      <div class="ia-body">
+       <div class="ia-title">Low-Rated Content Alert</div>
+       <div class="ia-desc" id="lowRated"></div>
+      </div>
+     </div>
+     <div class="insight-alert">
+      <span class="ia-dot warn"></span>
+      <span class="ia-icon">📉</span>
+      <div class="ia-body">
+       <div class="ia-title">Dept Coverage Gap</div>
+       <div class="ia-desc">Sales learning coverage rate only 45%, needs attention</div>
+      </div>
+     </div>
+     <div class="insight-alert">
+      <span class="ia-dot info"></span>
+      <span class="ia-icon">🔄</span>
+      <div class="ia-body">
+       <div class="ia-title">Application Conversion Rate</div>
+       <div class="ia-desc" id="conversionNote"></div>
+      </div>
+     </div>
+     <div class="insight-alert">
+      <span class="ia-dot good"></span>
+      <span class="ia-icon">🌟</span>
+      <div class="ia-body">
+       <div class="ia-title">Positive Signals</div>
+       <div class="ia-desc">Community activity up 22%, content contributors +5 people</div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div><!-- /.main -->
+
+<script src="data.js"></script>
+<script>
+
+function setEl(id,val){var el=document.getElementById(id);if(el)el.textContent=val;}
+
+function switchTab(tab,btn){
+ btn.parentElement.querySelectorAll('.ctab').forEach(function(b){b.classList.remove('active')});
+ btn.classList.add('active');
+ document.getElementById('tab-browse').style.display=tab==='browse'?'':'none';
+ document.getElementById('tab-review').style.display=tab==='review'?'':'none';
+ document.getElementById('tab-insight').style.display=tab==='insight'?'':'none';
+ if(tab==='review')renderReview();
+ if(tab==='insight')renderInsight();
+}
+function filterReviewByPill(status,btn){
+ btn.parentElement.querySelectorAll(".review-pill").forEach(function(b){b.classList.remove("active");b.style.background="transparent";b.style.color="var(--text-secondary)";b.style.boxShadow="none"});
+ btn.classList.add("active");btn.style.background="var(--bg-card)";btn.style.color="var(--text-primary)";btn.style.boxShadow="0 1px 2px rgba(0,0,0,.04)";
+ document.getElementById("reviewFilter").value=status;renderReview();
+}
+
+function filterP5Content(type){
+ var ds=document.getElementById('doc-section');
+ var cs=document.getElementById('course-section');
+ if(ds)ds.style.display=(type==='doc'||type==='all')?'':'none';
+ if(cs)cs.style.display=(type==='course'||type==='all')?'':'none';
+}
+function batchApprove(){
+ var D=AIHR_DB;if(!D||!D.contentReviewQueue)return;
+ var pending=D.contentReviewQueue.filter(function(c){return c.status==='pending'});
+ if(!pending.length){return}
+ pending.forEach(function(c){c.status='approved'});
+ renderReview();
+}
+function approveP5Item(id){
+ var D=AIHR_DB;if(!D||!D.contentReviewQueue)return;
+ var item=D.contentReviewQueue.find(function(c){return c.id===id});
+ if(item){item.status='approved';renderReview();}
+}
+function rejectP5Item(id){
+ var D=AIHR_DB;if(!D||!D.contentReviewQueue)return;
+ var item=D.contentReviewQueue.find(function(c){return c.id===id});
+ if(item){item.status='rejected';renderReview();}
+}
+function renderReview(){
+ var D=AIHR_DB;if(!D||!D.contentReviewQueue)return;
+ var filter=document.getElementById('reviewFilter');
+ var fv=filter?filter.value:'all';
+ var items=D.contentReviewQueue;
+ if(fv!=='all')items=items.filter(function(c){return c.status===fv});
+ var tb=document.getElementById('reviewBody');if(!tb)return;
+ tb.innerHTML=items.map(function(c){
+  var stIcon=c.status==='pending'?'⏳':c.status==='approved'?'✅':'❌';
+  var stLabel=c.status==='pending'?'Pending':c.status==='approved'?'Approve':'Reject';
+  var stColor=c.status==='pending'?'color:var(--warning);font-weight:600':c.status==='approved'?'color:var(--primary);font-weight:600':'color:var(--danger);font-weight:600';
+  var acts=c.status==='pending'?'<button class="btn-detail" style="margin-right:4px" onclick="event.stopPropagation();approveP5Item(\''+c.id+'\')">Approve</button><button class="btn-detail" style="color:var(--danger)" onclick="event.stopPropagation();rejectP5Item(\''+c.id+'\')">Reject</button>':'<button class="btn-detail">View</button>';
+  return '<tr><td><b>'+c.title+'</b></td><td><span class="tag '+(c.type==='Course'?'green':'blue')+'">'+c.type+'</span></td><td>'+c.author+'</td><td>'+c.submittedDate+'</td><td><span style="'+stColor+'">'+stIcon+' '+stLabel+'</span></td><td>'+acts+'</td></tr>';
+ }).join('');
+ if(!items.length)tb.innerHTML='<tr><td colspan="6" style="text-align:center;padding:var(--sp-10);color:var(--text-muted)">No matching review content</td></tr>';
+ var pending=D.contentReviewQueue.filter(function(c){return c.status==='pending'}).length;
+ setEl("reviewPendingCount",pending);setEl("reviewApprovedCount",D.contentReviewQueue.filter(function(c){return c.status==="approved"}).length);setEl("reviewRejectedCount",D.contentReviewQueue.filter(function(c){return c.status==="rejected"}).length);setEl("reviewTotalCount",items.length+"  ");var badge=document.getElementById("reviewBadge");if(badge)badge.textContent=pending;
+}
+function renderInsight(){
+ var D=AIHR_DB;if(!D)return;
+ var eco=D.contentEcosystem;if(!eco)return;
+ setEl('totalContent',eco.totalContent);
+ setEl('monthlyNew',eco.monthlyNew);
+ setEl('avgRating',eco.avgRating);
+ setEl('pendingReview',eco.pendingReview);
+
+ /* ── Trend Chart ── */
+ var el=document.getElementById('trendChart');
+ if(el){
+  var maxV=Math.max.apply(null,eco.weeklyTrend);
+  el.innerHTML=eco.weeklyTrend.map(function(v,i){
+   var h=v/maxV*172;
+   var alpha=0.45+v/maxV*0.55;
+   return '<div class="it-bar-col">'
+    +'<div class="it-bar" style="height:'+h+'px;opacity:'+alpha+'" title="W'+(i+1)+': '+v+'%"></div>'
+    +'<div class="it-label">W'+(i+1)+'</div>'
+    +'</div>';
+  }).join('');
+ }
+
+ /* ── Department Coverage ── */
+ var dc=document.getElementById('deptCoverage');
+ if(dc&&eco.deptCoverage){
+  var depts=Object.keys(eco.deptCoverage);
+  dc.innerHTML=depts.map(function(d){
+   var v=eco.deptCoverage[d];
+   var cls=v>=70?'':v>=50?'warn':'danger';
+   return '<div class="insight-dept-row">'
+    +'<span class="id-name">'+d+'</span>'
+    +'<div class="id-track"><div class="id-fill '+cls+'" style="width:'+v+'%"></div></div>'
+    +'<span class="id-val">'+v+'%</span>'
+    +'</div>';
+  }).join('');
+ }
+
+ /* ── TOP Content ── */
+ var tc=document.getElementById('topContent');
+ if(tc&&eco.topContent){
+  var maxL=eco.topContent[0]?eco.topContent[0].learners:1;
+  tc.innerHTML=eco.topContent.map(function(item,i){
+   var w=Math.round(item.learners/maxL*100);
+   var rankCls=i===0?'top1':i===1?'top2':i===2?'top3':'';
+   return '<div class="insight-rank-item '+rankCls+'">'
+    +'<span class="ir-rank">'+(i+1)+'</span>'
+    +'<span class="ir-name">'+item.name+'</span>'
+    +'<div class="ir-bar-wrap"><div class="ir-bar-fill" style="width:'+w+'%"></div></div>'
+    +'<span class="ir-count">'+item.learners.toLocaleString()+'  people</span>'
+    +'</div>';
+  }).join('');
+ }
+
+ /* ── Alerts ── */
+ var lr=document.getElementById('lowRated');
+ if(lr&&eco.lowRatedItems){lr.innerHTML=eco.lowRatedItems.map(function(n){return '· '+n}).join('<br>')+'<br><span style="color:var(--danger);font-weight:600">→ Should it be taken down or contact the author for improvement? </span>'}
+ var cv=document.getElementById('conversionNote');
+ if(cv&&eco.conversionNote){cv.textContent=eco.conversionNote}
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+ if(typeof AIHR_DB!=='undefined'){renderReview();renderInsight();}
+});
+</script>
+</body>
+</html>

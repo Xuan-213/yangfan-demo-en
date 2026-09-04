@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yang Fan · Intern Workbench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   YANG FAN · INTERN WORKBENCH V4 — Action-Centric Design System
+   Design Tokens: OKLCH Color Space · 8pt Grid · DM Sans · ease-std
+   Each page answers ONE question.
+   ================================================================ */
+:root {
+  --green-50:oklch(0.97 0.025 145);--green-100:oklch(0.94 0.05 145);--green-200:oklch(0.88 0.09 145);--green-300:oklch(0.78 0.13 145);
+  --green-400:oklch(0.68 0.16 145);--green-500:oklch(0.60 0.17 145);--green-600:oklch(0.52 0.15 145);--green-700:oklch(0.44 0.13 145);--green-800:oklch(0.36 0.10 145);--green-900:oklch(0.28 0.08 145);
+  --neutral-0:oklch(1 0 0);--neutral-50:oklch(0.985 0.004 96);--neutral-100:oklch(0.965 0.007 96);--neutral-200:oklch(0.92 0.010 96);
+  --neutral-300:oklch(0.86 0.012 96);--neutral-400:oklch(0.72 0.012 96);--neutral-500:oklch(0.58 0.012 96);
+  --neutral-600:oklch(0.46 0.010 96);--neutral-700:oklch(0.34 0.008 96);--neutral-800:oklch(0.22 0.006 96);--neutral-900:oklch(0.13 0.004 96);
+  --bg-app:oklch(0.978 0.006 145);--bg-card:var(--neutral-0);--bg-header:oklch(1 0 0 / 0.82);
+  --primary:var(--green-500);--primary-hover:var(--green-600);--primary-light:var(--green-50);--primary-text:var(--green-700);
+  --text-primary:var(--neutral-900);--text-secondary:var(--neutral-600);--text-muted:var(--neutral-500);--text-placeholder:var(--neutral-400);
+  --border:oklch(0.91 0.008 145);--border-light:oklch(0.95 0.005 145);
+  --danger:oklch(0.55 0.19 18);--danger-light:oklch(0.96 0.02 18);--warning:oklch(0.65 0.14 75);--warning-light:oklch(0.96 0.04 75);
+  --info:oklch(0.52 0.16 250);--info-light:oklch(0.95 0.03 250);--purple:oklch(0.48 0.16 280);--purple-light:oklch(0.94 0.03 280);
+  --shadow-xs:0 1px 2px oklch(0 0 0 / 0.03);--shadow-sm:0 2px 8px oklch(0 0 0 / 0.05);
+  --shadow-md:0 4px 20px oklch(0 0 0 / 0.07);--shadow-lg:0 8px 40px oklch(0 0 0 / 0.09);--shadow-xl:0 16px 60px oklch(0 0 0 / 0.12);
+  --font:'DM Sans',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  --font-heading:'DM Sans','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+  --text-xs:clamp(0.625rem,0.6rem+0.1vw,0.75rem);--text-sm:clamp(0.75rem,0.72rem+0.15vw,0.875rem);
+  --text-base:clamp(0.875rem,0.85rem+0.2vw,1rem);--text-lg:clamp(1rem,0.95rem+0.25vw,1.25rem);
+  --text-xl:clamp(1.125rem,1.05rem+0.4vw,1.5rem);--text-2xl:clamp(1.25rem,1.15rem+0.5vw,1.75rem);
+  --text-3xl:clamp(1.5rem,1.3rem+0.8vw,2.25rem);--text-4xl:clamp(1.75rem,1.4rem+1.2vw,3rem);
+  --leading-tight:1.2;--leading-normal:1.5;--leading-relaxed:1.7;
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:20px;--sp-6:24px;--sp-8:32px;--sp-10:40px;--sp-12:48px;--sp-16:64px;
+  --r-sm:6px;--r-md:10px;--r-lg:14px;--r-xl:18px;--r-2xl:24px;--r-full:9999px;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);--ease-in-out:cubic-bezier(0.65,0,0.35,1);--ease-std:cubic-bezier(0.4,0,0.2,1);
+  --dur-fast:120ms;--dur-normal:200ms;--dur-slow:350ms;--dur-page:400ms;
+  --sidebar-w:264px;--topbar-h:64px;--content-max:1280px;
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:var(--font);background:var(--bg-app);color:var(--text-primary);line-height:var(--leading-normal);display:flex;min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--neutral-300);border-radius:2px}
+::selection{background:var(--green-100);color:var(--green-800)}
+
+/* ===== SIDEBAR ===== */
+.sidebar{width:var(--sidebar-w);min-height:100vh;background:var(--neutral-0);position:fixed;top:0;left:0;bottom:0;z-index:100;display:flex;flex-direction:column;padding:var(--sp-6);border-right:1px solid var(--border-light)}
+.sidebar-brand{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-2) var(--sp-2) var(--sp-6)}
+.sidebar-brand .logo-icon{width:38px;height:38px;background:linear-gradient(160deg,var(--green-400),var(--green-600) 60%,var(--green-700));border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:19px;flex-shrink:0}
+.sb-info h1{font-size:20px;font-weight:700;color:var(--text-primary);letter-spacing:-0.01em;line-height:1.3;font-family:var(--font-heading)}
+.sb-info span{font-weight:400;color:var(--text-muted);font-size:13px;line-height:1.3;display:block}
+.sidebar-nav{flex:1;padding-top:var(--sp-6);display:flex;flex-direction:column;gap:var(--sp-1)}
+.nav-item{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);cursor:pointer;transition:all var(--dur-normal) var(--ease-std);color:var(--text-secondary);font-weight:500;font-size:var(--text-sm);border:none;background:none;width:100%;font-family:var(--font);text-align:left}
+.nav-item .nav-dot{width:6px;height:6px;border-radius:50%;background:transparent;transition:all var(--dur-fast) var(--ease-std);flex-shrink:0}
+.nav-item:hover{background:var(--neutral-50);color:var(--text-primary);transform:translateX(2px)}
+.nav-item:hover .nav-dot{background:var(--neutral-300);transform:scale(1.3)}
+.nav-item.active{background:var(--green-50);color:var(--primary-text);font-weight:600;transform:translateX(2px)}
+.nav-item.active .nav-dot{background:var(--primary);width:8px;height:8px;box-shadow:0 0 0 3px var(--green-100);transform:scale(1)}
+.nav-item .nav-badge{margin-left:auto;background:var(--danger);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:var(--r-full);min-width:20px;text-align:center}
+.btn-logout{display:flex;align-items:center;justify-content:center;gap:var(--sp-2);padding:var(--sp-3) var(--sp-5);background:var(--neutral-50);color:var(--text-secondary);border:none;border-radius:var(--r-full);cursor:pointer;font-weight:500;font-size:var(--text-sm);font-family:var(--font);transition:all var(--dur-fast);margin-bottom:var(--sp-4);width:100%}
+.btn-logout:hover{background:var(--neutral-100);color:var(--text-primary)}
+.sidebar-bottom{background:linear-gradient(160deg,var(--green-400),var(--green-600) 60%,var(--green-700));border-radius:var(--r-xl);padding:var(--sp-5);color:#fff;flex-shrink:0;position:relative;overflow:hidden}
+.sidebar-bottom::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:radial-gradient(circle,oklch(1 0 0 / 0.15) 0%,transparent 70%);border-radius:50%}
+.sidebar-bottom h3{font-size:var(--text-lg);font-weight:700;margin-bottom:var(--sp-1);color:#fff;position:relative;font-family:var(--font-heading)}
+.sidebar-bottom p{font-size:var(--text-xs);color:oklch(1 0 0 / 0.8);margin-bottom:var(--sp-4);line-height:1.4;position:relative}
+.btn-white-pill{padding:var(--sp-2) var(--sp-4);background:#fff;color:var(--green-700);border:none;border-radius:var(--r-full);font-size:var(--text-xs);font-weight:600;cursor:pointer;font-family:var(--font);transition:all var(--dur-fast);position:relative}
+.btn-white-pill:hover{transform:translateY(-1px);box-shadow:0 4px 16px oklch(0 0 0 / 0.12)}
+
+/* ===== MAIN + TOPBAR ===== */
+.main{flex:1;margin-left:var(--sidebar-w);min-height:100vh;display:flex;flex-direction:column}
+.topbar{background:var(--bg-header);backdrop-filter:blur(16px) saturate(180%);-webkit-backdrop-filter:blur(16px) saturate(180%);border-bottom:1px solid var(--border-light);height:var(--topbar-h);display:flex;align-items:center;gap:var(--sp-4);padding:0 var(--sp-8);position:sticky;top:0;z-index:50;left:0;right:0}
+.topbar-spacer{flex:1}
+.search-box{flex:0 0 280px;height:40px;background:var(--neutral-50);border:1px solid transparent;border-radius:var(--r-full);display:flex;align-items:center;gap:var(--sp-2);padding:0 var(--sp-4);transition:all var(--dur-normal) var(--ease-std)}
+.search-box:focus-within{background:var(--neutral-0);border-color:var(--green-300);box-shadow:0 0 0 3px var(--green-50)}
+.search-box svg{width:16px;height:16px;color:var(--text-muted);flex-shrink:0}
+.search-box input{border:none;background:transparent;outline:none;font-size:var(--text-sm);color:var(--text-primary);width:100%;font-family:var(--font)}
+.search-box input::placeholder{color:var(--text-placeholder)}
+.topbar-btn{width:40px;height:40px;border-radius:50%;border:none;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--dur-fast);flex-shrink:0;position:relative;color:var(--text-secondary)}
+.topbar-btn:hover{background:var(--neutral-50);color:var(--text-primary)}
+.topbar-btn svg{width:20px;height:20px}
+.notif-dot{position:absolute;top:8px;right:8px;width:8px;height:8px;background:var(--danger);border-radius:50%;border:2px solid var(--bg-header)}
+.topbar-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--green-400),var(--green-600));cursor:pointer;border:2px solid transparent;transition:all var(--dur-fast);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;flex-shrink:0}
+.topbar-avatar:hover{border-color:var(--green-300);transform:scale(1.05)}
+
+/* ===== PAGE TRANSITIONS ===== */
+.page{display:none;padding:var(--sp-5) var(--sp-8);flex-direction:column;gap:var(--sp-4);flex:1;max-width:var(--content-max)}
+.page.active{display:flex;animation:pageEnter var(--dur-page) var(--ease-std) both}
+@keyframes pageEnter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.a-up{animation:a-fadeUp var(--dur-slow) var(--ease-std) both}
+@keyframes a-fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+.a-up.d1{animation-delay:.04s}.a-up.d2{animation-delay:.08s}.a-up.d3{animation-delay:.12s}.a-up.d4{animation-delay:.16s}.a-up.d5{animation-delay:.20s}
+
+/* ===== SHARED COMPONENTS ===== */
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-3)}
+.section-head h3{font-size:var(--text-lg);font-weight:700;color:var(--text-primary);font-family:var(--font-heading)}
+.section-head .more{font-size:var(--text-sm);color:var(--primary);cursor:pointer;font-weight:600;transition:opacity var(--dur-fast)}
+.section-head .more:hover{opacity:.7}
+.badge-sm{background:var(--neutral-50);padding:2px var(--sp-3);border-radius:var(--r-full);font-size:var(--text-xs);color:var(--text-muted);font-weight:500}
+.tag{padding:3px var(--sp-2);border-radius:var(--r-sm);font-size:var(--text-xs);line-height:1.4;font-weight:600}
+.tag.green{background:var(--green-50);color:var(--primary-text)}.tag.blue{background:var(--info-light);color:var(--info)}
+.tag.purple{background:var(--purple-light);color:var(--purple)}.tag.orange{background:var(--warning-light);color:var(--warning)}.tag.red{background:var(--danger-light);color:var(--danger)}
+.btn-primary{padding:var(--sp-2) var(--sp-5);background:var(--primary);color:#fff;border:none;border-radius:var(--r-full);font-size:var(--text-sm);font-weight:600;cursor:pointer;font-family:var(--font);transition:all var(--dur-fast);display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);box-shadow:0 4px 16px oklch(0.6 0.17 145 / 0.3)}
+.btn-primary:active{transform:translateY(0) scale(0.97)}
+.btn-ghost{padding:var(--sp-2) var(--sp-4);background:transparent;color:var(--text-secondary);border:1px solid var(--border);border-radius:var(--r-full);font-size:var(--text-sm);font-weight:500;cursor:pointer;font-family:var(--font);transition:all var(--dur-fast);display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2)}
+.btn-ghost:hover{background:var(--neutral-50);color:var(--text-primary);border-color:var(--neutral-300)}
+.card-hover{transition:all var(--dur-normal) var(--ease-std);border:1px solid var(--border-light)}
+.card-hover:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--border)}
+
+/* ================================================================
+   PAGE 1: WORKBENCH — Hero + Stats + Snapshot
+   ================================================================ */
+
+/* ── Hero Card (matches mentor_v3 hero-card) ── */
+.hero-card{
+  background:linear-gradient(155deg,var(--neutral-800) 0%,var(--neutral-900) 60%,oklch(0.18 0.03 145) 100%);
+  border-radius:var(--r-2xl);padding:var(--sp-5) var(--sp-8);
+  box-shadow:var(--shadow-lg);
+  position:relative;overflow:hidden;
+}
+.hero-card::after{
+  content:'';position:absolute;top:-120px;right:-80px;
+  width:400px;height:400px;
+  background:radial-gradient(circle,var(--green-500) 0%,transparent 70%);
+  opacity:.08;border-radius:50%;pointer-events:none;
+}
+.hero-card::before{
+  content:'';position:absolute;bottom:-80px;left:10%;
+  width:350px;height:350px;
+  background:radial-gradient(circle,var(--green-400) 0%,transparent 70%);
+  opacity:.06;border-radius:50%;pointer-events:none;
+}
+.hero-grid{display:flex;gap:var(--sp-5);position:relative;z-index:1;align-items:center}
+.hero-left{flex:1;display:flex;flex-direction:column;justify-content:center}
+.hero-tag{font-size:10px;font-weight:700;color:var(--green-300);text-transform:uppercase;letter-spacing:.1em;margin-bottom:var(--sp-2);opacity:.85}
+.hero-title{font-size:var(--text-2xl);font-weight:800;color:#fff;line-height:1.25;font-family:var(--font-heading);letter-spacing:-0.02em}
+.hero-desc{font-size:var(--text-sm);color:oklch(1 0 0 / 0.55);line-height:1.6;margin-top:var(--sp-2);max-width:440px}
+
+/* ── Hero Right: Todo Panel ── */
+.hero-todo-panel{flex:0 0 420px;display:flex;flex-direction:column;gap:var(--sp-2)}
+.hero-todo-tabs{display:flex;gap:var(--sp-1)}
+.hero-todo-tab{
+  padding:4px 14px;border-radius:var(--r-full);
+  font-size:10px;border:1px solid oklch(1 0 0 / 0.1);
+  cursor:pointer;font-family:var(--font);background:transparent;
+  color:oklch(1 0 0 / 0.5);transition:all var(--dur-fast) var(--ease-std);
+  font-weight:500;white-space:nowrap;letter-spacing:.02em;
+}
+.hero-todo-tab:hover{background:oklch(1 0 0 / 0.08);color:oklch(1 0 0 / 0.85)}
+.hero-todo-tab.active{background:oklch(1 0 0 / 0.15);color:#fff;border-color:oklch(1 0 0 / 0.25);font-weight:600;box-shadow:0 0 12px oklch(1 0 0 / 0.04)}
+.hero-todo-cat{display:none;flex-wrap:wrap;gap:var(--sp-3)}
+.hero-todo-cat.active{display:flex}
+.hero-todo-card{
+  flex:1;min-width:120px;max-width:200px;
+  background:oklch(1 0 0 / 0.06);
+  border:1px solid oklch(1 0 0 / 0.08);
+  border-radius:var(--r-md);padding:var(--sp-2) var(--sp-3);
+  cursor:pointer;transition:all var(--dur-fast) var(--ease-std);
+  backdrop-filter:blur(4px);display:flex;flex-direction:column;gap:5px;
+  position:relative;overflow:hidden;
+}
+.hero-todo-card:hover{background:oklch(1 0 0 / 0.1);border-color:oklch(1 0 0 / 0.15);transform:translateY(-1px)}
+.hero-todo-card .ht-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.hero-todo-card .ht-dot.urgent{background:var(--danger)}
+.hero-todo-card .ht-dot.normal{background:var(--primary)}
+.hero-todo-card .ht-text{font-size:10px;color:oklch(1 0 0 / 0.85);line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.hero-todo-card .ht-action{font-size:9px;font-weight:600;color:oklch(1 0 0 / 0.7);align-self:flex-end;padding:1px 6px;background:oklch(1 0 0 / 0.08);border-radius:var(--r-sm);transition:all var(--dur-fast)}
+.hero-todo-card:hover .ht-action{background:var(--primary);color:#fff}
+.hero-todo-card:hover .ht-action{background:var(--primary);color:#fff}
+
+/* ── Stats Row (4-column, matches mentor_v3 stat-card-dash) ── */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-3)}
+.stat-card-dash{
+  background:var(--bg-card);border:1px solid var(--border-light);
+  border-radius:var(--r-lg);padding:var(--sp-4);
+  box-shadow:var(--shadow-xs);
+  transition:all var(--dur-normal) var(--ease-std);
+  display:flex;align-items:center;gap:var(--sp-3);
+}
+.stat-card-dash:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.stat-card-dash .stat-icon{width:44px;height:44px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.stat-card-dash .val{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--text-primary);line-height:1.1;font-family:var(--font-heading)}
+.stat-card-dash .lbl{font-size:10px;color:var(--text-muted);margin-top:2px}
+.stat-card-dash .trend{font-size:10px;font-weight:600;margin-top:2px}
+
+/* ── Snapshot Card (matches mentor_v3 analysis-card) ── */
+.snapshot-card{
+  background:var(--bg-card);border:1px solid var(--border-light);
+  border-radius:var(--r-2xl);box-shadow:var(--shadow-xs);padding:var(--sp-6);
+  transition:all var(--dur-normal) var(--ease-std);
+}
+.snapshot-card:hover{box-shadow:var(--shadow-sm)}
+.snapshot-grid{display:flex;gap:var(--sp-6)}
+.snapshot-left{flex:0 0 520px}
+.snapshot-right{flex:1;display:flex;flex-direction:column;gap:var(--sp-2)}
+
+/* ── Stage Progress Bar ── */
+.stage-bar-track{height:10px;background:var(--neutral-100);border-radius:5px;overflow:hidden;margin-bottom:var(--sp-3);display:flex}
+.stage-bar-seg{height:100%;transition:width var(--dur-slow) var(--ease-std)}
+.stage-legend{display:flex;justify-content:space-between;font-size:var(--text-xs);color:var(--text-muted)}
+.stage-legend .done{color:var(--primary);font-weight:600}
+.stage-legend .current{color:var(--primary);font-weight:700}
+
+/* ── Mini Radar ── */
+.mini-radar-wrap{display:flex;align-items:center;gap:var(--sp-5)}
+.mini-radar-svg{flex-shrink:0}
+.mini-radar-insight{font-size:var(--text-sm)}
+.mini-radar-insight .gap-label{font-size:var(--text-xs);color:var(--text-muted);margin-bottom:var(--sp-1)}
+.mini-radar-insight .gap-value{font-weight:700;color:var(--danger);margin-bottom:var(--sp-2)}
+.mini-radar-insight .gap-link{font-size:var(--text-xs);color:var(--primary);cursor:pointer;font-weight:600;transition:opacity var(--dur-fast)}
+.mini-radar-insight .gap-link:hover{opacity:.7}
+
+/* ── Radar Dot Hover (intern page 1) ── */
+.radar-dot-int{cursor:pointer;transition:r var(--dur-fast) var(--ease-std)}
+.radar-dot-int:hover{r:7}
+
+/* ── Motivation ── */
+.motivation-card{background:linear-gradient(135deg,oklch(0.99 0.003 85),oklch(0.97 0.006 85));border:1px solid oklch(0.93 0.01 85);border-radius:var(--r-xl);padding:var(--sp-5) var(--sp-5);display:flex;align-items:center;gap:var(--sp-4);box-shadow:var(--shadow-xs);transition:all var(--dur-normal) var(--ease-std)}
+.motivation-card:hover{box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.motivation-badge{flex-shrink:0;width:46px;height:46px;border-radius:var(--r-lg);background:linear-gradient(135deg,oklch(0.85 0.06 75),oklch(0.78 0.1 70));display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 2px 10px oklch(0.75 0.1 70 / 0.25);transition:all var(--dur-fast) var(--ease-std)}
+.motivation-card:hover .motivation-badge{transform:scale(1.06);box-shadow:0 4px 16px oklch(0.75 0.1 70 / 0.35)}
+.motivation-text{flex:1;min-width:0}
+.motivation-text .badge-title{font-size:11px;font-weight:700;color:var(--text-primary);margin-bottom:2px;letter-spacing:-0.01em}
+.motivation-text .mentor-note{font-size:10px;color:var(--text-muted);line-height:1.4}
+
+/* ===== FLOATING HELP BUTTON ===== */
+.float-help{position:fixed;bottom:var(--sp-8);right:var(--sp-8);z-index:200}
+.float-help-btn{width:52px;height:52px;border-radius:50%;background:var(--primary);color:#fff;border:none;cursor:pointer;font-size:22px;box-shadow:0 4px 20px oklch(0.6 0.17 145 / 0.4);transition:all var(--dur-fast);display:flex;align-items:center;justify-content:center}
+.float-help-btn:hover{transform:scale(1.08);box-shadow:0 6px 28px oklch(0.6 0.17 145 / 0.5)}
+.float-help-btn:active{transform:scale(0.95)}
+.float-help-menu{display:none;position:absolute;bottom:64px;right:0;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);box-shadow:var(--shadow-lg);padding:var(--sp-2);flex-direction:column;gap:2px;min-width:180px;animation:a-fadeUp .2s var(--ease-std) both}
+.float-help-menu.open{display:flex}
+.float-help-menu button{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-3) var(--sp-4);border:none;background:transparent;border-radius:var(--r-md);cursor:pointer;font-size:var(--text-sm);font-family:var(--font);color:var(--text-primary);transition:all var(--dur-fast);text-align:left}
+.float-help-menu button:hover{background:var(--neutral-50)}
+
+/* ================================================================
+   PAGE 2: GROWTH TASKS — Mentorship Plan Execution
+   ================================================================ */
+
+/* ── Growth Stage Bar ── */
+.growth-bar{display:flex;align-items:center;gap:0;padding:var(--sp-5) var(--sp-8);background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-2xl);box-shadow:var(--shadow-xs);overflow-x:auto}
+.growth-stage{flex:1;min-width:90px;text-align:center;position:relative;cursor:pointer;padding:var(--sp-3) 0;transition:all var(--dur-normal) var(--ease-std)}
+.growth-stage:hover{transform:translateY(-2px)}
+.growth-stage .stage-dot{width:12px;height:12px;border-radius:50%;margin:0 auto var(--sp-2)}
+.growth-stage .stage-dot.done{background:var(--primary);box-shadow:0 0 0 3px var(--green-100)}
+.growth-stage .stage-dot.current{background:var(--green-400);box-shadow:0 0 0 6px var(--green-50);animation:pulse 2s ease-in-out infinite}
+.growth-stage .stage-dot.future{background:var(--neutral-300)}
+.growth-stage .stage-label{font-size:var(--text-sm);font-weight:700;color:var(--text-primary);margin-bottom:2px}
+.growth-stage .stage-sub{font-size:10px;color:var(--text-muted);font-weight:500}
+.growth-stage.done .stage-label{color:var(--primary-text)}
+.growth-stage.current .stage-label{color:var(--primary)}
+.growth-connector{flex:0 0 48px;height:1.5px;background:var(--neutral-200);margin-top:-24px}
+.growth-connector.done{background:var(--primary)}
+.growth-meta{flex-shrink:0;text-align:right;padding-left:var(--sp-8);margin-left:var(--sp-4);border-left:1px solid var(--border-light)}
+.growth-meta .meta-main{font-size:var(--text-base);font-weight:800;color:var(--text-primary);font-family:var(--font-heading)}
+.growth-meta .meta-sub{font-size:var(--text-xs);color:var(--text-muted)}
+
+/* ── Plan Overview ── */
+.plan-overview{display:flex;gap:var(--sp-5);margin-bottom:var(--sp-6)}
+.plan-hero{flex:1;background:linear-gradient(160deg,var(--neutral-800) 0%,var(--neutral-900) 50%,oklch(0.18 0.04 250) 100%);border-radius:var(--r-2xl);padding:var(--sp-8) var(--sp-8);color:#fff;position:relative;overflow:hidden;box-shadow:0 12px 48px oklch(0 0 0 / 0.12);display:flex;align-items:center;gap:var(--sp-8)}
+.plan-hero::after{content:'';position:absolute;top:-60px;right:-40px;width:240px;height:240px;background:radial-gradient(circle,var(--primary) 0%,transparent 70%);opacity:.08;border-radius:50%;pointer-events:none}
+.plan-hero::before{content:'';position:absolute;bottom:-30px;left:20%;width:180px;height:180px;background:radial-gradient(circle,var(--purple) 0%,transparent 70%);opacity:.04;border-radius:50%;pointer-events:none}
+.plan-hero .ph-tag{font-size:var(--text-xs);font-weight:700;color:var(--green-300);letter-spacing:.08em;text-transform:uppercase;margin-bottom:var(--sp-3);position:relative}
+.plan-hero .ph-name{font-size:var(--text-xl);font-weight:800;color:#fff;margin-bottom:var(--sp-4);font-family:var(--font-heading);line-height:1.25;position:relative;letter-spacing:-0.02em}
+.plan-hero .ph-meta{display:flex;align-items:center;gap:var(--sp-4);flex-wrap:wrap;position:relative;font-size:var(--text-xs);color:oklch(1 0 0 / 0.4);font-weight:500}
+.plan-hero .ph-meta .ph-sep{color:oklch(1 0 0 / 0.12)}
+.plan-hero .ph-avatar{width:20px;height:20px;border-radius:50%;flex-shrink:0;border:1.5px solid oklch(1 0 0 / 0.15)}
+.plan-hero .ph-badge{display:inline-block;padding:3px 14px;background:oklch(1 0 0 / 0.1);color:oklch(1 0 0 / 0.7);border-radius:var(--r-full);font-size:11px;font-weight:600;letter-spacing:.02em}
+.plan-progress-box{flex:0 0 180px;text-align:center;position:relative}
+.plan-progress-box .pp-num{font-size:clamp(2rem,4vw,2.5rem);font-weight:800;color:var(--green-300);line-height:1;font-family:var(--font-heading);margin-bottom:var(--sp-2)}
+.plan-progress-box .pp-bar{height:6px;background:oklch(1 0 0 / 0.08);border-radius:3px;overflow:hidden;margin-bottom:var(--sp-2)}
+.plan-progress-box .pp-bar-fill{height:100%;background:linear-gradient(90deg,var(--green-500),var(--green-300));border-radius:3px}
+.plan-progress-box .pp-label{font-size:10px;color:oklch(1 0 0 / 0.3);font-weight:500}
+.plan-side-card{flex:0 0 180px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-2xl);padding:var(--sp-5);display:flex;flex-direction:column;gap:0;box-shadow:var(--shadow-xs);justify-content:center;transition:all var(--dur-normal) var(--ease-std)}
+.plan-side-card:hover{box-shadow:var(--shadow-sm)}
+.plan-side-card .ps-row{display:flex;justify-content:space-between;align-items:center;padding:var(--sp-2) 0;font-size:12px}
+.plan-side-card .ps-row+.ps-row{border-top:1px solid var(--border-light)}
+.plan-side-card .ps-row .ps-label{color:var(--text-muted);font-weight:500}
+.plan-side-card .ps-row .ps-value{font-weight:700;color:var(--text-primary);font-family:var(--font-heading);text-align:right}
+
+/* ── Step Timeline ── */
+.step-timeline{position:relative;padding:var(--sp-4) 0}
+.step-timeline::before{content:'';position:absolute;left:33px;top:20px;bottom:20px;width:1.5px;background:linear-gradient(to bottom,var(--primary),var(--neutral-100) 40%,var(--neutral-100) 60%,var(--neutral-200));z-index:0}
+.step-node{position:relative;z-index:1;padding-left:80px;padding-bottom:var(--sp-10);transition:all var(--dur-normal) var(--ease-std)}
+.step-node:last-child{padding-bottom:0}
+.step-node:hover{transform:translateX(3px)}
+.step-node.future:hover{transform:none}
+/* done node */
+.step-node .node-dot{position:absolute;left:16px;top:2px;width:36px;height:36px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;box-shadow:0 2px 12px oklch(0.6 0.17 145 / 0.2);transition:all var(--dur-fast)}
+.step-node .node-badge{display:inline-flex;align-items:center;gap:var(--sp-1);font-weight:600;font-size:var(--text-xs);margin-bottom:var(--sp-3)}
+.step-node .node-title{font-weight:700;font-size:var(--text-base);color:var(--text-primary);margin-bottom:var(--sp-2);font-family:var(--font-heading);letter-spacing:-0.01em}
+.step-node .node-meta{font-size:var(--text-sm);color:var(--text-muted);line-height:1.7;max-width:520px}
+.step-node .node-actions{display:flex;gap:var(--sp-2);margin-top:var(--sp-4);flex-wrap:wrap}
+/* active node — prominent */
+.step-node.active{padding-bottom:var(--sp-10)}
+.step-node.active .node-dot{left:8px;top:0;width:52px;height:52px;background:var(--bg-card);border:3px solid var(--primary);color:var(--primary);font-size:22px;box-shadow:0 0 0 12px var(--green-50),0 6px 24px oklch(0.6 0.17 145 / 0.18)}
+.step-node.active .node-body{padding-top:var(--sp-5)}
+.step-node.active .node-title{font-size:var(--text-lg)}
+.step-node.active .node-highlight{padding:var(--sp-5) var(--sp-6);background:var(--green-50);border:1px solid var(--green-100);border-radius:var(--r-lg);margin-top:var(--sp-4);font-size:var(--text-sm);color:var(--primary-text);line-height:1.8}
+.step-node.active .node-highlight .active-label{font-size:var(--text-xs);color:var(--primary);font-weight:700;display:block;margin-top:var(--sp-3)}
+/* future node */
+.step-node.future .node-dot{background:var(--bg-card);border:2px solid var(--neutral-200);color:var(--neutral-400);font-size:16px;box-shadow:none}
+.step-node.future .node-title{color:var(--text-muted)}
+
+/* ── History Section ── */
+.history-section{margin-top:var(--sp-6)}
+.history-toggle{display:flex;align-items:center;gap:var(--sp-2);cursor:pointer;font-size:var(--text-sm);font-weight:600;color:var(--text-muted);padding:var(--sp-3) var(--sp-5);background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-lg);font-family:var(--font);transition:all var(--dur-fast);width:fit-content}
+.history-toggle:hover{color:var(--text-primary);border-color:var(--border);box-shadow:var(--shadow-xs)}
+.history-list{display:none;flex-direction:column;gap:var(--sp-3);margin-top:var(--sp-4)}
+.history-list.open{display:flex}
+.history-item{display:flex;align-items:center;gap:var(--sp-4);padding:var(--sp-5);background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);cursor:pointer;transition:all var(--dur-normal) var(--ease-std);box-shadow:var(--shadow-xs)}
+.history-item:hover{box-shadow:var(--shadow-sm);transform:translateY(-1px);border-color:var(--border)}
+.history-item .h-icon{font-size:24px;flex-shrink:0}
+.history-item .h-info{flex:1;min-width:0}
+.history-item .h-name{font-size:var(--text-sm);font-weight:700;color:var(--text-primary);margin-bottom:2px}
+.history-item .h-date{font-size:var(--text-xs);color:var(--text-muted)}
+
+/* ===== DRAWER ===== */
+.drawer-overlay{display:none;position:fixed;inset:0;background:oklch(0 0 0 / 0.3);z-index:500;backdrop-filter:blur(2px)}
+.drawer-overlay.open{display:block;animation:a-fadeUp .2s var(--ease-std)}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:480px;max-width:95vw;background:var(--bg-card);z-index:501;box-shadow:var(--shadow-xl);transform:translateX(100%);transition:transform var(--dur-normal) var(--ease-std);display:flex;flex-direction:column;overflow-y:auto}
+.drawer.open{transform:translateX(0)}
+.drawer-header{display:flex;align-items:center;justify-content:space-between;padding:var(--sp-6);border-bottom:1px solid var(--border-light);position:sticky;top:0;background:var(--bg-card);z-index:2}
+.drawer-header h3{font-size:var(--text-lg);font-weight:700;color:var(--text-primary);font-family:var(--font-heading)}
+.drawer-close{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:transparent;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:all var(--dur-fast)}
+.drawer-close:hover{background:var(--neutral-50);color:var(--text-primary)}
+.drawer-body{padding:var(--sp-6);flex:1}
+.drawer-field{margin-bottom:var(--sp-5)}
+.drawer-field label{display:block;font-size:var(--text-xs);font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:var(--sp-2)}
+.drawer-field .field-value{font-size:var(--text-sm);color:var(--text-primary);line-height:1.6}
+.drawer-field textarea{width:100%;min-height:80px;padding:var(--sp-3);border:1px solid var(--border-light);border-radius:var(--r-md);font-size:var(--text-sm);font-family:var(--font);resize:vertical;background:var(--neutral-50);color:var(--text-primary);line-height:1.6;transition:all var(--dur-fast)}
+.drawer-field textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--green-50);background:var(--bg-card)}
+.feedback-thread{display:flex;flex-direction:column;gap:var(--sp-3)}
+.feedback-bubble{padding:var(--sp-3) var(--sp-4);border-radius:var(--r-lg);font-size:var(--text-sm);line-height:1.6;max-width:90%}
+.feedback-bubble.mentor{background:var(--green-50);color:var(--primary-text);align-self:flex-start;border-bottom-left-radius:var(--r-sm)}
+.feedback-bubble.intern{background:var(--neutral-50);color:var(--text-secondary);align-self:flex-end;border-bottom-right-radius:var(--r-sm)}
+
+/* ================================================================
+   PAGE 3: GROWTH — Write Report + History
+   ================================================================ */
+
+/* ── Growth Tabs ── */
+.growth-tabs{display:flex;gap:var(--sp-6);margin-bottom:var(--sp-8)}
+.growth-tab{padding:0;font-size:var(--text-lg);font-weight:700;cursor:pointer;border:none;background:none;color:var(--text-muted);font-family:var(--font-heading);transition:color var(--dur-fast)}
+.growth-tab.active{color:var(--text-primary)}
+.growth-tab:hover:not(.active){color:var(--text-secondary)}
+.growth-panel{display:none;flex-direction:column;gap:var(--sp-5)}
+.growth-panel.active{display:flex;animation:a-fadeUp .3s var(--ease-std) both}
+
+/* ── Week Row (History only) ── */
+.week-row{display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-5)}
+.week-nav{width:28px;height:28px;border-radius:50%;border:1px solid var(--border-light);background:var(--bg-card);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-secondary);transition:all var(--dur-fast);font-size:12px;flex-shrink:0}
+.week-nav:hover{background:var(--neutral-50);color:var(--text-primary)}
+
+/* ── Section Label ── */
+.q-section-label{font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin:var(--sp-4) 0 var(--sp-3) var(--sp-1)}
+.q-section-label:first-child{margin-top:0}
+
+/* ── Accordion ── */
+.q-list{display:flex;flex-direction:column;gap:var(--sp-2)}
+.q-item{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-lg);overflow:hidden;transition:all var(--dur-fast) var(--ease-std)}
+.q-item.open{box-shadow:var(--shadow-sm)}
+.q-item .q-trigger{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-4) var(--sp-5);cursor:pointer;transition:all var(--dur-fast)}
+.q-item .q-trigger:hover{background:var(--neutral-50)}
+.q-item.open .q-trigger{background:linear-gradient(135deg,var(--neutral-800),var(--neutral-900))}
+.q-item .q-trigger .q-icon{width:32px;height:32px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;transition:all var(--dur-fast);background:var(--neutral-50);color:var(--text-secondary)}
+.q-item.open .q-trigger .q-icon{background:var(--green-500);color:#fff;box-shadow:0 2px 8px oklch(0.6 0.17 145 / 0.3)}
+.q-item .q-trigger .q-stem{flex:1;font-size:var(--text-sm);font-weight:600;color:var(--text-primary)}
+.q-item.open .q-trigger .q-stem{color:#fff}
+.q-item .q-trigger .q-arrow{font-size:10px;color:var(--text-muted);transition:transform var(--dur-fast)}
+.q-item.open .q-trigger .q-arrow{transform:rotate(180deg);color:oklch(1 0 0 / 0.4)}
+
+.q-item .q-body{display:none;padding:var(--sp-5)}
+.q-item.open .q-body{display:block}
+.q-body .q-guide{font-size:12px;color:var(--text-muted);line-height:1.7;padding:var(--sp-3) var(--sp-4);background:var(--neutral-50);border-radius:var(--r-md);margin-bottom:var(--sp-4)}
+.q-body textarea{width:100%;min-height:110px;padding:var(--sp-3) var(--sp-4);padding-bottom:40px;border:1px solid var(--border-light);border-radius:var(--r-md);font-size:var(--text-sm);font-family:var(--font);resize:vertical;background:var(--bg-card);color:var(--text-primary);line-height:1.8;transition:all var(--dur-fast)}
+.q-body textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--green-50)}
+
+/* ── AI Polish Button ── */
+.ta-wrap{position:relative}
+.ta-wrap .ai-btn{position:absolute;right:var(--sp-3);bottom:var(--sp-3);width:30px;height:30px;border-radius:50%;border:none;background:var(--neutral-800);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;transition:all var(--dur-fast);color:#fff;z-index:2;box-shadow:0 2px 8px oklch(0 0 0 / 0.15)}
+.ta-wrap .ai-btn:hover{background:#000;transform:scale(1.1);box-shadow:0 4px 16px oklch(0 0 0 / 0.25)}
+.ta-wrap .ai-btn:active{transform:scale(0.95)}
+.ta-wrap .ai-btn.processing{background:var(--primary);animation:pulse 1.2s ease-in-out infinite}
+
+/* ── AI Panel ── */
+.ai-panel{display:none;margin-top:var(--sp-2);padding:var(--sp-4);background:var(--neutral-50);border:1px solid var(--border-light);border-radius:var(--r-lg)}
+.ai-panel.open{display:block;animation:a-fadeUp .2s var(--ease-std)}
+.ai-panel .ai-actions{display:flex;gap:var(--sp-2);margin-bottom:var(--sp-3)}
+.ai-panel .ai-act-btn{padding:var(--sp-1) var(--sp-3);border-radius:var(--r-full);font-size:11px;font-weight:600;cursor:pointer;font-family:var(--font);border:1px solid var(--border);background:var(--bg-card);color:var(--text-secondary);transition:all var(--dur-fast)}
+.ai-panel .ai-act-btn:hover{background:var(--neutral-800);color:#fff;border-color:var(--neutral-800)}
+.ai-panel .ai-act-btn:disabled{opacity:.5;pointer-events:none}
+.ai-panel .ai-result{font-size:var(--text-sm);color:var(--text-primary);line-height:1.8;padding:var(--sp-3) var(--sp-4);background:var(--bg-card);border-radius:var(--r-md);min-height:36px;white-space:pre-wrap}
+.ai-panel .ai-result.loading{color:var(--text-muted)}
+.ai-panel .ai-hint{font-size:11px;color:var(--text-muted);margin-top:var(--sp-2);text-align:right}
+
+/* ── Inline AI Follow-up (gray small text after textarea content) ── */
+.ai-inline-q{display:block;font-size:11px;color:var(--text-muted);margin-top:var(--sp-2);padding:var(--sp-2) var(--sp-3);background:var(--neutral-50);border-radius:var(--r-sm);line-height:1.6;animation:a-fadeUp .2s var(--ease-std)}
+
+/* ── Write Footer ── */
+.write-footer{display:flex;align-items:center;justify-content:flex-end;gap:var(--sp-3);padding-top:var(--sp-4)}
+
+/* ── History Report Card ── */
+/* ── Trend Chart (dark gradient hero) ── */
+.trend-chart{background:linear-gradient(155deg,var(--neutral-800),var(--neutral-900));border-radius:var(--r-2xl);padding:var(--sp-6);margin-bottom:var(--sp-6);box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.trend-chart::after{content:'';position:absolute;top:-40px;right:-30px;width:200px;height:200px;background:radial-gradient(circle,var(--primary) 0%,transparent 70%);opacity:.06;border-radius:50%;pointer-events:none}
+.trend-chart .tc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-6);position:relative;z-index:1}
+.trend-chart .tc-title{font-size:var(--text-base);font-weight:700;color:#fff;font-family:var(--font-heading)}
+.trend-chart .tc-legend{display:flex;gap:var(--sp-5);font-size:11px;color:oklch(1 0 0 / 0.45)}
+.trend-chart .tc-legend span{display:flex;align-items:center;gap:var(--sp-1)}
+.trend-chart .tc-dot{display:inline-block;width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.trend-dot{cursor:pointer;transition:r var(--dur-fast) var(--ease-std)}
+.trend-dot:hover{r:8}
+
+/* ── Report Q&A ── */
+.report-qa{display:flex;flex-direction:column;gap:var(--sp-3)}
+.rq-item{padding:var(--sp-5) var(--sp-6);background:var(--neutral-50);border-radius:var(--r-xl);border:1px solid transparent;transition:all var(--dur-fast)}
+.rq-item:hover{border-color:var(--border-light);background:var(--bg-card)}
+.rq-item .rq-q{font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:var(--sp-3)}
+.rq-item .rq-a{font-size:var(--text-sm);color:var(--text-primary);line-height:1.9}
+.rq-item .rq-mentor{margin-top:var(--sp-3);font-size:12px;color:var(--primary-text);padding:var(--sp-2) var(--sp-3);background:var(--green-50);border-radius:var(--r-sm);display:inline-block}
+
+/* ── Applied Learning ── */
+.apply-block{margin-top:var(--sp-6)}
+.apply-block .apply-title{font-size:var(--text-sm);font-weight:700;color:var(--text-primary);margin-bottom:var(--sp-4);font-family:var(--font-heading);display:flex;align-items:center;gap:var(--sp-2)}
+.apply-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3)}
+.apply-item{display:flex;align-items:flex-start;gap:var(--sp-3);padding:var(--sp-4);background:var(--neutral-50);border-radius:var(--r-lg);border:1px solid var(--border-light)}
+.apply-item .ai-icon{width:32px;height:32px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.apply-item .ai-icon.course{background:var(--info-light);color:var(--info)}
+.apply-item .ai-icon.doc{background:var(--purple-light);color:var(--purple)}
+.apply-item .ai-icon.practice{background:var(--warning-light);color:var(--warning)}
+.apply-item .ai-info{flex:1;min-width:0}
+.apply-item .ai-name{font-size:var(--text-xs);font-weight:700;color:var(--text-primary);margin-bottom:2px}
+.apply-item .ai-meta{font-size:11px;color:var(--text-muted);line-height:1.5}
+
+/* ── History Card ── */
+.history-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-2xl);padding:var(--sp-8);box-shadow:var(--shadow-xs);margin-bottom:var(--sp-5)}
+.history-card:last-child{margin-bottom:0}
+.h-grade{display:inline-flex;align-items:center;gap:4px;padding:4px 14px;border-radius:var(--r-full);font-size:11px;font-weight:700;flex-shrink:0}
+.h-grade.A{background:var(--green-50);color:var(--primary-text)}
+.h-grade.B{background:var(--info-light);color:var(--info)}
+
+/* ── Mentor Bubble ── */
+.mentor-bubble{display:flex;gap:var(--sp-5);align-items:flex-start;margin-top:var(--sp-6);padding-top:var(--sp-6);border-top:1px solid var(--border-light)}
+.mentor-bubble .mb-avatar{width:42px;height:42px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--purple),var(--info));display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;font-weight:700}
+.mentor-bubble .mb-content{flex:1}
+.mentor-bubble .mb-meta{font-size:var(--text-xs);color:var(--text-muted);margin-bottom:var(--sp-3)}
+.mentor-bubble .mb-body{font-size:var(--text-sm);color:var(--text-primary);line-height:1.9;padding:var(--sp-5) var(--sp-6);background:var(--neutral-50);border-radius:var(--r-xl)}
+
+
+/* ===== TOOLTIP ===== */
+.tt{position:relative;cursor:pointer}
+.tt>.tp{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);background:var(--neutral-800);color:#fff;padding:6px 12px;border-radius:var(--r-sm);font-size:11px;font-weight:500;white-space:nowrap;pointer-events:none;opacity:0;z-index:200;transition:all var(--dur-fast) var(--ease-std);box-shadow:0 4px 16px oklch(0 0 0 / 0.2);line-height:1.5}
+.tt>.tp::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--neutral-800)}
+.tt:hover>.tp{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1400px){.snapshot-grid{flex-direction:column}.snapshot-left{flex:auto}.hero-grid{flex-direction:column}.hero-todo-panel{flex:auto;max-width:100%}.hero-todo-card{max-width:none;min-width:140px}.plan-overview{flex-direction:column}.plan-side-card{flex:auto;flex-direction:row;gap:var(--sp-6)}.plan-side-card .ps-row+.ps-row{border-top:none;border-left:1px solid var(--border-light);padding-left:var(--sp-6)}.plan-hero{flex-direction:column;text-align:center}.plan-progress-box{flex:auto}.stats-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1024px){.sidebar{display:none}.main{margin-left:0}.page{padding:var(--sp-5)}.stats-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.topbar{padding:0 var(--sp-4)}.page{padding:var(--sp-4)}.stats-row{grid-template-columns:1fr 1fr}.snapshot-grid{flex-direction:column}.drawer{width:100vw}.hero-card{padding:var(--sp-5)}.growth-bar{flex-wrap:wrap;gap:var(--sp-3)}.growth-connector{display:none}.growth-meta{border-left:none;padding-left:0;text-align:left;width:100%}.step-body{flex-direction:column}.step-actions{width:100%}}
+@media(hover:none) and (pointer:coarse){.card-hover:hover,.recommend-card:hover{transform:none;box-shadow:var(--shadow-xs)}.stat-card-dash:hover{transform:none;box-shadow:var(--shadow-xs)}.step-node:hover{transform:none}.motivation-card:hover{transform:none;box-shadow:var(--shadow-xs)}}
+
+/* ================================================================
+   PAGE 4: TRAINING — Training Tabs, Docs, Courses
+   ================================================================ */
+.train-tabs{display:flex;gap:var(--sp-2);flex-wrap:wrap}
+.train-tab{
+  padding:var(--sp-2) var(--sp-4);border-radius:var(--r-full);
+  font-size:var(--text-sm);font-weight:500;cursor:pointer;border:none;
+  background:var(--neutral-50);color:var(--text-secondary);
+  font-family:var(--font);transition:all var(--dur-fast) var(--ease-std);
+}
+.train-tab.active{background:var(--neutral-800);color:#fff}
+.train-tab:hover:not(.active){background:var(--neutral-100)}
+
+.doc-card{
+  background:var(--bg-card);border:1px solid var(--border-light);
+  border-radius:var(--r-xl);box-shadow:var(--shadow-xs);padding:var(--sp-6);
+}
+.doc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-4)}
+.doc-head h3{font-size:var(--text-base);font-weight:700;color:var(--text-primary);font-family:var(--font-heading)}
+.doc-list{display:flex;flex-direction:column;gap:var(--sp-2)}
+.doc-item{
+  display:flex;align-items:center;gap:var(--sp-4);padding:var(--sp-4);
+  border-radius:var(--r-lg);cursor:pointer;
+  transition:all var(--dur-fast) var(--ease-std);
+  border:1px solid transparent;
+}
+.doc-item:hover{background:var(--neutral-50);border-color:var(--border-light)}
+.doc-icon{width:40px;height:40px;border-radius:var(--r-md);background:var(--neutral-50);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.doc-info{flex:1}.doc-name{font-size:var(--text-sm);font-weight:600;color:var(--text-primary)}.doc-meta{font-size:var(--text-xs);color:var(--text-muted);margin-top:2px}
+.doc-badge{font-size:var(--text-xs);padding:2px var(--sp-2);border-radius:var(--r-sm);background:var(--neutral-50);color:var(--text-muted)}
+.grid22{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4)}
+</style>
+</head>
+<body>
+<!-- ===== SIDEBAR ===== -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="logo-icon">⛵</div>
+    <div class="sb-info"><h1>Yang Fan</h1><span>YANG FAN</span></div>
+  </div>
+  <nav class="sidebar-nav">
+    <button class="nav-item active" data-page="1" onclick="goPage(1)"><span class="nav-dot"></span>Workbench</button>
+    <button class="nav-item" data-page="2" onclick="goPage(2)"><span class="nav-dot"></span>Tasks<span class="nav-badge">3</span></button>
+    <button class="nav-item" data-page="4" onclick="goPage(4)"><span class="nav-dot"></span>Community</button>
+    <button class="nav-item" data-page="3" onclick="goPage(3)"><span class="nav-dot"></span>Growth</button>
+    <div style="flex:1"></div>
+    <button class="btn-logout" onclick="location.href='signin.html'">Log out</button>
+  </nav>
+  <div class="sidebar-bottom">
+    <h3>Growth Portfolio</h3>
+    <p>View your skill progress, portfolio & milestones</p>
+    <button class="btn-white-pill" onclick="goPage(3)">View Portfolio</button>
+  </div>
+</aside>
+
+<div class="main">
+  <!-- ===== TOPBAR ===== -->
+  <header class="topbar" id="topbar">
+    <div class="topbar-spacer"></div>
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input placeholder="Search courses, docs, help...">
+    </div>
+    <button class="topbar-btn" onclick="showToast('📬 New feedback from your mentor')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      <span class="notif-dot"></span>
+    </button>
+    <button class="topbar-avatar" onclick="location.href='intern_detail.html?id=I001'">Zhang</button>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       PAGE 1: WORKBENCH — Hero + Stats + Snapshot
+       ═══════════════════════════════════════ -->
+  <div class="page active" id="page1">
+    <!-- Hero Card — 1:1 with mentor_v3 -->
+    <div class="hero-card a-up">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <p class="hero-tag">Intern Workbench</p>
+          <h1 class="hero-title">👋 Zhang Yao, you have 3 key tasks to advance today</h1>
+          <p class="hero-desc">Stage 42% · Rating Low Risk · +0.3 vs last month</p>
+        </div>
+        <div class="hero-todo-panel">
+          <div class="hero-todo-tabs">
+            <button class="hero-todo-tab active" onclick="heroSwitchTab(this,'task')">🔴 Tasks 2</button>
+            <button class="hero-todo-tab" onclick="heroSwitchTab(this,'learn')">📝 Learning 1</button>
+            <button class="hero-todo-tab" onclick="heroSwitchTab(this,'reflect')">💡 Review 1</button>
+            <button onclick="openTodoModal()" style="margin-left:auto;padding:4px 12px;background:var(--primary);color:#fff;border:none;border-radius:var(--r-full);font-size:var(--text-xs);cursor:pointer;font-family:var(--font);font-weight:600">+ New</button>
+          </div>
+          <div class="hero-todo-cat active" data-cat="task">
+            <div class="hero-todo-card" onclick="openDrawer('task1')">
+              <div style="display:flex;align-items:center;gap:6px"><span class="ht-dot urgent"></span><span style="font-size:10px;color:oklch(1 0 0 / 0.4)">High</span></div>
+              <span class="ht-text">Complete User Mgmt API Integration</span>
+              <span class="ht-action" onclick="event.stopPropagation();goPage(3)">Submit</span>
+            </div>
+            <div class="hero-todo-card" onclick="openDrawer('task_p2')">
+              <div style="display:flex;align-items:center;gap:6px"><span class="ht-dot normal"></span><span style="font-size:10px;color:oklch(1 0 0 / 0.4)">Task</span></div>
+              <span class="ht-text">Competitor Feature Matrix Analysis</span>
+              <span class="ht-action" onclick="event.stopPropagation();showToast('▶️ Started')">Start</span>
+            </div>
+          </div>
+          <div class="hero-todo-cat" data-cat="learn">
+            <div class="hero-todo-card" onclick="openDrawer('task2')">
+              <div style="display:flex;align-items:center;gap:6px"><span class="ht-dot normal"></span><span style="font-size:10px;color:oklch(1 0 0 / 0.4)">Recommended</span></div>
+              <span class="ht-text">Read "Microservice Decomposition" Ch.3</span>
+              <span class="ht-action" onclick="event.stopPropagation();showToast('📖 Learning');goPage(4)">Learn</span>
+            </div>
+          </div>
+          <div class="hero-todo-cat" data-cat="reflect">
+            <div class="hero-todo-card" onclick="openDrawer('task3')">
+              <div style="display:flex;align-items:center;gap:6px"><span class="ht-dot normal"></span><span style="font-size:10px;color:oklch(1 0 0 / 0.4)">Review</span></div>
+              <span class="ht-text">Complete Weekly Review & Reflection</span>
+              <span class="ht-action" onclick="event.stopPropagation();goPage(3)">Write</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="stats-row a-up d1">
+      <div class="stat-card-dash">
+        <div class="stat-icon" style="background:oklch(0.96 0.03 145)">📋</div>
+        <div><div class="val">82%</div><div class="lbl">Task Completion</div><div class="trend" style="color:var(--primary)">↑ 5% vs last week</div></div>
+      </div>
+      <div class="stat-card-dash">
+        <div class="stat-icon" style="background:oklch(0.96 0.03 250)">📚</div>
+        <div><div class="val">64%</div><div class="lbl">Learning Progress</div><div class="trend" style="color:var(--primary)">↑ 12% vs last week</div></div>
+      </div>
+      <div class="stat-card-dash">
+        <div class="stat-icon" style="background:oklch(0.96 0.03 280)">⭐</div>
+        <div><div class="val">3.9</div><div class="lbl">Competency Score</div><div class="trend" style="color:var(--primary)">↑ 0.3 vs last month</div></div>
+      </div>
+      <div class="stat-card-dash">
+        <div class="stat-icon" style="background:oklch(0.96 0.03 80)">📅</div>
+        <div><div class="val">42</div><div class="lbl">Days Onboard</div><div class="trend" style="color:var(--text-muted)">Week 4</div></div>
+      </div>
+    </div>
+
+    <!-- Snapshot Section — Radar + Mentor (left) / Stage + Overview (right) -->
+    <div class="snapshot-card a-up d2">
+      <div class="snapshot-grid">
+        <!-- LEFT: Competency Radar + Mentor's Note -->
+        <div class="snapshot-left">
+          <!-- ── Competency Radar ── -->
+          <div class="section-head"><h3>Competency Radar</h3><span class="badge-sm">This Week</span></div>
+          <div style="display:flex;align-items:center;gap:var(--sp-5)">
+            <div style="position:relative;flex-shrink:0">
+              <svg viewBox="0 0 340 300" width="270" height="238" id="internRadarSvg">
+                <g transform="translate(170,150)">
+                  <polygon points="0,-100 95.1,-30.9 58.8,80.9 -58.8,80.9 -95.1,-30.9" fill="oklch(0.92 0.01 145 / 0.25)" stroke="var(--neutral-200)" stroke-width="1"/>
+                  <polygon points="0,-65 61.8,-20.1 38.2,52.6 -38.2,52.6 -61.8,-20.1" fill="none" stroke="var(--neutral-100)" stroke-width="1"/>
+                  <polygon id="internRadarArea" points="0,-82 55.2,-17.9 44.1,60.7 -51.7,71.2 -76.1,-24.7" fill="oklch(0.6 0.17 145 / 0.1)" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="0" cy="-82" r="5" fill="var(--bg-card)" stroke="var(--primary)" stroke-width="2.5" class="radar-dot-int" data-dim="Requirements Analysis" data-val="82"/>
+                  <circle cx="55.2" cy="-17.9" r="5" fill="var(--bg-card)" stroke="var(--danger)" stroke-width="2.5" class="radar-dot-int" data-dim="Solution Design" data-val="58"/>
+                  <circle cx="44.1" cy="60.7" r="5" fill="var(--bg-card)" stroke="var(--primary)" stroke-width="2.5" class="radar-dot-int" data-dim="Communication" data-val="75"/>
+                  <circle cx="-51.7" cy="71.2" r="5" fill="var(--bg-card)" stroke="var(--primary)" stroke-width="2.5" class="radar-dot-int" data-dim="Learning & Growth" data-val="88"/>
+                  <circle cx="-76.1" cy="-24.7" r="5" fill="var(--bg-card)" stroke="var(--primary)" stroke-width="2.5" class="radar-dot-int" data-dim="Initiative" data-val="80"/>
+                  <text x="0" y="-118" text-anchor="middle" font-size="11" font-weight="600" fill="var(--text-primary)" font-family="var(--font)">Requirements Analysis</text>
+                  <text x="0" y="-103" text-anchor="middle" font-size="10" font-weight="700" fill="var(--primary)" font-family="var(--font-heading)">82</text>
+                  <text x="112" y="-40" text-anchor="start" font-size="11" font-weight="600" fill="var(--text-primary)" font-family="var(--font)">Solution Design</text>
+                  <text x="108" y="-28" text-anchor="start" font-size="10" font-weight="700" fill="var(--danger)" font-family="var(--font-heading)">58</text>
+                  <text x="73" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="var(--text-primary)" font-family="var(--font)">Communication</text>
+                  <text x="73" y="117" text-anchor="middle" font-size="10" font-weight="700" fill="var(--primary)" font-family="var(--font-heading)">75</text>
+                  <text x="-73" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="var(--text-primary)" font-family="var(--font)">Learning & Growth</text>
+                  <text x="-73" y="117" text-anchor="middle" font-size="10" font-weight="700" fill="var(--primary)" font-family="var(--font-heading)">88</text>
+                  <text x="-119" y="-40" text-anchor="end" font-size="11" font-weight="600" fill="var(--text-primary)" font-family="var(--font)">Initiative</text>
+                  <text x="-115" y="-28" text-anchor="end" font-size="10" font-weight="700" fill="var(--primary)" font-family="var(--font-heading)">80</text>
+                </g>
+              </svg>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:var(--sp-3)">
+              <div style="display:flex;align-items:center;gap:var(--sp-2);font-size:var(--text-xs)">
+                <span style="width:8px;height:8px;border-radius:50%;background:var(--danger);flex-shrink:0"></span>
+                <span style="color:var(--text-secondary)">Biggest Gap</span>
+                <span style="font-weight:700;color:var(--danger);font-family:var(--font-heading)">Solution Design 58</span>
+              </div>
+              <p style="font-size:10px;color:var(--text-muted);line-height:1.6">Solution Design lags 20+ pts behind other dimensions. Prioritize closing this gap.</p>
+              <button class="btn-ghost" style="padding:5px 14px;font-size:10px;align-self:flex-start" onclick="goPage(4)">Skill Courses →</button>
+            </div>
+          </div>
+
+          <!-- ── Mentor's Note (below radar) ── -->
+          <div style="margin-top:var(--sp-5)">
+            <div class="section-head"><h3>Mentor's Note</h3><span style="font-size:10px;color:var(--text-muted)">Zhang Wei · Jun 26</span></div>
+            <div style="padding:var(--sp-4);background:linear-gradient(135deg,var(--neutral-50),var(--green-50));border-radius:var(--r-lg);border:1px solid var(--border-light);position:relative">
+              <span style="position:absolute;top:-10px;left:var(--sp-4);font-size:22px">💬</span>
+              <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;font-style:italic">
+                "Great progress on API integration — thorough exception testing. Keep the proactive learning pace; next week we tackle more complex module design."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Stage Progress + Badge + This Week -->
+        <div class="snapshot-right">
+          <!-- ── Stage Progress (compact) ── -->
+          <div class="section-head"><h3>Stage Progress</h3><span class="badge-sm">Week 4 · Growth Phase</span></div>
+          <div style="display:flex;align-items:stretch;gap:0;margin-bottom:var(--sp-1)">
+            <div style="flex:1;text-align:center">
+              <div style="width:32px;height:32px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-1);color:#fff;font-size:13px;box-shadow:0 2px 8px oklch(0.6 0.17 145 / 0.2)">✓</div>
+              <p style="font-weight:600;font-size:11px;color:var(--primary-text)">Onboarding</p>
+              <p style="font-size:9px;color:var(--text-muted)">Wk 1-2</p>
+            </div>
+            <div style="flex:0 0 40px;display:flex;align-items:center;padding-bottom:24px"><div style="height:2px;background:var(--primary);width:100%"></div></div>
+            <div style="flex:1;text-align:center">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--bg-card);border:2.5px solid var(--primary);display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-1);color:var(--primary);font-size:11px;font-weight:800;font-family:var(--font-heading);box-shadow:0 0 0 5px var(--green-50)">42%</div>
+              <p style="font-weight:600;font-size:11px;color:var(--text-primary)">Growth Phase</p>
+              <p style="font-size:9px;color:var(--text-muted)">Wk 3-6 ● Now</p>
+            </div>
+            <div style="flex:0 0 40px;display:flex;align-items:center;padding-bottom:24px"><div style="height:1.5px;background:var(--neutral-200);width:100%"></div></div>
+            <div style="flex:1;text-align:center">
+              <div style="width:32px;height:32px;border-radius:50%;background:var(--neutral-100);display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-1);color:var(--text-muted);font-size:13px">○</div>
+              <p style="font-weight:600;font-size:11px;color:var(--text-muted)">Practice</p>
+              <p style="font-size:9px;color:var(--text-muted)">Wk 7-10</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--sp-2);padding:var(--sp-2) var(--sp-3);background:var(--green-50);border-radius:var(--r-sm);margin-bottom:var(--sp-4)">
+            <span style="font-size:12px">📅</span>
+            <span style="font-size:9px;color:var(--primary-text);font-weight:500">Practice Phase in ~2 weeks · 4/10 done</span>
+          </div>
+
+          <!-- ── Motivation Badge ── -->
+          <div class="motivation-card">
+            <div class="motivation-badge">🎖</div>
+            <div class="motivation-text">
+              <div class="badge-title">New Badge: Courage to Ask</div>
+              <div class="mentor-note">Asked 12 questions this month · 6 mentor commendations</div>
+            </div>
+          </div>
+
+          <!-- ── This Week ── -->
+          <div style="margin-top:var(--sp-4);padding:var(--sp-4);background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl)">
+            <div style="display:flex;align-items:center;gap:var(--sp-1);margin-bottom:var(--sp-3)">
+              <span style="font-size:13px">📊</span>
+              <span style="font-size:var(--text-xs);font-weight:700;color:var(--text-primary);font-family:var(--font-heading)">This Week</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:var(--sp-2)">
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;padding:var(--sp-1) 0;border-bottom:1px solid var(--border-light)">
+                <span style="color:var(--text-muted)">Tasks Done</span>
+                <div style="display:flex;align-items:center;gap:var(--sp-2)">
+                  <div style="width:50px;height:3px;background:var(--neutral-100);border-radius:2px;overflow:hidden"><div style="width:80%;height:100%;background:var(--primary);border-radius:2px"></div></div>
+                  <span style="font-weight:700;color:var(--primary);font-family:var(--font-heading);font-size:11px">4/5</span>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;padding:var(--sp-1) 0;border-bottom:1px solid var(--border-light)">
+                <span style="color:var(--text-muted)">Overall Rating</span>
+                <span style="font-weight:700;color:var(--primary);font-family:var(--font-heading);font-size:10px;padding:1px 8px;background:var(--green-50);border-radius:var(--r-full)">Low Risk</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;padding:var(--sp-1) 0">
+                <span style="color:var(--text-muted)">vs last month</span>
+                <span style="font-weight:700;color:var(--primary);font-family:var(--font-heading);font-size:11px">+0.3 ↑</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       PAGE 2: GROWTH TASKS — Mentorship Plan Execution
+       ═══════════════════════════════════════ -->
+  <div class="page" id="page2">
+    <!-- Growth Stage Bar -->
+    <div class="growth-bar a-up">
+      <div class="growth-stage done"><div class="stage-dot done"></div><div class="stage-label">Onboarding</div><div class="stage-sub">Wk 1-2</div></div>
+      <div class="growth-connector done"></div>
+      <div class="growth-stage current"><div class="stage-dot current"></div><div class="stage-label">Growth Phase</div><div class="stage-sub">Wk 3-6</div></div>
+      <div class="growth-connector"></div>
+      <div class="growth-stage future"><div class="stage-dot future"></div><div class="stage-label">Practice</div><div class="stage-sub">Wk 7-10</div></div>
+      <div class="growth-connector"></div>
+      <div class="growth-stage future"><div class="stage-dot future"></div><div class="stage-label">Summary</div><div class="stage-sub">Wk 11-12</div></div>
+      <div class="growth-meta"><div class="meta-main">Week 4</div><div class="meta-sub">2 weeks until Practice Phase</div></div>
+    </div>
+
+    <!-- Plan Overview (matches mentor_v3 p4 progress) -->
+    <div class="plan-overview a-up d1">
+      <div class="plan-hero">
+        <div style="position:relative;flex:1">
+          <p class="ph-tag">● Active Plan</p>
+          <h3 class="ph-name">Mastering Technical Solution Design</h3>
+          <div class="ph-meta">
+            <span style="display:flex;align-items:center;gap:var(--sp-2)"><span class="ph-avatar" style="background:linear-gradient(135deg,var(--info),var(--purple));display:inline-block"></span>Mentor: Zhang Wei</span><span class="ph-sep">|</span>
+            <span>📂 Solution Library · Shared</span>
+            <span class="ph-badge">For R&D</span>
+          </div>
+        </div>
+        <div class="plan-progress-box">
+          <div class="pp-num">2/4</div>
+          <div class="pp-bar"><div class="pp-bar-fill" style="width:50%"></div></div>
+          <p class="pp-label">items done</p>
+        </div>
+      </div>
+      <div class="plan-side-card">
+        <div class="ps-row"><span class="ps-label">Start</span><span class="ps-value">6/1</span></div>
+        <div class="ps-row"><span class="ps-label">Est. Completion</span><span class="ps-value">Jun 28</span></div>
+        <div class="ps-row"><span class="ps-label">Phase</span><span class="st-badge green" style="font-size:10px">Solution Design</span></div>
+      </div>
+    </div>
+
+    <!-- Step Timeline (matches mentor_v3 p4 timeline) -->
+    <div class="snapshot-card a-up d2" style="padding:var(--sp-8) var(--sp-8) var(--sp-8) var(--sp-10)">
+      <div class="step-timeline">
+        <div class="step-node">
+          <div class="node-dot">✓</div>
+          <span class="st-badge green node-badge">Done</span>
+          <h5 class="node-title">📹 Study "How to Write Great Tech Specs" course</h5>
+          <p class="node-meta">Understand tech spec structure · Master review criteria · Complete exercises</p>
+          <div class="node-actions"><button class="btn-ghost" onclick="showToast('View Learning Record')">View Learning Record</button></div>
+        </div>
+        <div class="step-node active">
+          <div class="node-dot">●</div>
+          <div class="node-body">
+            <span class="st-badge blue node-badge">In Progress</span>
+            <h5 class="node-title">📋 Complete "User Permission Module Design" exercise</h5>
+            <div class="node-highlight">
+              Draft tech spec doc · Pass mentor review · Submit final version
+              <span class="active-label">← Current Active Step</span>
+            </div>
+            <div class="node-actions">
+              <button class="btn-primary" onclick="goPage(3)">Submit Output</button>
+              <button class="btn-ghost" onclick="showToast('🚩 Blocked — mentor will be notified')">Mark Blocked</button>
+              <button class="btn-ghost" onclick="openDrawer('task_p1')">View Details</button>
+            </div>
+          </div>
+        </div>
+        <div class="step-node future">
+          <div class="node-dot">○</div>
+          <span class="st-badge gray node-badge">Locked</span>
+          <h5 class="node-title">💬 Mock Defense: Design Review</h5>
+          <p class="node-meta">Prepare review materials · Mock defense · Collect feedback</p>
+        </div>
+        <div class="step-node future">
+          <div class="node-dot">○</div>
+          <span class="st-badge gray node-badge">Locked</span>
+          <h5 class="node-title">🎓 Mentor 1-on-1 Review Coaching</h5>
+          <p class="node-meta">Review recap · Improvement summary · Plan next steps</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- History -->
+    <div class="history-section a-up d3">
+      <button class="history-toggle" onclick="toggleHistory()">
+        <span id="historyArrow">▶</span> Completed Plans (1)
+      </button>
+      <div class="history-list" id="historyList">
+        <div class="history-item" onclick="showToast('Expand R&D New Hire Onboarding Plan')">
+          <div class="h-icon">📦</div>
+          <div class="h-info"><div class="h-name">R&D New Hire Onboarding Plan</div><div class="h-date">Completed Jun 1 · 3 steps · Mentor: Zhang Wei</div></div>
+          <span style="color:var(--text-muted)">Expand →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       PAGE 3: GROWTH — Write Report + History
+       ═══════════════════════════════════════ -->
+  <div class="page" id="page3">
+    <div class="growth-tabs a-up">
+      <button class="growth-tab active" onclick="switchGrowthTab('write',this)">Write Report</button>
+      <button class="growth-tab" onclick="switchGrowthTab('history',this)">History</button>
+    </div>
+
+    <!-- ═══ TAB: Write Report ═══ -->
+    <div class="growth-panel active" id="panel-write">
+      <div class="q-list a-up d1">
+        <div class="q-section-label">REQUIRED</div>
+        <div class="q-item open" id="q1">
+          <div class="q-trigger" onclick="toggleQuestion('q1')"><div class="q-icon">1</div><span class="q-stem">What were your key outputs this week?</span><span class="q-arrow">▾</span></div>
+          <div class="q-body">
+            <div class="q-guide">List 1-3 main outputs completed this week (spec docs, prototypes, competitive analysis, flowcharts, meeting notes, etc.). For each: what you did, why, and current status.<br>Example: ① Completed first draft of User Center redesign spec (passed internal review) ② Delivered user flow comparison across Competitors A/B/C</div>
+            <div class="ta-wrap"><textarea placeholder="Write your key outputs..."></textarea><button class="ai-btn" onclick="aiPolish(this,'Q1')" title="AI Polish">✨</button></div>
+          </div>
+        </div>
+        <div class="q-item" id="q2">
+          <div class="q-trigger" onclick="toggleQuestion('q2')"><div class="q-icon">2</div><span class="q-stem">What was the most important thing you learned this week?</span><span class="q-arrow">▾</span></div>
+          <div class="q-body">
+            <div class="q-guide">This could be a methodology, tool, business insight, inspiration from a colleague, or a lesson from a mistake. Be specific: what you learned + how + why it matters.<br>Example: Learned to use User Story Mapping to prioritize features, picked up from the Product Director during a review meeting. Before, I prioritized by intuition; now I have a structured approach.</div>
+            <div class="ta-wrap"><textarea placeholder="Write your biggest takeaway..."></textarea><button class="ai-btn" onclick="aiPolish(this,'Q2')" title="AI Polish">✨</button></div>
+          </div>
+        </div>
+        <div class="q-item" id="q3">
+          <div class="q-trigger" onclick="toggleQuestion('q3')"><div class="q-icon">3</div><span class="q-stem">What was your biggest challenge this week?</span><span class="q-arrow">▾</span></div>
+          <div class="q-body">
+            <div class="q-guide">This could be a challenged requirement, a failed communication, or a repeatedly revised proposal. Describe: what happened + how you handled it + the outcome. Be honest if unresolved — your mentor will help.<br>Example: My spec doc was rejected twice by engineering due to unclear acceptance criteria. I reviewed three past specs, reformatted the criteria, and it passed on the third try.</div>
+            <div class="ta-wrap"><textarea placeholder="Write your biggest challenge..."></textarea><button class="ai-btn" onclick="aiPolish(this,'Q3')" title="AI Polish">✨</button></div>
+          </div>
+        </div>
+        <div class="q-section-label">OPTIONAL</div>
+        <div class="q-item" id="q4">
+          <div class="q-trigger" onclick="toggleQuestion('q4')"><div class="q-icon">4</div><span class="q-stem">Where did you contribute your own perspective this week?</span><span class="q-arrow">▾</span></div>
+          <div class="q-body">
+            <div class="q-guide">Did you speak up in meetings? What suggestions did you make? If you were mainly observing, it's fine to write "Focused on absorbing this week; did not actively speak up yet."</div>
+            <div class="ta-wrap"><textarea placeholder="Write your contributions... (optional)"></textarea><button class="ai-btn" onclick="aiPolish(this,'Q4')" title="AI Polish">✨</button></div>
+          </div>
+        </div>
+        <div class="q-item" id="q5">
+          <div class="q-trigger" onclick="toggleQuestion('q5')"><div class="q-icon">5</div><span class="q-stem">What is one product skill you most want to improve next week?</span><span class="q-arrow">▾</span></div>
+          <div class="q-body">
+            <div class="q-guide">E.g. "Independently conduct one user interview and produce notes" or "Learn to validate a requirement with data." Break big goals into concrete, achievable actions for next week.</div>
+            <div class="ta-wrap"><textarea placeholder="Write your goal for next week... (optional)"></textarea><button class="ai-btn" onclick="aiPolish(this,'Q5')" title="AI Polish">✨</button></div>
+          </div>
+        </div>
+        <div class="q-item" id="q6">
+          <div class="q-trigger" onclick="toggleQuestion('q6')"><div class="q-icon">6</div><span class="q-stem">What would you like to ask your mentor?</span><span class="q-arrow">▾</span></div>
+          <div class="q-body">
+            <div class="q-guide">Work questions, career development queries, or something you don't understand about a decision. Your mentor will respond in comments or schedule a 1-on-1.</div>
+            <div class="ta-wrap"><textarea placeholder="Write your question for your mentor... (optional)"></textarea><button class="ai-btn" onclick="aiPolish(this,'Q6')" title="AI Polish">✨</button></div>
+          </div>
+        </div>
+        <div class="q-item" id="q7">
+          <div class="q-trigger" onclick="toggleQuestion('q7')"><div class="q-icon">7</div><span class="q-stem">Anything else you want to tell your mentor?</span><span class="q-arrow">▾</span></div>
+          <div class="q-body">
+            <div class="q-guide">Anything you want to say but feel shy about in person: suggestions on coaching pace, or "This week felt great — thank you for your guidance."</div>
+            <div class="ta-wrap"><textarea placeholder="Write a message for your mentor... (optional)"></textarea><button class="ai-btn" onclick="aiPolish(this,'Q7')" title="AI Polish">✨</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="write-footer a-up d2">
+        <button class="btn-ghost" onclick="showToast('💾 Draft saved')">Save Draft</button>
+        <button class="btn-primary" onclick="submitReport()">Submit</button>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: History ═══ -->
+    <div class="growth-panel" id="panel-history">
+      <!-- Charts Row -->
+      <div class="a-up d1" style="display:flex;gap:var(--sp-5);margin-bottom:var(--sp-6)">
+        <!-- Quality Trend -->
+        <div class="trend-chart" style="flex:1;padding:var(--sp-6)">
+          <div class="tc-header"><span class="tc-title">Report Quality Trend</span><div class="tc-legend"><span><span class="tc-dot" style="background:var(--primary)"></span>Mentor</span><span><span class="tc-dot" style="background:var(--purple)"></span>Self</span></div></div>
+          <svg viewBox="0 0 300 100" style="width:100%;display:block" id="qualityTrendSvg">
+            <defs><linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--primary)" stop-opacity="0.12"/><stop offset="100%" stop-color="var(--primary)" stop-opacity="0"/></linearGradient></defs>
+            <line x1="40" y1="15" x2="290" y2="15" stroke="oklch(1 0 0 / 0.06)" stroke-width="0.8"/>
+            <line x1="40" y1="34" x2="290" y2="34" stroke="oklch(1 0 0 / 0.06)" stroke-width="0.8"/>
+            <line x1="40" y1="53" x2="290" y2="53" stroke="oklch(1 0 0 / 0.06)" stroke-width="0.8"/>
+            <line x1="40" y1="72" x2="290" y2="72" stroke="oklch(1 0 0 / 0.06)" stroke-width="0.8"/>
+            <text x="34" y="18" text-anchor="end" font-size="9" font-weight="700" fill="var(--green-300)">A</text>
+            <text x="34" y="37" text-anchor="end" font-size="9" font-weight="700" fill="oklch(1 0 0 / 0.35)">B</text>
+            <text x="34" y="56" text-anchor="end" font-size="9" fill="oklch(1 0 0 / 0.25)">C</text>
+            <text x="34" y="75" text-anchor="end" font-size="9" fill="oklch(1 0 0 / 0.18)">D</text>
+            <polygon points="40,35 82,25 124,40 166,21 208,10 280,7 280,85 40,85" fill="url(#areaGrad)"/>
+            <polyline points="40,35 82,25 124,40 166,21 208,10 280,7" fill="none" stroke="var(--green-300)" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="40,41 82,32 124,46 166,26 208,17 280,14" fill="none" stroke="var(--purple)" stroke-width="1.2" stroke-dasharray="3,2" stroke-linecap="round" opacity="0.7"/>
+            <circle cx="40" cy="35" r="4" fill="var(--neutral-800)" stroke="var(--green-300)" stroke-width="1.5" class="trend-dot" data-week="W1" data-grade="B" data-mentor="3.2" data-self="2.8" data-note="Onboarding & adjustment"/>
+            <circle cx="82" cy="25" r="4" fill="var(--neutral-800)" stroke="var(--green-300)" stroke-width="1.5" class="trend-dot" data-week="W2" data-grade="B+" data-mentor="3.5" data-self="3.0" data-note="Independent task ownership"/>
+            <circle cx="124" cy="40" r="4" fill="var(--neutral-800)" stroke="var(--green-300)" stroke-width="1.5" class="trend-dot" data-week="W3" data-grade="B-" data-mentor="3.1" data-self="3.3" data-note="Proposal challenged"/>
+            <circle cx="166" cy="21" r="4" fill="var(--neutral-800)" stroke="var(--green-300)" stroke-width="1.5" class="trend-dot" data-week="W4" data-grade="A-" data-mentor="3.8" data-self="3.5" data-note="Clear improvement"/>
+            <circle cx="208" cy="10" r="4" fill="var(--neutral-800)" stroke="var(--green-300)" stroke-width="1.5" class="trend-dot" data-week="W5" data-grade="A" data-mentor="4.0" data-self="3.9" data-note="Independent integration"/>
+            <circle cx="280" cy="7" r="5" fill="var(--green-300)" stroke="var(--green-300)" stroke-width="1.5" class="trend-dot" data-week="W6" data-grade="A" data-mentor="4.2" data-self="4.3" data-note="Current week · Grade A"/>
+            <circle cx="40" cy="41" r="3" fill="var(--purple)" opacity="0.7" class="trend-dot" data-week="W1(Self)"/>
+            <circle cx="82" cy="32" r="3" fill="var(--purple)" opacity="0.7" class="trend-dot" data-week="W2(Self)"/>
+            <circle cx="124" cy="46" r="3" fill="var(--purple)" opacity="0.7" class="trend-dot" data-week="W3(Self)"/>
+            <circle cx="166" cy="26" r="3" fill="var(--purple)" opacity="0.7" class="trend-dot" data-week="W4(Self)"/>
+            <circle cx="208" cy="17" r="3" fill="var(--purple)" opacity="0.7" class="trend-dot" data-week="W5(Self)"/>
+            <circle cx="280" cy="14" r="3.5" fill="var(--purple)" class="trend-dot" data-week="W6(Self)"/>
+            <text x="40" y="28" text-anchor="middle" font-size="8" fill="oklch(1 0 0 / 0.35)">B</text>
+            <text x="166" y="14" text-anchor="middle" font-size="8" fill="oklch(1 0 0 / 0.5)">A-</text>
+            <text x="208" y="5" text-anchor="middle" font-size="9" font-weight="700" fill="var(--green-300)">A</text>
+            <text x="280" y="3" text-anchor="middle" font-size="9" font-weight="800" fill="var(--green-300)">A</text>
+            <text x="40" y="93" text-anchor="middle" font-size="9" fill="oklch(1 0 0 / 0.25)">W1</text>
+            <text x="82" y="93" text-anchor="middle" font-size="9" fill="oklch(1 0 0 / 0.25)">W2</text>
+            <text x="124" y="93" text-anchor="middle" font-size="9" fill="oklch(1 0 0 / 0.25)">W3</text>
+            <text x="166" y="93" text-anchor="middle" font-size="9" fill="oklch(1 0 0 / 0.25)">W4</text>
+            <text x="208" y="93" text-anchor="middle" font-size="9" fill="oklch(1 0 0 / 0.25)">W5</text>
+            <text x="280" y="93" text-anchor="middle" font-size="9" fill="var(--green-300)" font-weight="600">W6</text>
+          </svg>
+        </div>
+
+        <!-- Training Progress -->
+        <div class="trend-chart" style="flex:1;padding:var(--sp-6)">
+          <div class="tc-header"><span class="tc-title">Training Progress</span><div class="tc-legend"><span><span class="tc-dot" style="background:var(--info)"></span>Courses</span><span><span class="tc-dot" style="background:var(--warning)"></span>Practicals</span></div></div>
+          <svg viewBox="0 0 300 100" style="width:100%;display:block">
+            <defs><linearGradient id="barGrad1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--info)" stop-opacity="0.7"/><stop offset="100%" stop-color="var(--info)" stop-opacity="0.1"/></linearGradient>
+            <linearGradient id="barGrad2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--warning)" stop-opacity="0.7"/><stop offset="100%" stop-color="var(--warning)" stop-opacity="0.1"/></linearGradient></defs>
+            <line x1="40" y1="80" x2="290" y2="80" stroke="oklch(1 0 0 / 0.06)" stroke-width="0.8"/>
+            <text x="40" y="92" text-anchor="middle" font-size="9" fill="oklch(1 0 0 / 0.25)">W1</text>
+            <text x="82" y="92" text-anchor="middle" font-size="9" fill="oklch(1 0 0 / 0.25)">W2</text>
+            <text x="124" y="92" text-anchor="middle" font-size="9" fill="oklch(1 0 0 / 0.25)">W3</text>
+            <text x="166" y="92" text-anchor="middle" font-size="9" fill="oklch(1 0 0 / 0.25)">W4</text>
+            <text x="208" y="92" text-anchor="middle" font-size="9" fill="oklch(1 0 0 / 0.25)">W5</text>
+            <text x="280" y="92" text-anchor="middle" font-size="9" fill="var(--info)" font-weight="600">W6</text>
+            <rect x="28" y="55" width="24" height="25" rx="2" fill="url(#barGrad1)" stroke="var(--info)" stroke-width="0.8" class="trend-dot" data-week="W1·Courses" data-mentor="2 courses" data-self="40%"/>
+            <rect x="70" y="40" width="24" height="40" rx="2" fill="url(#barGrad1)" stroke="var(--info)" stroke-width="0.8" class="trend-dot" data-week="W2·Courses" data-mentor="3 courses" data-self="55%"/>
+            <rect x="112" y="45" width="24" height="35" rx="2" fill="url(#barGrad1)" stroke="var(--info)" stroke-width="0.8" class="trend-dot" data-week="W3·Courses" data-mentor="3 courses" data-self="50%"/>
+            <rect x="154" y="28" width="24" height="52" rx="2" fill="url(#barGrad1)" stroke="var(--info)" stroke-width="0.8" class="trend-dot" data-week="W4·Courses" data-mentor="4 courses" data-self="72%"/>
+            <rect x="196" y="15" width="24" height="65" rx="2" fill="url(#barGrad1)" stroke="var(--info)" stroke-width="0.8" class="trend-dot" data-week="W5·Courses" data-mentor="5 courses" data-self="85%"/>
+            <rect x="268" y="10" width="24" height="70" rx="2" fill="url(#barGrad1)" stroke="var(--info)" stroke-width="0.8" class="trend-dot" data-week="W6·Courses" data-mentor="6 courses" data-self="92%"/>
+            <rect x="52" y="50" width="24" height="30" rx="2" fill="url(#barGrad2)" stroke="var(--warning)" stroke-width="0.8" class="trend-dot" data-week="W1·Tasks" data-mentor="1 task" data-self="30%"/>
+            <rect x="94" y="38" width="24" height="42" rx="2" fill="url(#barGrad2)" stroke="var(--warning)" stroke-width="0.8" class="trend-dot" data-week="W2·Tasks" data-mentor="2 tasks" data-self="45%"/>
+            <rect x="136" y="48" width="24" height="32" rx="2" fill="url(#barGrad2)" stroke="var(--warning)" stroke-width="0.8" class="trend-dot" data-week="W3·Tasks" data-mentor="2 tasks" data-self="40%"/>
+            <rect x="178" y="28" width="24" height="52" rx="2" fill="url(#barGrad2)" stroke="var(--warning)" stroke-width="0.8" class="trend-dot" data-week="W4·Tasks" data-mentor="3 tasks" data-self="65%"/>
+            <rect x="220" y="18" width="24" height="62" rx="2" fill="url(#barGrad2)" stroke="var(--warning)" stroke-width="0.8" class="trend-dot" data-week="W5·Tasks" data-mentor="4 tasks" data-self="78%"/>
+            <rect x="292" y="5" width="24" height="75" rx="2" fill="url(#barGrad2)" stroke="var(--warning)" stroke-width="0.8" class="trend-dot" data-week="W6·Tasks" data-mentor="5 tasks" data-self="90%"/>
+            <text x="40" y="50" text-anchor="middle" font-size="9" font-weight="700" fill="oklch(1 0 0 / 0.45)">2</text>
+            <text x="82" y="35" text-anchor="middle" font-size="9" font-weight="700" fill="oklch(1 0 0 / 0.45)">3</text>
+            <text x="166" y="23" text-anchor="middle" font-size="9" font-weight="700" fill="oklch(1 0 0 / 0.45)">4</text>
+            <text x="208" y="10" text-anchor="middle" font-size="9" font-weight="700" fill="oklch(1 0 0 / 0.5)">5</text>
+            <text x="280" y="5" text-anchor="middle" font-size="9" font-weight="800" fill="var(--info)">6</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Week Selector -->
+      <div class="week-row a-up d2" style="margin-bottom:var(--sp-5)">
+        <button class="week-nav" onclick="navigateWeek(-1)">◀</button>
+        <span style="font-size:var(--text-base);font-weight:800;color:var(--text-primary);font-family:var(--font-heading)" id="wkLabel">Week 6</span>
+        <span style="font-size:var(--text-xs);color:var(--text-muted)" id="wkDate">Jun 7 - Jun 13</span>
+        <button class="week-nav" onclick="navigateWeek(1)">▶</button>
+      </div>
+
+      <!-- Week Report Content -->
+      <div class="history-card a-up d3" id="historyContent">
+        <div class="section-head"><h3>Week 6 · Report</h3><span class="h-grade A">Grade A</span></div>
+        <div class="report-qa">
+          <div class="rq-item">
+            <div class="rq-q">Q1 · Key Outputs</div>
+            <div class="rq-a">① Completed first draft of User Center redesign spec (defined next-quarter feature scope; passed internal review; pending engineering alignment)<br>② Delivered user flow comparison across Competitors A/B/C (reference for design proposal; completed and shared with design team)</div>
+            <div class="rq-mentor">💬 Mentor: "Outputs are clearly organized — great application of User Story Mapping"</div>
+          </div>
+          <div class="rq-item">
+            <div class="rq-q">Q2 · Key Learning</div>
+            <div class="rq-a">Learned to use User Story Mapping to prioritize features. Picked this up from the Product Director during a review meeting. Before, I prioritized by intuition; now I have a structured approach and feel much more confident.</div>
+            <div class="rq-mentor">💬 Mentor: "Proactively applying learned tools to real work — excellent habit"</div>
+          </div>
+          <div class="rq-item">
+            <div class="rq-q">Q3 · Key Challenge</div>
+            <div class="rq-a">My spec doc was rejected twice by engineering — the core issue was unclear acceptance criteria. I reviewed three past specs, reformatted the criteria, and it passed on the third try. But I\'m still not sure if my standards are rigorous enough.</div>
+            <div class="rq-mentor">💬 Mentor: "I've marked a few areas to improve — let's discuss in person next week"</div>
+          </div>
+        </div>
+
+        <!-- Applied Learning -->
+        <div class="apply-block">
+          <div class="apply-title">🔄 Applied Learning</div>
+          <div class="apply-grid">
+            <div class="apply-item">
+              <div class="ai-icon course">📹</div>
+              <div class="ai-info"><div class="ai-name">How to Write Great Tech Specs course</div><div class="ai-meta">Completed · Applied to API integration docs; structured thinking made docs clearer</div></div>
+            </div>
+            <div class="apply-item">
+              <div class="ai-icon doc">📄</div>
+              <div class="ai-info"><div class="ai-name">API Integration Self-Test Checklist</div><div class="ai-meta">Completed · Referenced checklist during API testing; found 3 edge-case bugs</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mentor-bubble">
+          <div class="mb-avatar">L</div>
+          <div class="mb-content">
+            <div class="mb-meta">Li Ming · Jun 14 10:30</div>
+            <div class="mb-body">Zhang Yao, excellent report this week. Q1 outputs are clear, Q2 shows you were very engaged in the review meeting, and Q3's challenge description is honest. The applied learning section is also great — you're genuinely using course content in real work. Let's schedule time next week to talk about user interview techniques; there's a project we can use for practice. Keep up this momentum!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  <!-- ═══════════════════════════════════════
+       PAGE 4: TRAINING — Learning Tools + Community
+       ═══════════════════════════════════════ -->
+  <div class="page" id="page4" style="padding:var(--sp-8) var(--sp-8);gap:var(--sp-10)">
+
+    <!-- ═══ Page Header ═══ -->
+    <div class="a-up" style="display:flex;align-items:baseline;justify-content:space-between">
+      <div>
+        <h3 style="font-size:var(--text-2xl);font-weight:700;font-family:var(--font-heading);color:var(--text-primary);letter-spacing:-0.02em">Training</h3>
+        <p style="font-size:var(--text-xs);color:var(--text-muted);margin-top:2px">Curated methodologies & resources to accelerate your growth</p>
+      </div>
+    </div>
+
+    <!-- ═══ Module 1: Learning Tools ═══ -->
+    <div class="a-up d1">
+      <div style="display:flex;align-items:baseline;margin-bottom:var(--sp-5)">
+        <h3 style="font-size:var(--text-lg);font-weight:700;font-family:var(--font-heading);color:var(--text-primary)">Learning Tools</h3>
+        <span style="font-size:10px;color:var(--text-muted);margin-left:var(--sp-2);font-weight:500;background:var(--neutral-50);padding:2px 10px;border-radius:var(--r-full)">4 Methods</span>
+        <button onclick="showToast('🤖 AI Learning Assistant coming soon')" style="margin-left:auto;padding:9px 22px;background:linear-gradient(135deg,var(--green-500),var(--green-600));color:#fff;border:none;border-radius:var(--r-full);font-size:var(--text-sm);font-weight:700;cursor:pointer;font-family:var(--font);box-shadow:0 4px 14px oklch(0.6 0.17 145 / 0.3);transition:all var(--dur-fast) var(--ease-std);letter-spacing:-0.01em">🤖 AI Learning Assistant →</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-5)">
+        <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-6);cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--sp-3)" onclick="showToast('📖 How to Write Great Reports · Learning')">
+          <div style="width:48px;height:48px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:22px;background:linear-gradient(135deg,oklch(0.96 0.02 280),oklch(0.94 0.04 280))">📝</div>
+          <div><h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:4px;font-family:var(--font-heading)">How to Write Great Reports</h5>
+          <p style="font-size:11px;color:var(--text-muted);line-height:1.5;max-width:180px">Structured reflection · Quantify your results</p></div>
+        </div>
+        <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-6);cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--sp-3)" onclick="showToast('📊 Solution Design Self-Check · Learning')">
+          <div style="width:48px;height:48px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:22px;background:linear-gradient(135deg,oklch(0.96 0.02 10),oklch(0.94 0.04 10))">📋</div>
+          <div><h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:4px;font-family:var(--font-heading)">Solution Design Self-Check Guide</h5>
+          <p style="font-size:11px;color:var(--text-muted);line-height:1.5;max-width:180px">Evaluation criteria · Self-review checklist</p></div>
+        </div>
+        <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-6);cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--sp-3)" onclick="showToast('🗣️ Effective Questioning · Learning')">
+          <div style="width:48px;height:48px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:22px;background:linear-gradient(135deg,oklch(0.96 0.03 240),oklch(0.94 0.05 240))">💬</div>
+          <div><h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:4px;font-family:var(--font-heading)">How to Ask Great Questions</h5>
+          <p style="font-size:11px;color:var(--text-muted);line-height:1.5;max-width:180px">Question framing · Context reconstruction</p></div>
+        </div>
+        <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-6);cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--sp-3)" onclick="showToast('🎯 Goal Setting · Learning')">
+          <div style="width:48px;height:48px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:22px;background:linear-gradient(135deg,oklch(0.96 0.03 160),oklch(0.94 0.05 160))">🎯</div>
+          <div><h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:4px;font-family:var(--font-heading)">Set Personal Growth Goals</h5>
+          <p style="font-size:11px;color:var(--text-muted);line-height:1.5;max-width:180px">SMART framework · Goal decomposition</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Module 2: Learning Community ═══ -->
+    <div class="a-up d2">
+      <div style="display:flex;align-items:baseline;margin-bottom:var(--sp-3)">
+        <h3 style="font-size:var(--text-lg);font-weight:700;font-family:var(--font-heading);color:var(--text-primary)">Learning Community</h3>
+        <span style="font-size:10px;color:var(--text-muted);margin-left:var(--sp-2);font-weight:500;background:var(--neutral-50);padding:2px 10px;border-radius:var(--r-full)">Curated</span>
+      </div>
+
+      <!-- Search Bar -->
+      <div style="display:flex;gap:var(--sp-3);margin-bottom:var(--sp-10)">
+        <div style="flex:1;position:relative">
+          <span style="position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:15px;color:var(--text-muted);pointer-events:none;z-index:1">🔍</span>
+          <input placeholder="Search courses, docs, cases…" style="width:100%;height:48px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:0 var(--sp-4) 0 42px;font-size:var(--text-sm);font-family:var(--font);color:var(--text-primary);outline:none;transition:all var(--dur-fast) var(--ease-std);box-shadow:var(--shadow-xs)" onfocus="this.style.borderColor='var(--primary)';this.style.boxShadow='0 0 0 3px var(--green-50)'" onblur="this.style.borderColor='var(--border-light)';this.style.boxShadow='var(--shadow-xs)'">
+        </div>
+        <select id="trainTypeSelect" onchange="switchTrainType(this.value)" style="width:140px;height:48px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:0 var(--sp-3);font-size:var(--text-sm);font-family:var(--font);color:var(--text-secondary);cursor:pointer;outline:none;box-shadow:var(--shadow-xs)"><option value="all" selected>📂 All</option><option value="course">🎬 Courses</option><option value="doc">📄 Docs</option></select>
+        <select style="width:140px;height:48px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:0 var(--sp-3);font-size:var(--text-sm);font-family:var(--font);color:var(--text-secondary);cursor:pointer;outline:none;box-shadow:var(--shadow-xs)"><option>All Topics</option><option>Requirements Analysis</option><option>User Research</option><option>Solution Design</option><option>Data Analysis</option></select>
+        <button class="btn-primary" style="padding:0 28px;height:48px;font-size:var(--text-sm);font-weight:600;border-radius:var(--r-lg)" onclick="showToast('🔍 Searching...')">Search</button>
+      </div>
+
+      <!-- Featured Docs -->
+      <div id="train-doc-section" style="margin-bottom:var(--sp-10)">
+        <div style="display:flex;align-items:baseline;margin-bottom:var(--sp-5)">
+          <h3 style="font-size:var(--text-base);font-weight:700;font-family:var(--font-heading);color:var(--text-primary)">📄 Featured Docs</h3>
+          <span style="font-size:var(--text-xs);color:var(--primary);margin-left:auto;cursor:pointer;font-weight:600;transition:opacity var(--dur-fast)" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Browse All →</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-5)">
+          <!-- Doc 1 -->
+          <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-5);cursor:pointer;display:flex;flex-direction:column" onclick="showToast('📄 Doc detail page coming soon')">
+            <div style="display:flex;align-items:flex-start;gap:var(--sp-3);margin-bottom:var(--sp-3)">
+              <div style="width:42px;height:42px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:oklch(0.96 0.04 80)">📄</div>
+              <div style="flex:1;min-width:0">
+                <h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:2px;font-family:var(--font-heading);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">PRD Writing Standards</h5>
+                <p style="font-size:10px;color:var(--text-muted)">Yang Fan KB · 30 min</p>
+              </div>
+            </div>
+            <p style="font-size:11px;color:var(--text-muted);line-height:1.6;margin-bottom:var(--sp-3);flex:1">Standard templates, writing guidelines & review process to help new hires master PRD writing.</p>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:var(--sp-3)"><span class="tag blue" style="font-size:9px">Product</span><span class="tag green" style="font-size:9px">Beginner</span><span class="tag" style="font-size:9px;background:var(--warning-light);color:var(--warning)">Requirements Analysis</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:var(--sp-2);border-top:1px solid var(--border-light)"><span style="font-size:10px;color:var(--text-muted)">📖 2,340  reads</span><span style="font-size:10px;color:var(--primary);font-weight:600;cursor:pointer" onclick="event.stopPropagation();showToast('⭐ Bookmarked')">⭐ Bookmark</span></div>
+          </div>
+          <!-- Doc 2 -->
+          <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-5);cursor:pointer;display:flex;flex-direction:column" onclick="showToast('📄 Doc detail page coming soon')">
+            <div style="display:flex;align-items:flex-start;gap:var(--sp-3);margin-bottom:var(--sp-3)">
+              <div style="width:42px;height:42px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:oklch(0.96 0.03 260)">📄</div>
+              <div style="flex:1;min-width:0">
+                <h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:2px;font-family:var(--font-heading);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Tech Spec Design Template</h5>
+                <p style="font-size:10px;color:var(--text-muted)">Yang Fan KB · 45 min</p>
+              </div>
+            </div>
+            <p style="font-size:11px;color:var(--text-muted);line-height:1.6;margin-bottom:var(--sp-3);flex:1">Structured template covering architecture design, API definitions, risk assessment, and more.</p>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:var(--sp-3)"><span class="tag blue" style="font-size:9px">R&D</span><span class="tag orange" style="font-size:9px">Growth Phase</span><span class="tag red" style="font-size:9px">Solution Design</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:var(--sp-2);border-top:1px solid var(--border-light)"><span style="font-size:10px;color:var(--text-muted)">📖 1,890  reads</span><span style="font-size:10px;color:var(--primary);font-weight:600;cursor:pointer" onclick="event.stopPropagation();showToast('⭐ Bookmarked')">⭐ Bookmark</span></div>
+          </div>
+          <!-- Doc 3 -->
+          <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-5);cursor:pointer;display:flex;flex-direction:column" onclick="showToast('📄 Doc detail page coming soon')">
+            <div style="display:flex;align-items:flex-start;gap:var(--sp-3);margin-bottom:var(--sp-3)">
+              <div style="width:42px;height:42px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:oklch(0.96 0.03 350)">📄</div>
+              <div style="flex:1;min-width:0">
+                <h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:2px;font-family:var(--font-heading);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">User Research Report Guide</h5>
+                <p style="font-size:10px;color:var(--text-muted)">Yang Fan KB · 25 min</p>
+              </div>
+            </div>
+            <p style="font-size:11px;color:var(--text-muted);line-height:1.6;margin-bottom:var(--sp-3);flex:1">End-to-end methodology from research planning to report delivery, with real case studies.</p>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:var(--sp-3)"><span class="tag blue" style="font-size:9px">Product</span><span class="tag purple" style="font-size:9px">Beginner</span><span class="tag" style="font-size:9px;background:var(--info-light);color:var(--info)">User Research</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:var(--sp-2);border-top:1px solid var(--border-light)"><span style="font-size:10px;color:var(--text-muted)">📖 1,560  reads</span><span style="font-size:10px;color:var(--primary);font-weight:600;cursor:pointer" onclick="event.stopPropagation();showToast('⭐ Bookmarked')">⭐ Bookmark</span></div>
+          </div>
+          <!-- Doc 4 -->
+          <div class="card-hover" style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--r-xl);padding:var(--sp-5);cursor:pointer;display:flex;flex-direction:column" onclick="showToast('📄 Doc detail page coming soon')">
+            <div style="display:flex;align-items:flex-start;gap:var(--sp-3);margin-bottom:var(--sp-3)">
+              <div style="width:42px;height:42px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:oklch(0.96 0.03 185)">📄</div>
+              <div style="flex:1;min-width:0">
+                <h5 style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);margin-bottom:2px;font-family:var(--font-heading);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Data Analysis Mindset & Tools Handbook</h5>
+                <p style="font-size:10px;color:var(--text-muted)">Yang Fan KB · 40 min</p>
+              </div>
+            </div>
+            <p style="font-size:11px;color:var(--text-muted);line-height:1.6;margin-bottom:var(--sp-3);flex:1">Common analysis methods, SQL query templates & dashboard building guide.</p>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:var(--sp-3)"><span class="tag blue" style="font-size:9px">All Roles</span><span class="tag orange" style="font-size:9px">Growth Phase</span><span class="tag red" style="font-size:9px">Data Analysis</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:var(--sp-2);border-top:1px solid var(--border-light)"><span style="font-size:10px;color:var(--text-muted)">📖 2,100  reads</span><span style="font-size:10px;color:var(--primary);font-weight:600;cursor:pointer" onclick="event.stopPropagation();showToast('⭐ Bookmarked')">⭐ Bookmark</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Learning Lab -->
+      <div id="ai-banner" style="background:linear-gradient(155deg,oklch(0.18 0.025 150) 0%,oklch(0.13 0.015 150) 100%);border-radius:var(--r-2xl);padding:var(--sp-10);margin-bottom:var(--sp-10);color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);transition:all var(--dur-normal) var(--ease-std)">
+        <div style="position:absolute;top:-120px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,var(--green-500) 0%,transparent 65%);opacity:.07;border-radius:50%;pointer-events:none"></div>
+        <div style="position:absolute;bottom:-80px;left:10%;width:300px;height:300px;background:radial-gradient(circle,var(--green-400) 0%,transparent 65%);opacity:.04;border-radius:50%;pointer-events:none"></div>
+        <div style="display:flex;align-items:center;gap:var(--sp-10);position:relative">
+          <div style="flex:1">
+            <p style="font-size:10px;font-weight:700;color:var(--green-300);text-transform:uppercase;letter-spacing:.1em;margin-bottom:var(--sp-3);opacity:.8">AI-Powered Learning</p>
+            <h3 style="font-size:var(--text-xl);font-weight:800;line-height:1.4;margin-bottom:var(--sp-4);font-family:var(--font-heading);letter-spacing:-0.01em">AI Learning Assistant — organize knowledge, answer questions</h3>
+            <p style="font-size:var(--text-xs);color:oklch(1 0 0 / 0.4);margin-bottom:var(--sp-5);max-width:480px;line-height:1.7">Stuck on something? The AI assistant uses the SECI knowledge extraction model — Scenario Reconstruction → Action Breakdown → Principle Extraction — to turn tacit experience into learnable knowledge.</p>
+            <button onclick="showToast('🤖 AI Learning Assistant coming soon')" class="btn-primary" style="padding:11px 28px;font-size:var(--text-sm);font-weight:700;border-radius:var(--r-full)">Get Started →</button>
+          </div>
+          <div style="flex-shrink:0;width:80px;height:80px;background:oklch(1 0 0 / 0.04);border-radius:var(--r-xl);display:flex;align-items:center;justify-content:center;font-size:36px;backdrop-filter:blur(12px);border:1px solid oklch(1 0 0 / 0.06)">✨</div>
+        </div>
+      </div>
+
+      <!-- Featured Courses -->
+      <div id="train-course-section">
+        <div style="display:flex;align-items:baseline;margin-bottom:var(--sp-5)">
+          <h3 style="font-size:var(--text-base);font-weight:700;font-family:var(--font-heading);color:var(--text-primary)">🎬 Featured Courses</h3>
+          <span style="font-size:var(--text-xs);color:var(--primary);margin-left:auto;cursor:pointer;font-weight:600;transition:opacity var(--dur-fast)" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Browse All →</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-5)">
+          <!-- Course 1: Intro to Product Prototyping -->
+          <div style="cursor:pointer;transition:all var(--dur-normal) var(--ease-std)" onclick="showToast('🎬 Course detail page coming soon')" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="height:160px;background:url(img/course_3.png) center/cover,linear-gradient(135deg,var(--green-400),var(--green-600));border-radius:var(--r-xl);position:relative;overflow:hidden;box-shadow:var(--shadow-sm)">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0 0 0 / 0.5) 100%);border-radius:var(--r-xl)"></div>
+              <span style="position:absolute;top:12px;left:12px;background:oklch(0 0 0 / 0.35);backdrop-filter:blur(12px);color:#fff;font-size:10px;font-weight:600;padding:3px 10px;border-radius:var(--r-full)">🔥 Hot</span>
+              <span style="position:absolute;bottom:12px;right:12px;color:#fff;font-size:11px;font-weight:700">★ 4.9</span>
+            </div>
+            <p style="font-weight:700;font-size:var(--text-sm);margin-top:var(--sp-3);color:var(--text-primary);line-height:1.4">Intro to Product Prototyping</p>
+            <p style="font-size:10px;color:var(--text-muted);margin-top:3px">Yang Fan Courses · 1200+  enrolled</p>
+          </div>
+          <!-- Course 2: Core Product Thinking Methods -->
+          <div style="cursor:pointer;transition:all var(--dur-normal) var(--ease-std)" onclick="showToast('🎬 Course detail page coming soon')" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="height:160px;background:url(img/course_4.png) center/cover,linear-gradient(135deg,#FF743C,#e67e22);border-radius:var(--r-xl);position:relative;overflow:hidden;box-shadow:var(--shadow-sm)">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0 0 0 / 0.5) 100%);border-radius:var(--r-xl)"></div>
+              <span style="position:absolute;top:12px;left:12px;background:oklch(0 0 0 / 0.35);backdrop-filter:blur(12px);color:#fff;font-size:10px;font-weight:600;padding:3px 10px;border-radius:var(--r-full)">🔥 Hot</span>
+              <span style="position:absolute;bottom:12px;right:12px;color:#fff;font-size:11px;font-weight:700">★ 4.8</span>
+            </div>
+            <p style="font-weight:700;font-size:var(--text-sm);margin-top:var(--sp-3);color:var(--text-primary);line-height:1.4">Core Product Thinking Methods</p>
+            <p style="font-size:10px;color:var(--text-muted);margin-top:3px">Yang Fan Courses · 980+  enrolled</p>
+          </div>
+          <!-- Course 3: Frontend Development Bootcamp -->
+          <div style="cursor:pointer;transition:all var(--dur-normal) var(--ease-std)" onclick="showToast('🎬 Course detail page coming soon')" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="height:160px;background:url(img/course_0.png) center/cover,linear-gradient(135deg,#2D3652,#4338ca);border-radius:var(--r-xl);position:relative;overflow:hidden;box-shadow:var(--shadow-sm)">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0 0 0 / 0.5) 100%);border-radius:var(--r-xl)"></div>
+              <span style="position:absolute;top:12px;left:12px;background:oklch(0 0 0 / 0.35);backdrop-filter:blur(12px);color:#fff;font-size:10px;font-weight:600;padding:3px 10px;border-radius:var(--r-full)">🔥 Hot</span>
+              <span style="position:absolute;bottom:12px;right:12px;color:#fff;font-size:11px;font-weight:700">★ 4.9</span>
+            </div>
+            <p style="font-weight:700;font-size:var(--text-sm);margin-top:var(--sp-3);color:var(--text-primary);line-height:1.4">Frontend Development Bootcamp</p>
+            <p style="font-size:10px;color:var(--text-muted);margin-top:3px">Yang Fan Courses · 2,100+  enrolled</p>
+          </div>
+          <!-- Course 4: Cross-Platform App Development -->
+          <div style="cursor:pointer;transition:all var(--dur-normal) var(--ease-std)" onclick="showToast('🎬 Course detail page coming soon')" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="height:160px;background:url(img/course_2.png) center/cover,linear-gradient(135deg,#775da6,#a78bfa);border-radius:var(--r-xl);position:relative;overflow:hidden;box-shadow:var(--shadow-sm)">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0 0 0 / 0.5) 100%);border-radius:var(--r-xl)"></div>
+              <span style="position:absolute;top:12px;left:12px;background:oklch(0 0 0 / 0.35);backdrop-filter:blur(12px);color:#fff;font-size:10px;font-weight:600;padding:3px 10px;border-radius:var(--r-full)">🔥 Hot</span>
+              <span style="position:absolute;bottom:12px;right:12px;color:#fff;font-size:11px;font-weight:700">★ 4.7</span>
+            </div>
+            <p style="font-weight:700;font-size:var(--text-sm);margin-top:var(--sp-3);color:var(--text-primary);line-height:1.4">Cross-Platform App Development</p>
+            <p style="font-size:10px;color:var(--text-muted);margin-top:3px">Yang Fan Courses · 760+  enrolled</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     DRAWER (Task Detail)
+     ═══════════════════════════════════════ -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <h3 id="drawerTitle">Task Details</h3>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     FLOATING HELP BUTTON
+     ═══════════════════════════════════════ -->
+<div class="float-help" id="floatHelp">
+  <button class="float-help-btn" onclick="toggleHelpMenu()" title="Need help?">💡</button>
+  <div class="float-help-menu" id="helpMenu">
+    <button onclick="showToast('🔍 Searching Knowledge Base...')">🔍 Search Knowledge Base</button>
+    <button onclick="showToast('💬 Mentor Zhang Wei notified')">💬 Ask Mentor</button>
+    <button onclick="showToast('📞 HR will respond within 1 business day')">🏢 Contact HR</button>
+  </div>
+</div>
+
+<!-- Toast & chart popups removed per design spec -->
+
+<script>
+/* ===== PAGE NAVIGATION ===== */
+function heroSwitchTab(btn,cat){
+  btn.parentElement.querySelectorAll('.hero-todo-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.hero-todo-cat').forEach(c=>c.classList.remove('active'));
+  document.querySelector('.hero-todo-cat[data-cat="'+cat+'"]').classList.add('active');
+}
+function openTodoModal(){
+  showToast('📝 New task feature coming soon');
+}
+function goPage(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const pg=document.getElementById('page'+n);
+  if(!pg)return;
+  pg.classList.add('active');
+  const nav=document.querySelector('.nav-item[data-page="'+n+'"]');
+  if(nav)nav.classList.add('active');
+  pg.querySelectorAll('.a-up').forEach(el=>{el.style.animation='none';el.offsetHeight;el.style.animation=''});
+}
+
+/* ===== TOAST (deprecated — popup cards removed) ===== */
+function showToast(msg){ /* no-op: toast popups removed per design */ }
+
+/* ===== DRAWER ===== */
+const drawerData={
+  task1:{title:'User Mgmt API Integration',desc:'Responsible for frontend-backend API integration for the User Management module, including data validation, error handling, and edge-case testing.',mentor:'Zhang Wei',deadline:'Today 18:00',status:'In Progress',feedback:[{from:'mentor',text:'How is the integration going? Reach out anytime if you hit a snag.'},{from:'intern',text:'Basic CRUD endpoints are done; now testing exception scenarios.'}]},
+  task2:{title:'Read "Microservice Decomposition" Ch.3',desc:'Learn microservice decomposition strategies, focusing on bounded context and business-capability-based splitting principles.',mentor:'System Recommended',deadline:'Friday',status:'Pending',feedback:[{from:'mentor',text:'Chapter 3 is very helpful for scalability design — recommend taking notes while reading.'}]},
+  task3:{title:'Complete Weekly Review & Reflection',desc:'Review this week\'s learning outcomes, challenges faced, and improvement plans for next week.',mentor:'System Auto',deadline:'Sunday',status:'Pending',feedback:[]},
+  task_p1:{title:'User Mgmt API Integration',desc:'Responsible for frontend-backend API integration for the User Management module, including data validation, error handling, and edge-case testing.',mentor:'Zhang Wei',deadline:'Jun 12 18:00 (Overdue)',status:'In Progress',feedback:[{from:'mentor',text:'How is the integration going? Reach out anytime if you hit a snag.'},{from:'intern',text:'Basic CRUD endpoints are done; now testing exception scenarios.'},{from:'mentor',text:'Great — cover exception scenarios thoroughly; this is a common interview topic.'}]},
+  task_p2:{title:'Competitor Feature Matrix Analysis',desc:'Analyze feature matrices of 3 major competitors and produce a comparison report.',mentor:'Chen Shan',deadline:'Jun 15 12:00',status:'In Progress',feedback:[{from:'mentor',text:'Start from the user perspective and focus on core feature differences.'}]},
+  task_p3:{title:'Weekly Sync Prep',desc:'Organize this week\'s project progress, risks, and next week\'s plan for the weekly sync.',mentor:'Zhang Yue',deadline:'Jun 18 10:00',status:'Pending',feedback:[]},
+  task_d1:{title:'Set Up Local Dev Environment',desc:'Configure dev environment including IDE, database, middleware, etc.',mentor:'Zhang Wei',deadline:'Jun 5',status:'Done',feedback:[{from:'mentor',text:'Great job setting up the environment — documentation is clear too. ⭐ 4.5'}]},
+  task_d2:{title:'New Hire Learning Path — Phase 1 Review',desc:'Review learning outcomes and gaps from Phase 1 since onboarding.',mentor:'HRBP',deadline:'Jun 2',status:'Done',feedback:[{from:'mentor',text:'Solid reflection — next phase can be more targeted. ⭐ 4.8'}]}
+};
+
+function openDrawer(taskId){
+  const d=drawerData[taskId];if(!d)return;
+  document.getElementById('drawerTitle').textContent=d.title;
+  let fbHtml='';
+  if(d.feedback.length>0){
+    fbHtml='<div class="drawer-field"><label>Mentor Feedback</label><div class="feedback-thread">';
+    d.feedback.forEach(f=>{fbHtml+='<div class="feedback-bubble '+f.from+'">'+f.text+'</div>';});
+    fbHtml+='</div></div>';
+  }
+  document.getElementById('drawerBody').innerHTML=
+    '<div class="drawer-field"><label>Description</label><div class="field-value">'+d.desc+'</div></div>'+
+    '<div class="drawer-field"><label>Mentor</label><div class="field-value">'+d.mentor+'</div></div>'+
+    '<div class="drawer-field"><label>Deadline</label><div class="field-value">'+d.deadline+'</div></div>'+
+    '<div class="drawer-field"><label>Status</label><div class="field-value">'+d.status+'</div></div>'+
+    fbHtml+
+    '<div class="drawer-field"><label>Submit Output</label><textarea placeholder="Paste link or describe your output..."></textarea></div>'+
+    '<button class="btn-primary" style="width:100%;justify-content:center;padding:var(--sp-3)" onclick="closeDrawer();goPage(3)">Submit Output</button>';
+  document.getElementById('drawerOverlay').classList.add('open');
+  document.getElementById('drawer').classList.add('open');
+}
+function closeDrawer(){
+  document.getElementById('drawerOverlay').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+}
+
+/* ===== HELP MENU ===== */
+function toggleHelpMenu(){
+  document.getElementById('helpMenu').classList.toggle('open');
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('#floatHelp'))document.getElementById('helpMenu').classList.remove('open');
+});
+
+/* ===== HISTORY TOGGLE ===== */
+function toggleHistory(){
+  const list=document.getElementById('historyList');
+  const arrow=document.getElementById('historyArrow');
+  list.classList.toggle('open');
+  arrow.textContent=list.classList.contains('open')?'▼':'▶';
+}
+
+/* ===== GROWTH TABS ===== */
+function switchGrowthTab(tab,btn){
+  btn.parentElement.querySelectorAll('.growth-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.growth-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+tab).classList.add('active');
+}
+function switchHistoryWeek(wk){
+  document.getElementById('historyContent').querySelector('h3').textContent='Week '+wk+' · Report';
+  showToast('Switched to Week '+wk);
+}
+/* ===== WEEK NAVIGATION ===== */
+const weekData={
+  1:{date:'May 4 - May 10',grade:'B',gradeClass:'B',q1:'① Completed onboarding training; learned company culture and team structure<br>② Read core product docs and mapped out the product feature landscape',q2:'Learned to use flowcharts to untangle product logic. Before, reading docs left me confused; after diagramming the flow, the overall product structure became much clearer.',q3:'Unfamiliar with many business terms — often couldn\'t follow meetings. I took notes and looked them up afterward; by week two it was much better.',mentorReview:'Great first week adapting — your documentation work is thorough. The flowchart approach is a good one; keep it up.',mentorDate:'Li Ming · May 10',applied:[]},
+  2:{date:'May 11 - May 17',grade:'B',gradeClass:'B',q1:'① Organized user feedback — categorized 23 user suggestions<br>② Participated in requirements review meeting; took meeting minutes',q2:'Learned to view requirements through the lens of "user stories." Previously I struggled to grasp the key points when mentors analyzed requirements; this week I tried the user perspective and things became much clearer.',q3:'My first meeting minutes were called out for "missing key conclusions." After referencing the mentor\'s minutes template, the second version was much better.',mentorReview:'User feedback organization is very thorough. Rapid improvement on meeting minutes — the second submission already meets baseline standards.',mentorDate:'Li Ming · May 17',applied:[]},
+  3:{date:'May 18 - May 24',grade:'B-',gradeClass:'B',q1:'① Completed basic feature comparison analysis for Competitor A<br>② Assisted mentor in organizing a requirements prioritization table',q2:'Learned to use the RICE model to evaluate requirement priority. Before, everything felt important; now I have a quantitative method.',q3:'My competitor analysis was flagged by my mentor as "too superficial, lacking deep comparison." I need to build analysis skills from a user-scenario perspective.',mentorReview:'Competitor analysis still needs more depth — suggest starting from user scenarios rather than feature checklists. RICE model application was excellent.',mentorDate:'Li Ming · May 24',applied:[{icon:'📹',cls:'course',name:'Intro to Product Thinking',desc:'Completed · Practiced using RICE model for requirement prioritization'}]},
+  4:{date:'May 25 - May 31',grade:'A-',gradeClass:'A',q1:'① Independently completed first draft of User Center redesign spec<br>② Delivered user flow comparison analysis across Competitors A/B/C',q2:'Learned to use User Story Mapping to prioritize features. Picked this up from the Product Director during a review meeting. Before, I prioritized by intuition; now I have a structured approach.',q3:'My spec doc was rejected twice by engineering for unclear acceptance criteria. I reviewed three past specs, reformatted the criteria, and it passed on the third try.',mentorReview:'Outputs are clearly organized — great application of User Story Mapping. I can see you were very engaged in the review meeting; your ability to apply learning is strong.',mentorDate:'Li Ming · May 31',applied:[{icon:'📹',cls:'course',name:'How to Write Great Tech Specs',desc:'Completed · Applied to spec document writing'},{icon:'📄',cls:'doc',name:'API Documentation Standards',desc:'Completed · Referenced standards to reorganize acceptance criteria'}]},
+  5:{date:'Jun 1 - Jun 6',grade:'A',gradeClass:'A',q1:'① Completed User Management Module API integration docs<br>② Independently completed code review; found 2 logic bugs',q2:'Learned to think about edge cases in API design. I used to only focus on the happy path; during integration I realized exception handling is where the real difficulty lies.',q3:'During code review I was asked "What if concurrency increases 10x?" and couldn\'t answer. I realized I need to strengthen my system design knowledge.',mentorReview:'API integration was done independently and very well — comprehensive exception test coverage. Excellent performance in code review too; your improvement suggestions were valuable.',mentorDate:'Li Ming · Jun 6',applied:[{icon:'📹',cls:'course',name:'API Design Best Practices',desc:'Completed · Applied to API integration; broader exception scenario coverage'},{icon:'📄',cls:'doc',name:'API Integration Self-Test Checklist',desc:'Completed · Found 3 edge-case bugs during testing this week'}]},
+  6:{date:'Jun 7 - Jun 13',grade:'A',gradeClass:'A',q1:'① Completed first draft of User Center redesign spec (defined next-quarter feature scope; passed internal review; pending engineering alignment)<br>② Delivered user flow comparison across Competitors A/B/C (reference for design proposal; completed and shared with design team)',q2:'Learned to use User Story Mapping to prioritize features. Picked this up from the Product Director during a review meeting. Before, I prioritized by intuition; now I have a structured approach and feel much more confident.',q3:'My spec doc was rejected twice by engineering — the core issue was unclear acceptance criteria. I reviewed three past specs, reformatted the criteria, and it passed on the third try. But I\'m still not sure if my standards are rigorous enough.',mentorReview:'Zhang Yao, excellent report this week. Q1 outputs are clear, Q2 shows you were very engaged in the review meeting, and Q3\'s challenge description is honest. The applied learning section is also great — you\'re genuinely using course content in real work. Let\'s schedule time next week to talk about user interview techniques; there\'s a project we can use for practice. Keep up this momentum!',mentorDate:'Li Ming · Jun 14',applied:[{icon:'📹',cls:'course',name:'How to Write Great Tech Specs',desc:'Completed · Applied to API integration docs; structured thinking made docs clearer'},{icon:'📄',cls:'doc',name:'API Integration Self-Test Checklist',desc:'Completed · Found 3 edge-case bugs during testing this week'}]}
+};
+
+let currentWeek=6;
+function navigateWeek(dir){
+  currentWeek=Math.max(1,Math.min(6,currentWeek+dir));
+  document.getElementById('wkLabel').textContent='Week '+currentWeek;
+  updateHistoryContent(currentWeek);
+}
+function updateHistoryContent(wk){
+  const d=weekData[wk];if(!d)return;
+  document.getElementById('wkDate').textContent=d.date;
+  const card=document.getElementById('historyContent');
+  card.querySelector('h3').textContent='Week '+wk+' · Report';
+  const grade=card.querySelector('.h-grade');
+  grade.textContent=d.grade;grade.className='h-grade '+d.gradeClass;
+  const items=card.querySelectorAll('.rq-item');
+  items[0].querySelector('.rq-a').innerHTML=d.q1;
+  items[1].querySelector('.rq-a').innerHTML=d.q2;
+  items[2].querySelector('.rq-a').innerHTML=d.q3;
+  const applyGrid=card.querySelector('.apply-grid');
+  if(d.applied.length>0){
+    applyGrid.style.display='';
+    applyGrid.innerHTML=d.applied.map(a=>'<div class="apply-item"><div class="ai-icon '+a.cls+'">'+a.icon+'</div><div class="ai-info"><div class="ai-name">'+a.name+'</div><div class="ai-meta">'+a.desc+'</div></div></div>').join('');
+  }else{applyGrid.style.display='none'}
+  card.querySelector('.mb-meta').textContent=d.mentorDate;
+  card.querySelector('.mb-body').textContent=d.mentorReview;
+  // Update chart highlights
+  updateChartHighlight(wk);
+}
+function updateChartHighlight(wk){
+  const svg=document.getElementById('qualityTrendSvg');if(!svg)return;
+  const dots=svg.querySelectorAll('.trend-dot');
+  const xs=[40,82,124,166,208,280];
+  dots.forEach(dot=>{
+    const cx=parseFloat(dot.getAttribute('cx'));
+    const idx=xs.indexOf(cx);
+    if(idx>=0&&dot.getAttribute('data-grade')){
+      if(idx===wk-1){dot.setAttribute('r','6');dot.setAttribute('fill','var(--green-300)');dot.setAttribute('stroke-width','2')}
+      else{dot.setAttribute('r','4');dot.setAttribute('fill','var(--neutral-800)');dot.setAttribute('stroke-width','1.5')}
+    }
+  });
+  // Update X labels
+  const texts=svg.querySelectorAll('text');
+  texts.forEach(t=>{
+    const tx=parseFloat(t.getAttribute('x'));
+    const idx=xs.indexOf(tx);
+    if(idx>=0&&t.textContent.startsWith('W')){
+      if(idx===wk-1){t.setAttribute('fill','var(--green-300)');t.setAttribute('font-weight','600')}
+      else{t.setAttribute('fill','oklch(1 0 0 / 0.25)');t.setAttribute('font-weight','500')}
+    }
+  });
+}
+function toggleQuestion(id){
+  const item=document.getElementById(id);
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.q-item.open').forEach(q=>q.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+function submitReport(){
+  showToast('✅ Report submitted! Your mentor will be notified.')
+}
+
+/* ===== AI ASSISTANT — DeepSeek V4 Pro ===== */
+const AI_CONFIG={
+  apiKey:'sk-your-deepseek-api-key',
+  endpoint:'https://api.deepseek.com/chat/completions',
+  model:'deepseek-chat'
+};
+
+const AI_PROMPTS={
+  Q1:`You are a product mentor helping an intern write their weekly report [Key Outputs]. Output format: first give improved content (numbered ①②③, each covering: what was done + purpose + progress), then add one line "💡 Follow-up:" with a question.`,
+  Q2:`You are a product mentor helping an intern write their weekly report [Key Learning]. Output format: first give a polished learning description (what was learned + how + why important), then add one line "💡 Follow-up:" with a question.`,
+  Q3:`You are a product mentor helping an intern write their weekly report [Key Challenge]. Output format: first give a polished challenge description (what happened + response + outcome), then add one line "💡 Follow-up:" with a question.`,
+  default:`You are a product mentor helping an intern write their weekly report. Output format: first give improved content, then add one line "💡 Follow-up:" with a question.`
+};
+
+const deepenQuestions={
+  Q1:[
+    'What was the purpose of this? Any quantifiable results to add?',
+    'Any other outputs you may have forgotten but are worth mentioning? E.g. small docs or helping a colleague?',
+    'Among these outputs, which one are you most proud of? Why?'
+  ],
+  Q2:[
+    'Can you describe more specifically the situation where you learned this?',
+    'How has this learning changed your approach to work since?',
+    'Where would you rank this learning in your internship so far? Why?'
+  ],
+  Q3:[
+    'What was your first reaction when this happened? How did it evolve?',
+    'If you faced a similar situation again, what would you do differently? What did you learn?',
+    'What weakness did this challenge expose? How do you plan to address it?'
+  ],
+  default:[
+    'Can you describe the situation in more detail?',
+    'What inspiration or change did this bring you?',
+    'Any other details you haven\'t written yet?'
+  ]
+};
+
+function aiPolish(btn,qId){
+  const wrap=btn.closest('.ta-wrap');const ta=wrap.querySelector('textarea');
+  const raw=ta.value.trim();
+  if(!raw){showToast('Write something first — AI will help refine it');return}
+
+  let panel=wrap.querySelector('.ai-panel');
+  if(!panel){
+    panel=document.createElement('div');panel.className='ai-panel';
+    panel.innerHTML='<div class="ai-actions"><button class="ai-act-btn" onclick="aiAct(this,\''+qId+'\',\'structure\')">Structure</button><button class="ai-act-btn" onclick="aiAct(this,\''+qId+'\',\'deepen\')">Probe Deeper</button><button class="ai-act-btn" onclick="aiAct(this,\''+qId+'\',\'polish\')">Polish</button></div><div class="ai-result">Choose a mode above — AI will refine your writing</div>';
+    wrap.appendChild(panel);
+  }
+  const wasOpen=panel.classList.contains('open');
+  document.querySelectorAll('.ai-panel.open').forEach(p=>p.classList.remove('open'));
+  if(!wasOpen)panel.classList.add('open');
+}
+
+async function aiAct(btn,qId,mode){
+  const panel=btn.closest('.ai-panel');const resultDiv=panel.querySelector('.ai-result');
+  const wrap=panel.closest('.ta-wrap');const ta=wrap.querySelector('textarea');
+  const raw=ta.value.trim();if(!raw)return;
+
+  resultDiv.classList.add('loading');resultDiv.textContent='⏳ Thinking...';
+  panel.querySelectorAll('.ai-act-btn').forEach(b=>b.disabled=true);
+
+  if(mode==='structure'||mode==='polish'){
+    // Direct apply: modify textarea content immediately
+    const original=ta.value;
+    const modePrompts={
+      structure:'Please organize the logical structure, list by numbered points, preserve original meaning.',
+      polish:'Please polish to be more professional and concise, preserve original meaning and tone.'
+    };
+    const improved=await callAI(raw,(AI_PROMPTS[qId]||AI_PROMPTS['default'])+'\n'+modePrompts[mode]);
+    ta.value=improved;resultDiv.classList.remove('loading');
+    resultDiv.innerHTML='<span style="color:var(--primary-text)">✓ '+(mode==='structure'?'Structured':'Polished')+'</span> · <a href="#" onclick="event.preventDefault();aiUndo(this,\''+original.replace(/'/g,"\\'")+'\')" style="color:var(--text-muted);text-decoration:underline;font-size:11px">Undo</a>';
+    panel.querySelectorAll('.ai-act-btn').forEach(b=>b.disabled=false);
+  }else{
+    // Deepen: one question at a time
+    const questions=deepenQuestions[qId]||deepenQuestions['default'];
+    let idx=parseInt(panel.dataset.qIdx||'0');
+    if(idx>=questions.length){resultDiv.classList.remove('loading');resultDiv.textContent='✓ Follow-up complete — your content is already quite thorough';panel.querySelectorAll('.ai-act-btn').forEach(b=>b.disabled=false);return}
+    // Remove old inline Q
+    panel.closest('.q-body').querySelectorAll('.ai-inline-q').forEach(el=>el.remove());
+    const inlineQ=document.createElement('span');inlineQ.className='ai-inline-q';
+    inlineQ.textContent='💡 '+questions[idx];inlineQ.dataset.qIdx=idx;
+    ta.parentNode.insertBefore(inlineQ,ta.nextSibling);
+    panel.dataset.qIdx=idx+1;
+    resultDiv.classList.remove('loading');
+    resultDiv.textContent='Please answer the gray question above in the text area, then click "Probe Deeper" again to continue';
+    panel.querySelectorAll('.ai-act-btn').forEach(b=>b.disabled=false);
+  }
+}
+
+async function callAI(raw,systemPrompt){
+  try{
+    const r=await fetch(AI_CONFIG.endpoint,{method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+AI_CONFIG.apiKey},
+      body:JSON.stringify({model:AI_CONFIG.model,messages:[{role:'system',content:systemPrompt},{role:'user',content:'Draft:\n'+raw}],temperature:0.7,max_tokens:800})
+    });
+    if(!r.ok)throw new Error('API error');
+    const d=await r.json();return d.choices[0].message.content.split('💡 Follow-up:')[0].trim();
+  }catch(e){
+    // Fallback
+    const lines=raw.split(/[。；;.\n]/).filter(s=>s.trim());
+    return lines.length<=1?raw+'\n\n(Adding some specific details and outcome descriptions would make the content richer)':lines.map((s,i)=>(i+1)+'. '+s.trim()+'.').join('\n');
+  }
+}
+
+function aiUndo(link,original){
+  const ta=link.closest('.q-body').querySelector('textarea');
+  ta.value=original;
+  link.closest('.ai-result').innerHTML='<span style="color:var(--text-muted)">Changes reverted</span>';
+}
+function sendReply(){
+  const input=document.getElementById('replyInput');
+  if(input.value.trim()){showToast('💬 Follow-up sent');input.value=''}
+  else{showToast('Please enter your question')}
+}
+function toggleReportHistory(){
+  const list=document.getElementById('reportHistoryList');
+  const arrow=document.getElementById('reportHistoryArrow');
+  list.classList.toggle('open');
+  arrow.textContent=list.classList.contains('open')?'▼':'▶';
+}
+
+/* ===== LEARNING FILTERS ===== */
+/* ===== TRAINING TYPE FILTER ===== */
+function switchTrainType(type){
+  const docSection=document.getElementById('train-doc-section');
+  const courseSection=document.getElementById('train-course-section');
+  const aiBanner=document.getElementById('ai-banner');
+  if(type==='all'){
+    if(docSection)docSection.style.display='';
+    if(courseSection)courseSection.style.display='';
+    if(aiBanner)aiBanner.style.display='';
+  }else if(type==='course'){
+    if(docSection)docSection.style.display='none';
+    if(courseSection)courseSection.style.display='';
+    if(aiBanner)aiBanner.style.display='none';
+  }else if(type==='doc'){
+    if(docSection)docSection.style.display='';
+    if(courseSection)courseSection.style.display='none';
+    if(aiBanner)aiBanner.style.display='none';
+  }
+}
+/* ===== CHART INTERACTIONS (tooltip popups removed) ===== */
+
+/* ===== CLOSE DRAWER ON ESC ===== */
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer();});
+</script>
+</body>
+</html>
