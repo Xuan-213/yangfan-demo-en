@@ -915,6 +915,42 @@ body{
 	 .health-grid{grid-template-columns:1fr}
 	 .intern-hero-stats{flex-wrap:wrap;gap:var(--sp-4)}
 	}
+
+/* Chinese/English shared competency-distribution palette */
+:root{--pie-highpot: #DFE2FF;
+--pie-normal:  #D4FFD2;
+--pie-warn:    #FFEDD7;
+--pie-risk:    #FFDBDC;
+--pie-highpot-text: oklch(0.42 0.12 280);
+--pie-normal-text:  oklch(0.38 0.10 145);
+--pie-warn-text:    oklch(0.48 0.12 75);
+--pie-risk-text:    oklch(0.42 0.12 18);}
+#pieSegHi{stroke:var(--pie-highpot)} #pieHi{color:var(--pie-highpot-text)!important}
+#pieSegNo{stroke:var(--pie-normal)} #pieNo{color:var(--pie-normal-text)!important}
+#pieSegMd{stroke:var(--pie-warn)} #pieMd{color:var(--pie-warn-text)!important}
+#pieSegRk{stroke:var(--pie-risk)} #pieRk{color:var(--pie-risk-text)!important}
+#compDistCard span[style*="background:var(--purple)"]{background:var(--pie-highpot)!important}
+#compDistCard span[style*="background:var(--primary)"]{background:var(--pie-normal)!important}
+#compDistCard span[style*="background:var(--warning)"]{background:var(--pie-warn)!important}
+#compDistCard span[style*="background:var(--danger)"]{background:var(--pie-risk)!important}
+
+/* Category labels and linked hover/focus exploration, matching the Chinese chart. */
+#compDistCard{position:relative}
+.pie-wrap-accessible{width:220px;height:220px;max-width:100%;margin-bottom:16px}
+.pie-wrap-accessible svg{width:100%;height:100%;overflow:visible}
+#pieLabelsP2{pointer-events:none}
+#pieWrapP2 circle{transition:opacity .16s ease,filter .16s ease;cursor:default;outline:none}
+#pieWrapP2 circle.is-muted{opacity:.28}
+#pieWrapP2 circle.is-active{filter:drop-shadow(0 2px 5px #64517650)}
+.pie-legend-accessible{display:flex;gap:8px 12px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.pie-legend-item{border:1px solid transparent;background:none;border-radius:9px;padding:7px 9px;display:flex;align-items:center;gap:7px;font:500 12px var(--font);color:var(--text-primary);cursor:default;transition:background .16s,border-color .16s}
+.pie-legend-item:hover,.pie-legend-item.is-active,.pie-legend-item:focus-visible{background:var(--neutral-50);border-color:var(--border-light);outline:2px solid transparent}
+.pie-legend-item:focus-visible{outline-color:var(--primary)}
+.pie-swatch{width:12px;height:12px;border-radius:4px;flex-shrink:0}
+.pie-tooltip{position:absolute;z-index:30;width:260px;max-width:calc(100% - 24px);padding:14px 16px;background:var(--bg-card,#fff);color:var(--text-primary);border:1px solid var(--border-light);border-radius:12px;box-shadow:0 8px 28px #183c2c24;pointer-events:none;font:12px/1.7 var(--font)}
+.pie-tooltip strong,.pie-tooltip span{display:block}.pie-tooltip span{color:var(--text-secondary);margin-top:4px}
+.pie-tooltip[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){#pieWrapP2 circle,.pie-legend-item{transition:none}}
 </style>
 <script src="data.js?v=3"></script>
 </head>
@@ -1035,26 +1071,7 @@ body{
     </div>
     <div class="chart-card-body" style="align-items:center;padding:var(--sp-5) var(--sp-6) var(--sp-4)">
      <!-- Large pie chart — ~70% of card -->
-     <div style="position:relative;width:180px;height:180px;flex-shrink:0;margin-bottom:var(--sp-4)" id="pieWrapP2">
-      <svg viewBox="0 0 200 200" style="width:180px;height:180px;transform:rotate(-90deg);filter:drop-shadow(0 3px 10px oklch(0 0 0 / 0.08))">
-       <circle id="pieSegHi" cx="100" cy="100" r="40" fill="none" stroke="var(--purple)" stroke-width="80" stroke-dasharray="0 251"/>
-       <circle id="pieSegNo" cx="100" cy="100" r="40" fill="none" stroke="var(--primary)" stroke-width="80" stroke-dasharray="0 251"/>
-       <circle id="pieSegMd" cx="100" cy="100" r="40" fill="none" stroke="var(--warning)" stroke-width="80" stroke-dasharray="0 251"/>
-       <circle id="pieSegRk" cx="100" cy="100" r="40" fill="none" stroke="var(--danger)" stroke-width="80" stroke-dasharray="0 251"/>
-      </svg>
-      <!-- Center label -->
-      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none">
-       <span style="font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--text-primary);font-family:var(--font-heading);line-height:1" id="donutTotalP2">0</span>
-       <span style="font-size:10px;color:var(--text-muted)"> people</span>
-      </div>
-     </div>
-     <!-- Compact legend below pie -->
-     <div style="display:flex;gap:var(--sp-5);flex-wrap:wrap;justify-content:center;margin-bottom:var(--sp-4)" id="pieLegendP2">
-      <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:var(--purple);flex-shrink:0"></span><span style="font-size:var(--text-xs);color:var(--text-secondary)">High Potential</span><span style="font-weight:700;font-size:var(--text-sm);color:var(--purple);font-family:var(--font-heading)" id="pieHi">0</span></div>
-      <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:var(--primary);flex-shrink:0"></span><span style="font-size:var(--text-xs);color:var(--text-secondary)">On Track</span><span style="font-weight:700;font-size:var(--text-sm);color:var(--primary);font-family:var(--font-heading)" id="pieNo">0</span></div>
-      <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:var(--warning);flex-shrink:0"></span><span style="font-size:var(--text-xs);color:var(--text-secondary)">Fluctuating</span><span style="font-weight:700;font-size:var(--text-sm);color:var(--warning);font-family:var(--font-heading)" id="pieMd">0</span></div>
-      <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:var(--danger);flex-shrink:0"></span><span style="font-size:var(--text-xs);color:var(--text-secondary)">High Risk</span><span style="font-weight:700;font-size:var(--text-sm);color:var(--danger);font-family:var(--font-heading)" id="pieRk">0</span></div>
-     </div>
+     <div id="pieWrapP2" class="pie-wrap-accessible"><svg viewBox="0 0 200 200" width="220" height="220" aria-label="Intern competency distribution"><g transform="rotate(-90,100,100)"><circle id="pieSegHi" cx="100" cy="100" r="40" fill="none" stroke="var(--pie-highpot)" stroke-width="80" stroke-dasharray="0 251"/><circle id="pieSegNo" cx="100" cy="100" r="40" fill="none" stroke="var(--pie-normal)" stroke-width="80" stroke-dasharray="0 251"/><circle id="pieSegMd" cx="100" cy="100" r="40" fill="none" stroke="var(--pie-warn)" stroke-width="80" stroke-dasharray="0 251"/><circle id="pieSegRk" cx="100" cy="100" r="40" fill="none" stroke="var(--pie-risk)" stroke-width="80" stroke-dasharray="0 251"/></g><g id="pieLabelsP2" aria-hidden="true"></g><text id="pieEmptyP2" x="100" y="100" text-anchor="middle" font-size="11" fill="var(--text-muted)" style="display:none">No matching interns</text></svg></div><div id="pieLegendP2" class="pie-legend-accessible"><button type="button" data-pie-key="Hi" class="pie-legend-item"><span class="pie-swatch" style="background:var(--pie-highpot)"></span><span>High potential</span><strong id="pieHi" style="color:var(--pie-highpot-text)">0</strong></button><button type="button" data-pie-key="No" class="pie-legend-item"><span class="pie-swatch" style="background:var(--pie-normal)"></span><span>On track</span><strong id="pieNo" style="color:var(--pie-normal-text)">0</strong></button><button type="button" data-pie-key="Md" class="pie-legend-item"><span class="pie-swatch" style="background:var(--pie-warn)"></span><span>Fluctuating</span><strong id="pieMd" style="color:var(--pie-warn-text)">0</strong></button><button type="button" data-pie-key="Rk" class="pie-legend-item"><span class="pie-swatch" style="background:var(--pie-risk)"></span><span>High risk</span><strong id="pieRk" style="color:var(--pie-risk-text)">0</strong></button></div><div id="pieTooltipP2" class="pie-tooltip" role="tooltip" hidden></div>
      <!-- Advice at bottom -->
      <div style="background:var(--neutral-50);border-radius:var(--r-lg);padding:var(--sp-3) var(--sp-4);font-size:11px;color:var(--text-secondary);line-height:1.6;width:100%" id="pieAdviceP2"></div>
     </div>
@@ -2009,32 +2026,47 @@ function renderInternTable(){
 function setElHC(sel,val){var el=document.querySelector('#page2 '+sel);if(el)el.textContent=val;}
 
 function renderPieChartP2(interns){
- var total=interns.length||1;
- var lo=interns.filter(function(i){return i.risk==='low'}).length;
- var md=interns.filter(function(i){return i.risk==='med'}).length;
- var hi=interns.filter(function(i){return i.risk==='high'}).length;
- var no=total-lo-md-hi;if(no<0)no=0;
- // Legend counts
- var elHi=document.getElementById('pieHi');if(elHi)elHi.textContent=lo;
- var elNo=document.getElementById('pieNo');if(elNo)elNo.textContent=no;
- var elMd=document.getElementById('pieMd');if(elMd)elMd.textContent=md;
- var elRk=document.getElementById('pieRk');if(elRk)elRk.textContent=hi;
- // Pie segments (circumference = 2*PI*40 ≈ 251)
- var circ=251,offset=0;
- [{id:'pieSegHi',val:lo},{id:'pieSegNo',val:no},{id:'pieSegMd',val:md},{id:'pieSegRk',val:hi}].forEach(function(s){
-  var el=document.getElementById(s.id);if(!el)return;
-  var dashLen=s.val/total*circ;
-  el.setAttribute('stroke-dasharray',dashLen+' '+(circ-dashLen));
-  el.setAttribute('stroke-dashoffset',-offset);
-  offset+=dashLen;
+ var total=interns.length,denom=total||1,circ=2*Math.PI*40,offset=0;
+ var groups=[
+  {key:'Hi',label:'High potential',risk:'low',color:'highpot'},
+  {key:'No',label:'On track',risk:'normal',color:'normal'},
+  {key:'Md',label:'Fluctuating',risk:'med',color:'warn'},
+  {key:'Rk',label:'High risk',risk:'high',color:'risk'}
+ ];
+ var card=document.getElementById('compDistCard'),tip=document.getElementById('pieTooltipP2'); if(tip.parentElement!==card)card.appendChild(tip);
+ function hide(){tip.hidden=true;card.querySelectorAll('.is-active,.is-muted').forEach(function(el){el.classList.remove('is-active','is-muted')});}
+ function show(group,event,source){
+  card.querySelectorAll('#pieWrapP2 circle').forEach(function(el){el.classList.toggle('is-active',el.id==='pieSeg'+group.key);el.classList.toggle('is-muted',el.id!=='pieSeg'+group.key)});
+  card.querySelectorAll('[data-pie-key]').forEach(function(el){el.classList.toggle('is-active',el.dataset.pieKey===group.key)});
+  tip.replaceChildren();var title=document.createElement('strong');title.textContent=group.label+' · '+group.members.length+' '+(group.members.length===1?'intern':'interns')+' · '+Math.round(group.members.length/denom*100)+'%';tip.appendChild(title);
+  var names=document.createElement('span');names.textContent=group.members.length?group.members.map(function(i){return i.name}).join(', '):'No interns in this category under the current filters.';tip.appendChild(names);
+  var scope=document.createElement('span');scope.textContent='Current selection: '+total+' '+(total===1?'intern':'interns')+'.';tip.appendChild(scope);
+  tip.hidden=false;var rect=card.getBoundingClientRect(),anchor=source.getBoundingClientRect();
+  var x=event&&event.clientX?event.clientX-rect.left+12:anchor.left-rect.left;
+  var y=event&&event.clientY?event.clientY-rect.top+14:anchor.bottom-rect.top+8;
+  tip.style.left=Math.max(12,Math.min(x,rect.width-tip.offsetWidth-12))+'px';tip.style.top=Math.max(12,Math.min(y,rect.height-tip.offsetHeight-12))+'px';
+ }
+ hide();var labels='';
+ groups.forEach(function(g){
+  g.members=interns.filter(function(i){return g.risk==='normal'?!['low','med','high'].includes(i.risk):i.risk===g.risk});
+  var count=g.members.length,pct=Math.round(count/denom*100),dash=count/denom*circ;
+  document.getElementById('pie'+g.key).textContent=count;
+  var el=document.getElementById('pieSeg'+g.key);el.setAttribute('stroke-dasharray',dash+' '+(circ-dash));el.setAttribute('stroke-dashoffset',-offset);
+  el.style.pointerEvents=count?'stroke':'none';el.setAttribute('tabindex',count?'0':'-1');el.setAttribute('role','img');el.setAttribute('aria-label',g.label+': '+count+' of '+total+' interns, '+pct+' percent');el.setAttribute('aria-describedby','pieTooltipP2');
+  var legend=card.querySelector('[data-pie-key="'+g.key+'"]');legend.setAttribute('aria-label',g.label+': '+count+' interns, '+pct+' percent');legend.setAttribute('aria-describedby','pieTooltipP2');
+  [el,legend].forEach(function(target){target.onmouseenter=function(event){show(g,event,target)};target.onmousemove=function(event){show(g,event,target)};target.onmouseleave=hide;target.onfocus=function(){show(g,null,target)};target.onblur=hide;target.onkeydown=function(e){if(e.key==='Escape')hide()};target.onclick=function(event){show(g,event,target)};});
+  if(count){var angle=-Math.PI/2+(offset+dash/2)/circ*2*Math.PI,x=100+40*Math.cos(angle),y=100+40*Math.sin(angle);var color='var(--pie-'+g.color+'-text)';
+   if(pct>=10)labels+='<text x="'+x+'" y="'+(y-7)+'" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="600" fill="'+color+'">'+g.label+'</text>';
+   labels+='<text x="'+x+'" y="'+(y+8)+'" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="'+color+'">'+pct+'%</text>';
+  }offset+=dash;
  });
- // Advice
- var a=document.getElementById('pieAdviceP2');if(!a)return;
- var t='';
- if(hi>0) t='⚠ There are <b style="color:var(--danger)">'+hi+' intern(s)</b> at High Risk — Recommendation scheduling 1:1 coaching immediately.';
- if(md>0) t+=(t?' ':'')+'📊 <b style="color:var(--warning)">'+md+' people</b>Fluctuating — Recommendation strengthening process tracking and report reflection.';
- if(!t) t=lo===total?'🎉 All interns are in excellent shape — Recommendation scheduling advanced challenges for continued motivation.':'✅ Team competency distribution is healthy — Continue current coaching pace.';
- a.innerHTML='💡 '+t;
+ document.getElementById('pieLabelsP2').innerHTML=labels;document.getElementById('pieEmptyP2').style.display=total?'none':'';
+ var high=groups[3].members.length,med=groups[2].members.length;
+ var advice=[];if(high)advice.push(high+' '+(high===1?'intern needs':'interns need')+' immediate one-to-one coaching due to high risk.');
+ if(med)advice.push(med+' '+(med===1?'intern shows':'interns show')+' fluctuating progress; strengthen ongoing tracking and weekly reflection.');
+ if(!total)advice.push('No interns match the current filters. Adjust the filters to view the distribution.');
+ else if(!advice.length)advice.push(groups[0].members.length===total?'All selected interns are high potential. Offer advanced challenges to sustain growth.':'The selected team has a healthy competency distribution. Maintain the current mentoring rhythm.');
+ document.getElementById('pieAdviceP2').textContent='💡 '+advice.join(' ');
 }
 
 // ── Competency Trend Chart (Page 2) ──
